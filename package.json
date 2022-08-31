@@ -9,5 +9,8 @@
   },
   "devDependencies": {
     "astro": "^1.0.0-rc.8"
+  },
+  "dependencies": {
+    "@astrojs/vercel": "^1.0.1"
   }
 }
