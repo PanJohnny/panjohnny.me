@@ -4,7 +4,10 @@ interface Props {
     description: string;
 }
 
-const props = Astro.props as Props;
+var props = Astro.props as Props;
+if (Astro.props.frontmatter) {
+    props = Astro.props.frontmatter as Props
+}
 ---
 
 <html>
@@ -17,7 +20,7 @@ const props = Astro.props as Props;
         <meta name="generator" content={Astro.generator} />
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://metatags.io/" />
+        <meta property="og:url" content="https://panjohnny.vercel.app/" />
         <meta property="og:title" content={props.title} />
         <meta property="og:description" content={props.description} />
         <meta
@@ -27,7 +30,7 @@ const props = Astro.props as Props;
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://metatags.io/" />
+        <meta property="twitter:url" content="https://panjohnny.vercel.app/" />
         <meta property="twitter:title" content={props.title} />
         <meta property="twitter:description" content={props.description} />
         <meta

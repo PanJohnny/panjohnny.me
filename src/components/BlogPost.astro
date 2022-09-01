@@ -1,0 +1,71 @@
+---
+interface Props {
+    title: string;
+    description: string,
+    id: string,
+    date: string;
+}
+
+const props = Astro.props as Props;
+---
+
+<div class="post">
+    <a href={"/posts/" + props.id}>
+        <div class="post-upper">
+            <span class="post-title">{props.title}</span><span class="post-date">{props.date}</span>
+        </div>
+        <div class="post-description">
+            {props.description}
+        </div>
+    </a>
+</div>
+
+<style>
+    .post > a {
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+        width: 92vw;
+        margin: 3vw;
+        padding: 1vw;
+        border: black 1px solid;
+        border-radius: 1em;
+    }
+
+    .post {
+        width: 100vw;
+    }
+
+    .post-upper {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 1em;
+        margin-bottom: 1em;
+        border-bottom: black 1px solid;
+    }
+
+    .post-title {
+        font-size: 1.3em;
+        font-weight: 400;
+    }
+
+    .post-description {
+        font-size: 0.8em;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        body {
+            color: gainsboro;
+            background-color: black;
+        }
+
+        .post-upper {
+            border-bottom-color: gainsboro;
+        }
+
+        .post > a {
+            border-color: gainsboro;
+        }
+    }
+</style>

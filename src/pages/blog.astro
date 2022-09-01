@@ -1,0 +1,44 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BlogPost from "../components/BlogPost.astro";
+
+const posts = await Astro.glob("./posts/*.md");
+---
+
+<Layout title="PanJohnny's blog" description="Place where I write about stuff">
+    <header>
+        <h1>Blog posts</h1>
+    </header>
+    <main>
+        {
+            posts.map((post) => (
+                <BlogPost
+                    title={post.frontmatter.title}
+                    date={post.frontmatter.date}
+                    description={post.frontmatter.description}
+                    id={post.frontmatter.id}
+                />
+            ))
+        }
+    </main>
+</Layout>
+
+<style>
+    header {
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+        flex-direction: row;
+    }
+
+    h1 {
+        font-weight: 500;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        body {
+            color: gainsboro;
+            background-color: black;
+        }
+    }
+</style>

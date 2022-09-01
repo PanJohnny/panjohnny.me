@@ -1,0 +1,20 @@
+---
+const blogs = await Astro.glob("./*.md");
+function convertToValidDate(date: string) {
+    const split = date.split(".");
+    return split[2].trim() + "-" + split[1].trim() + "-" + split[0].trim();
+}
+var latestDate: number = 0;
+var latest: object;
+blogs.map((blog) => {
+    const date = Date.parse(convertToValidDate(blog.frontmatter.date));
+
+    if (date > latestDate) {
+        latest = blog;
+        latestDate = date;
+    }
+})
+
+if (latest)
+    return Astro.redirect(latest.frontmatter.id)
+---
