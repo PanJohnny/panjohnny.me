@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import BlogPost from "../components/BlogPost.astro";
 
-const posts = await Astro.glob("./posts/*.md");
+const posts = await Astro.glob("./posts/_/*.md");
 ---
 
 <Layout title="PanJohnny's blog" description="Place where I write about stuff">
