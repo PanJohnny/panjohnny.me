@@ -6,7 +6,7 @@ interface Props {
 
 var props = Astro.props as Props;
 if (Astro.props.frontmatter) {
-    props = Astro.props.frontmatter as Props
+    props = Astro.props.frontmatter as Props;
 }
 ---
 
@@ -23,53 +23,61 @@ if (Astro.props.frontmatter) {
         <meta property="og:url" content="https://panjohnny.vercel.app/" />
         <meta property="og:title" content={props.title} />
         <meta property="og:description" content={props.description} />
-        <meta
-            property="og:image"
-            content="/favicon.ico"
-        />
+        <meta property="og:image" content="/favicon.ico" />
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://panjohnny.vercel.app/" />
         <meta property="twitter:title" content={props.title} />
         <meta property="twitter:description" content={props.description} />
-        <meta
-            property="twitter:image"
-            content="/favicon.ico"
-        />
+        <meta property="twitter:image" content="/favicon.ico" />
     </head>
 
     <body>
         <slot />
+        <style>
+            :root {
+                --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+                --font-size-lg: clamp(1.2rem, 0.7vw + 1.2rem, 1.5rem);
+                --font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+                --color-text: hsl(12, 5%, 4%);
+                --color-bg: hsl(10, 21%, 95%);
+                --color-border: hsl(17, 24%, 90%);
+                font-size: 1.5em;
+            }
+            html {
+                font-family: system-ui, sans-serif;
+                font-size: var(--font-size-base);
+                color: var(--color-text);
+                background-color: var(--color-bg);
+                overflow: hidden;
+            }
+            body {
+                margin: 0;
+                width: 100vw;
+                height: 100vh;
+            }
+
+            :global(h1) {
+                font-size: var(--font-size-xl);
+            }
+            :global(h2) {
+                font-size: var(--font-size-lg);
+            }
+            :global(code) {
+                font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+                    DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
+                    monospace;
+            }
+
+            a {
+                color: darkblue;
+                text-decoration-color: orangered;
+            }
+
+            :global(h2) {
+                font-weight: 500;
+            }
+        </style>
     </body>
 </html>
-
-<style>
-	:root {
-		--font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
-		--font-size-lg: clamp(1.2rem, 0.7vw + 1.2rem, 1.5rem);
-		--font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
-		--color-text: hsl(12, 5%, 4%);
-		--color-bg: hsl(10, 21%, 95%);
-		--color-border: hsl(17, 24%, 90%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		font-size: var(--font-size-base);
-		color: var(--color-text);
-		background-color: var(--color-bg);
-	}
-	body {
-		margin: 0;
-	}
-	:global(h1) {
-		font-size: var(--font-size-xl);
-	}
-	:global(h2) {
-		font-size: var(--font-size-lg);
-	}
-	:global(code) {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>

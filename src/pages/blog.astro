@@ -21,6 +21,10 @@ const posts = await Astro.glob("./posts/_/*.md");
             ))
         }
     </main>
+    <footer>
+        <a href="/">Back to home page</a>
+        <a href="/posts/latest">Latest blog</a>
+    </footer>
 </Layout>
 
 <style>
@@ -40,5 +44,15 @@ const posts = await Astro.glob("./posts/_/*.md");
             color: gainsboro;
             background-color: black;
         }
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 96vw;
+        margin: 1em;
+        margin-bottom: 0.5em;
     }
 </style>
