@@ -11,6 +11,7 @@
     "astro": "^1.0.0-rc.8"
   },
   "dependencies": {
-    "@astrojs/vercel": "^1.0.1"
+    "@astrojs/vercel": "^1.0.1",
+    "mongoose": "^6.6.1"
   }
 }
