@@ -1,0 +1,34 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="PanJohnny"
+    description="Website of guy that codes stuff">
+    <main>
+        <div id = "out">
+            <span class="line selected">C://Users/PanJohnny/Website{">"}</span>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    @keyframes blink {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+    .selected::after {
+        content: "▓";
+        animation: blink infinite linear 1s;
+    }
+</style>
+
+<script is:inline>
+    window.addEventListener("keydown", (event) => {
+        document.querySelector(".selected").innerText += event.key;
+    })
+</script>
