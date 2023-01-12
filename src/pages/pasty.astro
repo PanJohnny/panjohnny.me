@@ -1,0 +1,121 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Pasty" description="Generate urls when pasting stuff">
+    <header><h1>Pasty</h1></header>
+    <main>
+        <div>
+            <h3>Title</h3>
+            <input type="text" name="title" id="title" placeholder="Title" />
+        </div>
+
+        <div>
+            <h3>Description</h3>
+            <input
+                type="text"
+                name="desc"
+                id="desc"
+                placeholder="Description"
+            />
+        </div>
+        <div>
+            <h3>URL</h3>
+            <input type="url" name="url" id="url" placeholder="URL" />
+        </div>
+        <div>
+            <h3>isImage</h3>
+            <input type="checkbox" name="img" id="img" value="off"/>
+        </div>
+        <div>
+            <h3>Short</h3>
+            <input type="text" name="short" id="short" placeholder="Short" />
+        </div>
+        <input type="button" value="Paste" onclick="pasteIt()" />
+        <a
+            href="https://cloud.mongodb.com/v2/61e087db89302530af2f22f1#/metrics/replicaSet/63b98d7ef0c6a01cb2d97b6f/explorer/test/shorturls/find"
+            >Remove stuff here</a
+        >
+    </main>
+</Layout>
+
+<script is:inline>
+    if (!localStorage.getItem("secret")) {
+        const pass = prompt("This page requires auth, enter special pass.");
+
+        // request login
+        fetch("/api/v1/pasty/login", {
+            headers: {
+                Password: pass.trim(),
+            },
+        })
+            .then((res) => res.text())
+            .then((text) => {
+                localStorage.setItem("secret", text);
+            })
+            .catch((err) => {
+                alert("Invalid password");
+                window.location.reload();
+            });
+    }
+
+    function pasteIt() {
+        const title = document.querySelector("#title").value;
+        const desc = document.querySelector("#desc").value;
+        const url = document.querySelector("#url").value;
+        const isImage = document.querySelector("#img").value;
+        const short = document.querySelector("#short").value;
+
+        fetch("/api/v1/pasty/paste", {
+            headers: {
+                Secret: localStorage.getItem("secret"),
+            },
+            body: JSON.stringify({
+                title: title,
+                description: desc,
+                url: url,
+                isImage: isImage == "on",
+                shorten: short,
+            }),
+            method: "POST",
+        }).then(
+            (success) => {
+                if (success.ok) alert("Success!");
+                else alert("Bad Request!");
+            },
+            (err) => {
+                alert("Err!");
+                console.error(err);
+            }
+        );
+    }
+</script>
+
+<style>
+    header {
+        text-align: center;
+    }
+
+    input {
+        outline: none;
+        font-size: 1em;
+        background-color: whitesmoke;
+        border-radius: 5px;
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+
+    h3 {
+        display: inline;
+    }
+
+    main > div {
+        margin-bottom: .3em;
+    }
+</style>

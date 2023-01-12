@@ -1,0 +1,46 @@
+---
+const { short } = Astro.params;
+
+import { ShortURLModel } from "../../db.js";
+import Layout from "../../layouts/Layout.astro";
+
+const found = await ShortURLModel.findOne({shorten: short}).exec();
+
+if (!found) {
+    return Astro.redirect("/404");
+}
+---
+
+<Layout title={found.title} description={found.description}>
+
+    {
+        !found.isImage ? (
+    <a href={found.url} id="url">Click here if not redirected</a>
+
+    <script is:inline>
+        setTimeout(() => {
+            window.location.href = document.querySelector("#url").getAttribute("href");
+        }, 100);
+    </script>
+        ) : (
+            <a href={found.url}>
+                <img src={found.url} alt="mirrored image" title="Click here to open original">
+            </a>
+        )
+    }
+
+    
+</Layout>
+
+<style>
+    img {
+        height: 100vh;
+        width: auto;
+    }
+    body {
+        align-content: center;
+        display: flex;
+        background-color: #0E0E0E;
+        justify-content: center;
+    }
+</style>
