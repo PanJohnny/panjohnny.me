@@ -1,5 +1,5 @@
-import { Schema, model, connect, connection, models } from "mongoose";
-
+import mongoose from "mongoose";
+// { Schema, model, connect, connection, models }
 if (connection.readyState != 1) {
     const login =
         "mongodb+srv://pasty:<password>@eventplanner.cil6rdw.mongodb.net/?retryWrites=true&w=majority".replace(
@@ -7,11 +7,11 @@ if (connection.readyState != 1) {
             import.meta.env.DB_PASS
         );
 
-    connect(login);
+    mongoose.connect(login);
 }
 
 
-const ShortURLSchema = new Schema({
+const ShortURLSchema = new mongoose.Schema({
     title: String,
     description: String,
     url: String,
@@ -19,4 +19,4 @@ const ShortURLSchema = new Schema({
     shorten: String
 });
 
-export const ShortURLModel = models.ShortURL || model("ShortURL", ShortURLSchema);
+export const ShortURLModel = models.ShortURL || mongoose.model("ShortURL", ShortURLSchema);
