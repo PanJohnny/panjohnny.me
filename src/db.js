@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import * as mongoose from "mongoose";
 // { Schema, model, connect, connection, models }
 if (connection.readyState != 1) {
     const login =
