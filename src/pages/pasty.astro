@@ -2,9 +2,9 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Pasty" description="Generate urls when pasting stuff">
-    <header><h1>Pasty</h1></header>
-    <main>
+<Layout title="Pasty" description="Generate urls when pasting stuff" theme="dark">
+    <main class="container">
+        <h1>Pasty</h1>
         <div>
             <h3>Title</h3>
             <input type="text" name="title" id="title" placeholder="Title" />
@@ -92,30 +92,12 @@ import Layout from "../layouts/Layout.astro";
 </script>
 
 <style>
-    header {
-        text-align: center;
-    }
-
     input {
         outline: none;
         font-size: 1em;
-        background-color: whitesmoke;
         border-radius: 5px;
     }
-
-    main {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-left: 10vw;
-        margin-right: 10vw;
-    }
-
     h3 {
         display: inline;
-    }
-
-    main > div {
-        margin-bottom: .3em;
     }
 </style>

@@ -5,16 +5,66 @@ import Layout from "../layouts/Layout.astro";
 <Layout
     title="PanJohnny's website"
     description="Website that belongs to guy who codes stuff"
-    ><header>
-        <h1>PanJohnny's website</h1>
+    theme={Astro.url.searchParams.has("dark")?"dark":Astro.url.searchParams.has("light")?"light":""}
+>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="?dark" class={"secondary" + (Astro.url.searchParams.has("dark")?" invisible":Astro.url.searchParams.has("light")?"":" dark-t")}><i class="fa-solid fa-moon"></i></a></li>
+                <li><a href="?light" class={"secondary" + (Astro.url.searchParams.has("light")?" invisible":Astro.url.searchParams.has("dark")?"":" light-t")}><i class="fa-solid fa-sun"></i></a></li>           
+            </ul>
+            <ul>
+                <li><h1 class="no-margin">PanJohnny's website</h1></li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="https://github.com/PanJohnny" class="secondary"
+                        ><i class="fa-brands fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </header>
     <main>
-        This website is not released yet... I am working on it tho!
+        <div class="part">
+            <h1 class="center-text">Hi, I am <span class="accent">John</span></h1>
+        </div>
+        <div class="part">
+            <h1 class="center-text">Hi, I am <span class="accent">John</span></h1>
+        </div>
     </main>
 </Layout>
 
 <style>
-    body {
+    .center-text {
         text-align: center;
+    }
+
+    .invisible {
+        display: none;
+    }
+
+    .hamburger {
+        margin-top: -1em;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .dark-t {
+            display: none;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        .l-t {
+            display: none;
+        }
+    }
+
+    .accent {
+        color: #ff7300;
+    }
+
+    .part:not(:first-child) {
+        height: 100vh;
     }
 </style>

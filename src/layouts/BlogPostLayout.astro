@@ -39,12 +39,21 @@ if (Astro.props.frontmatter) {
         <meta property="twitter:title" content={props.title} />
         <meta property="twitter:description" content={props.description} />
         <meta property="twitter:image" content="/favicon.ico" />
+
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+        />
+        <script
+            src="https://kit.fontawesome.com/748c4b57ac.js"
+            crossorigin="anonymous"
+        ></script>
     </head>
 
     <body>
-        <header>
-            <div class="center-line-container">
-                <h1>
+        <main class="container">
+            <div>
+                <h1 class="no-margin">
                     {props.title}
                 </h1>
             </div>
@@ -54,120 +63,83 @@ if (Astro.props.frontmatter) {
                 <span>Published {props.date}</span>
                 <span id="post">posts/{props.id}</span>
             </div>
-        </header>
-        <main>
             <slot />
-        </main>
-
-        <footer>
             <a href="/blog">Other blogs</a>
             <a href="latest">Latest blog</a>
-        </footer>
+        </main>
 
         <script is:inline>
-            const post = document.getElementById("post")
+            const post = document.getElementById("post");
             post.addEventListener("click", (event) => {
-                const before = post.innerText
-                post.innerText = "URL Copied to clipboard!"
-                post.style.animation = "fade-out 2s linear"
-                navigator.clipboard.writeText(window.location.href)
-                setTimeout(() => {
-                    post.innerText = before
-                }, 2000)
-            })
+                const before = post.innerText;
+                copyToClipboard(window.location.href)
+                    .then((s) => {
+                        post.innerText = "URL Copied to clipboard!";
+                        post.style.animation = "fade-out 2s linear";
+                        setTimeout(() => {
+                            post.innerText = before;
+                        }, 2000);
+                    })
+                    .catch((err) => {
+                        post.innerText = err;
+                    });
+            });
+
+            function copyToClipboard(textToCopy) {
+                // navigator clipboard api needs a secure context (https)
+                if (navigator.clipboard && window.isSecureContext) {
+                    // navigator clipboard api method'
+                    return navigator.clipboard.writeText(textToCopy);
+                } else {
+                    // text area method
+                    let textArea = document.createElement("textarea");
+                    textArea.value = textToCopy;
+                    // make the textarea out of viewport
+                    textArea.style.position = "fixed";
+                    textArea.style.left = "-999999px";
+                    textArea.style.top = "-999999px";
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    return new Promise((res, rej) => {
+                        // here the magic happens
+                        document.execCommand("copy") ? res() : rej();
+                        textArea.remove();
+                    });
+                }
+            }
         </script>
-
-        <style>
-            :root {
-                --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
-                --font-size-lg: clamp(1.2rem, 0.7vw + 1.2rem, 1.5rem);
-                --font-size-xl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
-                --color-text: hsl(12, 5%, 4%);
-                --color-bg: hsl(10, 21%, 95%);
-                --color-border: hsl(17, 24%, 90%);
-            }
-            html {
-                font-family: system-ui, sans-serif;
-                font-size: var(--font-size-base);
-                color: var(--color-text);
-                background-color: var(--color-bg);
-            }
-            body {
-                margin: 0;
-                font-size: 150%;
-                width: 100vw;
-                height: 100vh;
-            }
-            :global(h1) {
-                font-size: var(--font-size-xl);
-            }
-            :global(h2) {
-                font-size: var(--font-size-lg);
-            }
-            :global(code) {
-                font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-                    DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New,
-                    monospace;
-            }
-
-            .center-line-container {
-                display: flex;
-                justify-content: center;
-                widows: 100vw;
-            }
-
-            .info {
-                display: flex;
-                justify-content: space-between;
-                margin: 1em;
-                font-size: small;
-            }
-
-            main {
-                margin-left: 5vw;
-                margin-right: 5vw;
-            }
-
-            @keyframes fade-out {
-                from {
-                    opacity: 1;
-                }
-
-                to {
-                    opacity: 0;
-                }
-            }
-
-            #post {
-                cursor: pointer;
-                text-decoration: underline;
-            }
-
-            :global(a) {
-                color: darkblue;
-                text-decoration-color: orangered;
-            }
-
-            footer {
-                position: absolute;
-                bottom: 0;
-                display: flex;
-                justify-content: space-between;
-                width: 96vw;
-                margin: 1em;
-                margin-bottom: 0.5em;
-            }
-
-            @media (prefers-color-scheme: dark) {
-                body {
-                    color: gainsboro;
-                    background-color: black;
-                }
-
-                :global(a) {
-                    color: lightskyblue;
-                }
-            }
-        </style>
     </body>
 </html>
+
+<style>
+    .info {
+        display: flex;
+        justify-content: space-between;
+        margin: 1em;
+        font-size: small;
+    }
+
+    @keyframes fade-out {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    :global(.no-margin) {
+        margin: 0px;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 96vw;
+        margin: 1em;
+        margin-bottom: 0.5em;
+    }
+</style>
