@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-console.log(JSON.stringify(mongoose));
-
 // { Schema, model, connect, connection, models }
 if (mongoose.connection.readyState != 1) {
     const login =
@@ -22,4 +20,4 @@ const ShortURLSchema = new mongoose.Schema({
     shorten: String
 });
 
-export const ShortURLModel = models.ShortURL || mongoose.model("ShortURL", ShortURLSchema);
+export const ShortURLModel = mongoose.models.ShortURL || mongoose.model("ShortURL", ShortURLSchema);
