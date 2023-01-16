@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+
+console.log(JSON.stringify(mongoose));
+
 // { Schema, model, connect, connection, models }
 if (mongoose.connection.readyState != 1) {
     const login =
