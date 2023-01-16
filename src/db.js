@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose";
 // { Schema, model, connect, connection, models }
-if (connection.readyState != 1) {
+if (mongoose.connection.readyState != 1) {
     const login =
         "mongodb+srv://pasty:<password>@eventplanner.cil6rdw.mongodb.net/?retryWrites=true&w=majority".replace(
             "<password>",
