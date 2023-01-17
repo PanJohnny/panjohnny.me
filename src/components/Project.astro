@@ -1,0 +1,32 @@
+---
+interface Props {
+    name:string;
+    desc:string;
+    page:string;
+}
+
+const props = Astro.props as Props;
+---
+
+<a href={props.page} class="project primary" role="button">
+    <h3>→ {props.name}</h3>
+    <p>{props.desc}</p>
+</a>
+
+
+
+<style>
+
+    .project {
+        margin: 2em;
+        margin-top: 0em;
+    }
+
+    .project > h3 {
+        margin-bottom: 0em;
+    }
+
+    .fa-github {
+        color: initial;
+    }
+</style>

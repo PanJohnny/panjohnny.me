@@ -8,6 +8,17 @@ const posts = await Astro.glob("./posts/_/*.md");
 <Layout title="PanJohnny's blog" description="Place where I write about stuff">
     <header>
         <h1>Blog posts</h1>
+        <dialog open={!Astro.url.searchParams.has("close")}>
+            <article>
+              <header>
+                <a href="?close" aria-label="Close" class="close"></a>
+                Notice
+              </header>
+              <p>
+            This section of the page is not fully done yet.
+                </p>
+            </article>
+          </dialog>
     </header>
     <main>
         {
@@ -22,26 +33,18 @@ const posts = await Astro.glob("./posts/_/*.md");
         }
     </main>
     <footer>
-        <a href="/">Back to home page</a>
-        <a href="/posts/latest">Latest blog</a>
+        <a href="/" role="button" class="secondary"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="/posts/latest" role="button" class="secondary">Latest blog</a>
     </footer>
 </Layout>
 
 <style>
-    header {
-        display: flex;
-        justify-content: center;
-        width: 100vw;
-        flex-direction: row;
-    }
-
     footer {
-        position: absolute;
-        bottom: 0;
         display: flex;
         justify-content: space-between;
-        width: 96vw;
-        margin: 1em;
-        margin-bottom: 0.5em;
+    }
+
+    h1 {
+        text-align: center;
     }
 </style>

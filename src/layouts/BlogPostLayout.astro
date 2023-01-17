@@ -50,8 +50,8 @@ if (Astro.props.frontmatter) {
         ></script>
     </head>
 
-    <body>
-        <main class="container">
+    <body class="container">
+        <main>
             <div>
                 <h1 class="no-margin">
                     {props.title}
@@ -64,9 +64,13 @@ if (Astro.props.frontmatter) {
                 <span id="post">posts/{props.id}</span>
             </div>
             <slot />
-            <a href="/blog">Other blogs</a>
-            <a href="latest">Latest blog</a>
         </main>
+
+        <footer>
+            <a href="/blog" role="button" class="secondary">Other blogs</a>
+            <a href="latest" role="button" class="secondary">Latest blog</a>
+        </footer>
+        
 
         <script is:inline>
             const post = document.getElementById("post");
@@ -134,12 +138,7 @@ if (Astro.props.frontmatter) {
     }
 
     footer {
-        position: absolute;
-        bottom: 0;
         display: flex;
         justify-content: space-between;
-        width: 96vw;
-        margin: 1em;
-        margin-bottom: 0.5em;
     }
 </style>
