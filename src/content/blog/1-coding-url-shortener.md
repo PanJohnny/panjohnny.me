@@ -1,11 +1,9 @@
 ---
-layout: ../../../layouts/BlogPostLayout.astro
 title: Coding URL shortener
 description: How I coded url shortener with astro and mongodb atlas
-id: 1
-date: 16. 1. 2023
+pubDate: Mon, 16 Jan 2023 18:00:00
+tags: [astro]
 ---
-
 In this post we will go over how I coded simple URL shortener.
 
 ## Creating database

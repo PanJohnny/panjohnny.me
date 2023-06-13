@@ -5,11 +5,11 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="404" description="Not found">
     <main class="container">
         <hgroup>
-            <h1>404</h1>
             <h2>Not found</h2>
         </hgroup>
-        <img src="http://http.cat/404" alt="funny cat image with 404 code on it" width="20%" height="20%"> <br />
-        <p>Hey bud, this page was not found. Maybe try to look somewhere else. This may also mean that I have not created this part of webpage.</p>
+        <img src="http://http.cat/404" alt="funny cat image with 404 code on it" width="50%" loading="lazy"> <br />
+        <p>Hey wanderer, this page is not here. Don't be sad tho, that could also mean that it is just not public yet!</p>
+        <p>If you think that this is an issue <a href="/#contact">contact me</a>.</p>
 
         <p>Requested URL: <code>{Astro.url.searchParams.has("source")?Astro.url.searchParams.get("source"):Astro.url.pathname}</code></p>
     </main>

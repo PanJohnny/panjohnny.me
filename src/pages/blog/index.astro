@@ -1,0 +1,33 @@
+---
+import { getEntry, getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import BlogPost from "../../components/BlogPost.astro";
+const posts = await getCollection("blog");
+
+---
+<Layout title="PanJohnny’s blog" description="Place where I write about stuff">
+    <main>
+        {
+            posts.map((post) => (
+                <BlogPost
+                    title={post.data.title}
+                    date={post.data.pubDate}
+                    description={post.data.description}
+                    id={post.slug}
+                />
+            ))
+        }
+    </main>
+    <footer>
+        <a href="/" role="button" class="secondary"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="/posts/latest" role="button" class="secondary">Latest blog</a>
+        <a href="/rss.xml"><i class="fa-solid fa-rss" title="RSS feed"></i></a>
+    </footer>
+</Layout>
+
+<style>
+    footer {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>

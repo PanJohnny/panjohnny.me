@@ -1,0 +1,22 @@
+---
+interface Props {
+    levels: string[]
+}
+
+const {levels} = Astro.props as Props;
+---
+
+<script id="headingLinker" data-levels={levels.join(",")}>
+    window.addEventListener("load", () => {
+        const levels = document.querySelector("#headingLinker").getAttribute("data-levels").split(",");
+        levels.forEach(l => {
+            document.querySelector("main").querySelectorAll(l).forEach(e => {
+                const id = e.getAttribute("id");
+                if (id) {
+                    const before = e.innerHTML;
+                    e.innerHTML = '<a href="#'+id+'" class="reset"> <i class="fa-solid fa-link"></i>' + before + '</a>';
+                }
+            });
+        });
+    });
+</script>

@@ -1,6 +1,9 @@
 ---
 import Project from "../components/Project.astro";
 import Layout from "../layouts/Layout.astro";
+import { Image } from "@astrojs/image/components";
+import cat from "../assets/cat.jpg";
+import HeadingLinker from "../components/HeadingLinker.astro";
 ---
 
 <Layout
@@ -12,184 +15,108 @@ import Layout from "../layouts/Layout.astro";
         ? "light"
         : ""}
 >
-    <header>
-        <nav>
-            <ul>
-                <li>
-                    <a
-                        href="?dark"
-                        class={"secondary" +
-                            (Astro.url.searchParams.has("dark")
-                                ? " invisible"
-                                : Astro.url.searchParams.has("light")
-                                ? ""
-                                : " dark-t")}
-                        ><i class="fa-solid fa-moon"></i>
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href="?light"
-                        class={"secondary" +
-                            (Astro.url.searchParams.has("light")
-                                ? " invisible"
-                                : Astro.url.searchParams.has("dark")
-                                ? ""
-                                : " light-t")}
-                        ><i class="fa-solid fa-sun"></i>
-                    </a>
-                </li>
-            </ul>
-            <ul>
-                <li><h1 class="no-margin">PanJohnny's website</h1></li>
-            </ul>
-            <ul>
-                <li>
-                    <a href="https://github.com/PanJohnny" class="secondary"
-                        ><i class="fa-brands fa-github"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="/blog" class="secondary"><i class="fa-solid fa-book"></i></a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <main class="center-text">
-        <div class="part">
-            <h1>Hi, I am <span class="accent">John</span></h1>
-            <p>
-                I am <span class="accent">student</span> who likes to code stuff
-                in free time.
-            </p>
-            <div>
-                <h2>About me</h2>
+    <main>
+        <div class="container">
+            <span class="nowrap">BEWARE! This page is under construction.</span>
+            <div class="part">
+                <h2 id="aboutme">About me</h2>
                 <p>
-                    I study in Prague, Czech Republic. Programming is my hobby,
-                    but hopefully someday it'll be my job.
+                    I am an ordinary student with interests in computer science.
+                    As many other people, I started with <a
+                        href="/projects/tag/minecraft">Minecraft</a
+                    >, I've made many plugins and mods. After teaching myself
+                    Java, witht he help of many online resources and a physicall
+                    book, I looked into <a href="/projects/tag/web"
+                        >web development</a
+                    >. This website is created with JS/TS framework <a
+                        href="https://astro.build">Astro</a
+                    >. Older versions were made using Express.js, but I like
+                    Astro more.
                 </p>
-                <table role="grid">
-                    <tr>
-                        <td><b>Pets</b></td>
-                        <td>🐱Cat & 🐶Doggo</td>
-                    </tr>
-                    <tr>
-                        <td><b>Sport</b></td>
-                        <td>🏹Archery</td>
-                    </tr>
-                    <tr>
-                        <td><b>Hobby</b></td>
-                        <td>🕺Dancin'</td>
-                    </tr>
-                </table>
-            </div>
-            <div class="scroll">
-                <a href="#projects">My projects</a>
-            </div>
-        </div>
-        <div class="part" id="projects">
-            <h1>My <span class="accent">projects</span></h1>
-            <div class="grid">
-                <Project
-                    name="Baka4J"
-                    desc="School system Bakaláři java api wrapper"
-                    page="/projects/baka4j"
+                <Image
+                    src={cat}
+                    alt="my cat in a flower field"
+                    style={"max-width: 80%; height: auto;"}
                 />
-                <Project
-                    name="No Arrows In You!"
-                    desc="A Minecraft mod that allows player to modify visual aspects of the game"
-                    page="/projects/naiy"
-                />
-                <Project
-                    name="Cat Emoji Esoteric Language"
-                    desc="Programming language inspired by brainf*ck, with cat emojis"
-                    page="/projects/catemojiesolang"
-                />
-                <Project
-                    name="Logger"
-                    desc="I created my own logger on System.Logger to practice logging"
-                    page="/projects/naiy"
-                />
-                <a href="/projects">More…</a>
             </div>
-            <div class="scroll">
-                <a href="#contact">Contact me</a>
-            </div>
-        </div>
 
-        <div class="part" id="contact">
-            <h1><span class="accent">Contact</span> me</h1>
-            <p>
-                <a href="https://twitter.com/PanJohnny1" role="button"
-                    ><i class="fa-brands fa-twitter"></i> Twitter</a
-                >
-            </p>
-            <p>
-                <a href="mailto:devstefancz@gmail.com" role="button"
-                    ><i class="fa-solid fa-envelope"></i> Email</a
-                >
-            </p>
-            <p role="button">
-                <i class="fa-brands fa-discord"></i> Discord <code
-                    >PanJohnny#5594</code
-                >
-            </p>
+            <div class="part">
+                <h2 id="projects">Projects</h2><div>
+                    <Project
+                        name="Baka4J"
+                        desc="School system Bakaláři java api wrapper"
+                        page="/projects/baka4j"
+                    />
+                    <Project
+                        name="No Arrows In You!"
+                        desc="A Minecraft mod that allows player to modify visual aspects of the game"
+                        page="/projects/naiy"
+                    />
+                    <Project
+                        name="Cat Emoji Esoteric Language"
+                        desc="Programming language inspired by brainf*ck, with cat emojis"
+                        page="/projects/catemojiesolang"
+                    />
+                    <Project
+                        name="Logger"
+                        desc="I created my own logger on System.Logger to practice logging"
+                        page="/projects/naiy"
+                    />
+                    <div>
+                        <a href="/projects">More…</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="part">
+                <h2 id="contact">Contact</h2>
+                <p>
+                    <i class="fa-brands fa-twitter"></i>
+                    <a href="https://twitter.com/PanJohnny1">Twitter</a>
+                </p>
+                <p>
+                    <i class="fa-solid fa-envelope"></i>
+                    <a href="mailto:devstefancz@gmail.com">Email</a>
+                </p>
+                <p>
+                    <i class="fa-brands fa-discord"></i> Discord <code
+                        >PanJohnny#5594</code
+                    >
+                </p>
+            </div>
         </div>
     </main>
-
-    <footer class="center-text">
-        Created with ♥ by PanJohnny | Icons by <i class="fa-solid fa-font-awesome"></i> Font Awesome
-    </footer>
 </Layout>
 
+<footer class="center-text">
+    <span class="nowrap">Created with ♥ by PanJohnny</span> | <span
+        class="nowrap"
+        >Icons from <i class="fa-solid fa-font-awesome"></i> Font Awesome</span
+    >
+</footer>
+
+<HeadingLinker levels={["h2"]} />
+
 <style>
+    .nowrap {
+        white-space: nowrap;
+    }
+
     .center-text {
         text-align: center;
     }
 
-    .invisible {
-        display: none;
+    img {
+        border-radius: 12px;
     }
 
-    @media (prefers-color-scheme: dark) {
-        .dark-t {
-            display: none;
-        }
+    .container {
+        text-align: center;
+        margin-left: 10%;
+        margin-right: 10%;
     }
-
-    @media (prefers-color-scheme: light) {
-        .l-t {
-            display: none;
-        }
-    }
-
-    .accent {
-        color: #ff7300;
-    }
-
-    .part:not(:last-child) {
-        height: 100vh;
-    }
-
-    .part:last-child {
-        height: 80vh;
-    }
-
-    .scroll {
-        color: inherit;
-        border-width: 1px;
-        border-color: var(--primary);
-        border-style: solid;
-        border-radius: 15px;
-        margin: 2em;
-    }
-
-    .scroll > a {
-        color: inherit;
-    }
-
-    .scroll::after {
-        content: "\A↓";
-        white-space: pre;
+    
+    .part {
+        margin-bottom: 10em;
     }
 </style>

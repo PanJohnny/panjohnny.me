@@ -10,7 +10,7 @@ const props = Astro.props as Props;
 ---
 
 <div class="post">
-    <a href={"/posts/" + props.id}>
+    <a href={"/blog/" + props.id}>
         <div class="post-upper">
             <span class="post-title">{props.title}</span><span class="post-date">{props.date}</span>
         </div>
@@ -27,6 +27,7 @@ const props = Astro.props as Props;
     }
 
     .post {
+        margin-top: 2em;
         margin-bottom: 2em;
     }
 
@@ -36,7 +37,7 @@ const props = Astro.props as Props;
         justify-content: space-between;
         padding-bottom: 1em;
         margin-bottom: 1em;
-        border-bottom: black 1px solid;
+        border-bottom: 1px solid;
     }
 
     .post-title {
@@ -46,19 +47,5 @@ const props = Astro.props as Props;
 
     .post-description {
         font-size: 0.8em;
-    }
-
-    @media (prefers-color-scheme: dark) {
-        .post {
-            color: gainsboro;
-        }
-
-        .post-upper {
-            border-bottom-color: gainsboro;
-        }
-
-        .post > a {
-            border-color: gainsboro;
-        }
     }
 </style>

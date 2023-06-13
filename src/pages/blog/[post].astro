@@ -1,0 +1,20 @@
+---
+import { getEntry, getCollection } from "astro:content";
+import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
+const { post } = Astro.params;
+if (post == "latest") {
+    const collection = await getCollection("blog");
+    return Astro.redirect("/blog/" + collection[collection.length-1].slug);
+}
+const blog = await getEntry("blog", post + "");
+
+if (!blog)
+    return Astro.redirect("/blog#404")
+
+const r = blog?await blog.render():null;
+
+if (!r)
+    return Astro.redirect("/blog#500")
+---
+
+<BlogPostLayout title={blog.data.title} description={blog.data.description} slug={blog.slug} date={blog.data.pubDate}><r.Content /></BlogPostLayout>

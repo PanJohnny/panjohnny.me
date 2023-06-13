@@ -2,14 +2,11 @@
 interface Props {
     title: string;
     description: string;
-    id: string;
+    slug: string;
     date: string;
 }
 
 var props = Astro.props as Props;
-if (Astro.props.frontmatter) {
-    props = Astro.props.frontmatter as Props;
-}
 ---
 
 <html>
@@ -24,7 +21,7 @@ if (Astro.props.frontmatter) {
         <meta property="og:type" content="website" />
         <meta
             property="og:url"
-            content={"https://panjohnny.vercel.app/posts/" + props.id}
+            content={"https://panjohnny.vercel.app/blog/" + props.slug}
         />
         <meta property="og:title" content={props.title} />
         <meta property="og:description" content={props.description} />
@@ -34,35 +31,54 @@ if (Astro.props.frontmatter) {
         <meta property="twitter:card" content="summary_large_image" />
         <meta
             property="twitter:url"
-            content={"https://panjohnny.vercel.app/posts/" + props.id}
+            content={"https://panjohnny.vercel.app/blog/" + props.slug}
         />
         <meta property="twitter:title" content={props.title} />
         <meta property="twitter:description" content={props.description} />
         <meta property="twitter:image" content="/favicon.ico" />
 
-        <link
-            rel="stylesheet"
-            href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
-        />
         <script
             src="https://kit.fontawesome.com/748c4b57ac.js"
-            crossorigin="anonymous"
-        ></script>
+            crossorigin="anonymous"></script>
     </head>
 
     <body class="container">
-        <main>
-            <div>
-                <h1 class="no-margin">
-                    {props.title}
-                </h1>
+        <header>
+            <h1>{props.title}</h1>
+            <div class="bar">
+                <!-- COSMETICS -->
+                <div aria-hidden="true">
+                    <span role="button" id="scheme"
+                        ><span class="rectangleRender"></span>
+                    </span>
+                </div>
+                <!-- LINKS -->
+                <div class="links">
+                    <a href="/rss.xml"
+                        ><i class="fa-solid fa-rss" title="RSS feed"></i></a
+                    >
+                    <a
+                        href="https://github.com/PanJohnny"
+                        title="GitHub"
+                        class="reset fa-brands fa-github"></a>
+                    <a
+                        href="/blog"
+                        title="Blog"
+                        class="reset fa-solid fa-quote-left"></a>
+                    <a
+                        href="/projects"
+                        title="Projects"
+                        class="reset fa-solid fa-helmet-safety"></a>
+                    <a href="/" title="Homepage" class="reset fa-solid fa-house"
+                    ></a>
+                </div>
             </div>
-
-            <hr />
             <div class="info">
                 <span>Published {props.date}</span>
-                <span id="post">posts/{props.id}</span>
+                <span id="post">blog/{props.slug}</span>
             </div>
+        </header>
+        <main>
             <slot />
         </main>
 
@@ -70,60 +86,42 @@ if (Astro.props.frontmatter) {
             <a href="/blog" role="button" class="secondary">Other blogs</a>
             <a href="latest" role="button" class="secondary">Latest blog</a>
         </footer>
-        
+
+        <!-- COLOR PICKER MODAL -->
+        <dialog id="colorPicker">
+            <h2>Please choose theme</h2>
+            <input
+                type="button"
+                class="rectangleRender light"
+                data-scheme="light"
+            />
+            <input
+                type="button"
+                class="rectangleRender dark"
+                data-scheme="dark"
+            />
+        </dialog>
 
         <script is:inline>
             const post = document.getElementById("post");
             post.addEventListener("click", (event) => {
                 const before = post.innerText;
-                copyToClipboard(window.location.href)
-                    .then((s) => {
-                        post.innerText = "URL Copied to clipboard!";
-                        post.style.animation = "fade-out 2s linear";
-                        setTimeout(() => {
-                            post.innerText = before;
-                        }, 2000);
-                    })
-                    .catch((err) => {
-                        post.innerText = err;
-                    });
+                copyToClipboard(window.location.href);
+                post.innerText = "URL Copied to clipboard!";
+                post.style.animation = "fade-out 2s linear";
+                setTimeout(() => {
+                    post.innerText = before;
+                }, 2000);
             });
 
             function copyToClipboard(textToCopy) {
-                // navigator clipboard api needs a secure context (https)
-                if (navigator.clipboard && window.isSecureContext) {
-                    // navigator clipboard api method'
-                    return navigator.clipboard.writeText(textToCopy);
-                } else {
-                    // text area method
-                    let textArea = document.createElement("textarea");
-                    textArea.value = textToCopy;
-                    // make the textarea out of viewport
-                    textArea.style.position = "fixed";
-                    textArea.style.left = "-999999px";
-                    textArea.style.top = "-999999px";
-                    document.body.appendChild(textArea);
-                    textArea.focus();
-                    textArea.select();
-                    return new Promise((res, rej) => {
-                        // here the magic happens
-                        document.execCommand("copy") ? res() : rej();
-                        textArea.remove();
-                    });
-                }
+                navigator.clipboard.writeText(textToCopy);
             }
         </script>
     </body>
 </html>
 
 <style>
-    .info {
-        display: flex;
-        justify-content: space-between;
-        margin: 1em;
-        font-size: small;
-    }
-
     @keyframes fade-out {
         from {
             opacity: 1;
@@ -133,12 +131,150 @@ if (Astro.props.frontmatter) {
         }
     }
 
-    :global(.no-margin) {
-        margin: 0px;
-    }
-
     footer {
         display: flex;
         justify-content: space-between;
     }
+
+    #post {
+        cursor: copy;
+    }
+
+    .info {
+        display: flex;
+        justify-content: space-between;
+    }
 </style>
+
+<style>
+    @import url(https://fonts.bunny.net/css?family=actor:400);
+
+    :root {
+        --raisin-black: #1e1e24;
+        --floral-white: #fff8f0;
+        --sunset: #ffcf99;
+    }
+
+    html {
+        font-family: "Actor", sans-serif;
+        background-color: var(--floral-white);
+        color: var(--raisin-black);
+        text-decoration-color: var(--sunset);
+    }
+
+    .light {
+        background-color: var(--floral-white);
+        color: var(--raisin-black);
+        border-color: var(--raisin-black);
+    }
+
+    .dark {
+        background-color: var(--raisin-black);
+        color: var(--floral-white);
+        border-color: var(--floral-white);
+    }
+
+    :global(.no-margin) {
+        margin: 0px;
+    }
+
+    :global(.reset) {
+        color: inherit;
+        text-decoration: inherit;
+    }
+
+    header > h1 {
+        text-align: center;
+    }
+
+    [role="button"] {
+        cursor: pointer;
+    }
+
+    .rectangleRender {
+        cursor: pointer;
+        display: inline-block;
+        padding: 1em;
+        border-radius: 10px;
+        border-color: var(--sunset);
+        border-style: solid;
+        width: 0px;
+        height: 0px;
+        outline: none;
+    }
+
+    dialog {
+        background-color: var(--floral-white);
+        color: var(--raisin-black);
+        border-radius: 15px;
+    }
+
+    .bar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .links {
+        font-size: 2em;
+    }
+
+    :global(a) {
+        color: inherit;
+        text-decoration: var(--sunset) underline 2px;
+    }
+</style>
+
+<script>
+    const schemes = ["dark", "light"];
+    const html = document.querySelector("html");
+    const schemeToggle = document.querySelector("#scheme");
+    const colorPicker: HTMLDialogElement | null =
+        document.querySelector("#colorPicker");
+    window.addEventListener("load", loadMode);
+    schemeToggle?.addEventListener("click", schemePallet);
+
+    function loadMode() {
+        // Check localStorage and update data respectively
+        const scheme = localStorage.getItem("color-scheme");
+        if (scheme) {
+            html?.classList.add(scheme);
+
+            colorPicker?.querySelectorAll("input[type=button]").forEach((e) => {
+                e.addEventListener("click", () => {
+                    localStorage.setItem(
+                        "color-scheme",
+                        e.getAttribute("data-scheme") + ""
+                    );
+
+                    // If schemes already present delete them
+                    schemes.forEach((s) => {
+                        if (html?.classList.contains(s))
+                            html.classList.remove(s);
+                    });
+
+                    // Close modal
+                    colorPicker.close();
+
+                    // Load mode
+                    loadMode();
+                });
+            });
+        } else {
+            if (
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+            ) {
+                localStorage.setItem("color-scheme", "dark");
+            } else {
+                localStorage.setItem("color-scheme", "light");
+            }
+            loadMode();
+            return;
+        }
+    }
+
+    function schemePallet() {
+        if (colorPicker) colorPicker.showModal();
+    }
+</script>
