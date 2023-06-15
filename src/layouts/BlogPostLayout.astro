@@ -1,9 +1,11 @@
 ---
+import HeadingLinker from '../components/HeadingLinker.astro';
 interface Props {
     title: string;
     description: string;
     slug: string;
     date: string;
+    tags: string[];
 }
 
 var props = Astro.props as Props;
@@ -80,11 +82,24 @@ var props = Astro.props as Props;
         </header>
         <main>
             <slot />
+            <hr>
+            <h2>Tags</h2>
+            <ul>
+                {props.tags.map(t => (<li>{t}</li>))}
+            </ul>
         </main>
 
         <footer>
-            <a href="/blog" role="button" class="secondary">Other blogs</a>
-            <a href="latest" role="button" class="secondary">Latest blog</a>
+            <div class="top-footer">
+                <a href="/blog" role="button" class="secondary">Other blogs</a>
+                <a href="latest" role="button" class="secondary">Latest blog</a>
+            </div>
+            <div class="center-text">
+                <span class="nowrap">Created with ♥ by PanJohnny</span> | <span
+                    class="nowrap"
+                    >Icons from <i class="fa-solid fa-font-awesome"></i> Font Awesome</span
+                >
+            </div>
         </footer>
 
         <!-- COLOR PICKER MODAL -->
@@ -120,8 +135,16 @@ var props = Astro.props as Props;
         </script>
     </body>
 </html>
-
+<HeadingLinker  levels={["h1", "h2", "h3"]}/>
 <style>
+    :global(.nowrap) {
+        white-space: nowrap;
+    }
+
+    :global(.center-text) {
+        text-align: center;
+    }
+
     @keyframes fade-out {
         from {
             opacity: 1;
@@ -131,7 +154,7 @@ var props = Astro.props as Props;
         }
     }
 
-    footer {
+    footer > .top-footer {
         display: flex;
         justify-content: space-between;
     }

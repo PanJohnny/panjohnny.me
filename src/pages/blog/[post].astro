@@ -17,4 +17,4 @@ if (!r)
     return Astro.redirect("/blog#500")
 ---
 
-<BlogPostLayout title={blog.data.title} description={blog.data.description} slug={blog.slug} date={blog.data.pubDate}><r.Content /></BlogPostLayout>
+<BlogPostLayout title={blog.data.title} description={blog.data.description} slug={blog.slug} date={blog.data.pubDate} tags={blog.data.tags}><r.Content /></BlogPostLayout>

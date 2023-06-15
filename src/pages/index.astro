@@ -7,7 +7,7 @@ import HeadingLinker from "../components/HeadingLinker.astro";
 ---
 
 <Layout
-    title="PanJohnny's website"
+    title="PanJohnny’s website"
     description="Website that belongs to guy who codes stuff"
     theme={Astro.url.searchParams.has("dark")
         ? "dark"
@@ -44,7 +44,7 @@ import HeadingLinker from "../components/HeadingLinker.astro";
                 <h2 id="projects">Projects</h2><div>
                     <Project
                         name="Baka4J"
-                        desc="School system Bakaláři java api wrapper"
+                        desc="School system Bakaláři java API wrapper"
                         page="/projects/baka4j"
                     />
                     <Project
@@ -55,13 +55,9 @@ import HeadingLinker from "../components/HeadingLinker.astro";
                     <Project
                         name="Cat Emoji Esoteric Language"
                         desc="Programming language inspired by brainf*ck, with cat emojis"
-                        page="/projects/catemojiesolang"
+                        page="/projects/cat-emoji-esoteric-language"
                     />
-                    <Project
-                        name="Logger"
-                        desc="I created my own logger on System.Logger to practice logging"
-                        page="/projects/naiy"
-                    />
+                    <i>Other projects coming soon™, webpage in construction. One of the most complicated is gymlit-18g, you can check it out, it is in Czech tho.</i>
                     <div>
                         <a href="/projects">More…</a>
                     </div>
@@ -80,7 +76,7 @@ import HeadingLinker from "../components/HeadingLinker.astro";
                 </p>
                 <p>
                     <i class="fa-brands fa-discord"></i> Discord <code
-                        >PanJohnny#5594</code
+                        >@panjohnny (Previously: @PanJohnny#5594)</code
                     >
                 </p>
             </div>
@@ -88,24 +84,9 @@ import HeadingLinker from "../components/HeadingLinker.astro";
     </main>
 </Layout>
 
-<footer class="center-text">
-    <span class="nowrap">Created with ♥ by PanJohnny</span> | <span
-        class="nowrap"
-        >Icons from <i class="fa-solid fa-font-awesome"></i> Font Awesome</span
-    >
-</footer>
-
 <HeadingLinker levels={["h2"]} />
 
 <style>
-    .nowrap {
-        white-space: nowrap;
-    }
-
-    .center-text {
-        text-align: center;
-    }
-
     img {
         border-radius: 12px;
     }

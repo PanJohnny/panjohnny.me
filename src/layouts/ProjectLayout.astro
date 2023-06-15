@@ -1,14 +1,64 @@
 ---
+import HeadingLinker from '../components/HeadingLinker.astro';
 interface Props {
     title: string;
     description: string;
-    theme?: string;
+    slug: string;
+    tags: string[];
+    links: any;
 }
 
 var props = Astro.props as Props;
-if (Astro.props) {
-    props = Astro.props as Props;
+
+const toHex = (s: string) => {
+    var hash = 0;
+    if (s.length === 0) return "#FFFFFF";
+    for (var i = 0; i < s.length; i++) {
+        hash = s.charCodeAt(i) + ((hash << 5) - hash);
+        hash = hash & hash;
+    }
+    var color = "#";
+    for (var i = 0; i < 3; i++) {
+        var value = (hash >> (i * 8)) & 255;
+        color += ("00" + value.toString(16)).substr(-2);
+    }
+    return color;
+};
+
+function fontColor(hex: string) {
+    if (hex.indexOf("#") === 0) {
+        hex = hex.slice(1);
+    }
+    // convert 3-digit hex to 6-digits.
+    if (hex.length === 3) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+    if (hex.length !== 6) {
+        return "#FFFFFF";
+    }
+    var r: number = parseInt(hex.slice(0, 2), 16),
+        g: number = parseInt(hex.slice(2, 4), 16),
+        b: number = parseInt(hex.slice(4, 6), 16);
+    return r * 0.299 + g * 0.587 + b * 0.114 > 186 ? "#000000" : "#FFFFFF";
 }
+const newShade = (hexColor, magnitude) => {
+    hexColor = hexColor.replace(`#`, ``);
+    if (hexColor.length === 6) {
+        const decimalColor = parseInt(hexColor, 16);
+        let r = (decimalColor >> 16) + magnitude;
+        r > 255 && (r = 255);
+        r < 0 && (r = 0);
+        let g = (decimalColor & 0x0000ff) + magnitude;
+        g > 255 && (g = 255);
+        g < 0 && (g = 0);
+        let b = ((decimalColor >> 8) & 0x00ff) + magnitude;
+        b > 255 && (b = 255);
+        b < 0 && (b = 0);
+        return `#${(g | (b << 8) | (r << 16)).toString(16)}`;
+    } else {
+        return hexColor;
+    }
+};
 ---
 
 <html>
@@ -21,14 +71,20 @@ if (Astro.props) {
         <meta name="generator" content={Astro.generator} />
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://panjohnny.vercel.app/" />
+        <meta
+            property="og:url"
+            content={"https://panjohnny.vercel.app/blog/" + props.slug}
+        />
         <meta property="og:title" content={props.title} />
         <meta property="og:description" content={props.description} />
         <meta property="og:image" content="/favicon.ico" />
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://panjohnny.vercel.app/" />
+        <meta
+            property="twitter:url"
+            content={"https://panjohnny.vercel.app/blog/" + props.slug}
+        />
         <meta property="twitter:title" content={props.title} />
         <meta property="twitter:description" content={props.description} />
         <meta property="twitter:image" content="/favicon.ico" />
@@ -67,7 +123,66 @@ if (Astro.props) {
                 </div>
             </div>
         </header>
-        <slot />
+        <main>
+            <div class="container">
+                <slot />
+            </div>
+            <div class="info-table">
+                <h2>Project info</h2>
+                <h3>Tags</h3>
+                <div class="project-tags">
+                    {
+                        props.tags.map((t) => (
+                            <a
+                                data-tag={t}
+                                href={"/projects/tag/" + t}
+                                style={
+                                    "background-color: " +
+                                    toHex(t) +
+                                    "; color: " +
+                                    fontColor(toHex(t)) +
+                                    "; border-color: " +
+                                    newShade(toHex(t), 80) +
+                                    ";"
+                                }
+                            >
+                                {t}
+                            </a>
+                        ))
+                    }
+                </div>
+                <h3>Links</h3>
+                <div class="project-links">
+                    {
+                        props.links.map((l) => (
+                            <a
+                                href={l.url}
+                                data-link={l.title}
+                                style={
+                                    "background-color: " +
+                                    toHex(l.title) +
+                                    "; color: " +
+                                    fontColor(toHex(l.title)) +
+                                    "; border-color: " +
+                                    newShade(toHex(l.title), 80) +
+                                    ";"
+                                }
+                            >
+                                <i class={l.icon} /> {l.title}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+        </main>
+
+        <footer class="center-text">
+            <span class="nowrap">Created with ♥ by PanJohnny</span> | <span
+                class="nowrap"
+                >Icons from <i class="fa-solid fa-font-awesome"></i> Font Awesome</span
+            >
+        </footer>
+
         <!-- COLOR PICKER MODAL -->
         <dialog id="colorPicker">
             <h2>Please choose theme</h2>
@@ -82,18 +197,11 @@ if (Astro.props) {
                 data-scheme="dark"
             />
         </dialog>
-        <footer class="center-text">
-            <span class="nowrap">Created with ♥ by PanJohnny</span> | <span
-                class="nowrap"
-                >Icons from <i class="fa-solid fa-font-awesome"></i> Font Awesome</span
-            >
-        </footer>
     </body>
 </html>
 
+<HeadingLinker  levels={["h2"]}/>
 <style>
-    @import url(https://fonts.bunny.net/css?family=actor:400);
-
     :global(.nowrap) {
         white-space: nowrap;
     }
@@ -101,6 +209,62 @@ if (Astro.props) {
     :global(.center-text) {
         text-align: center;
     }
+
+    .project-tags {
+        display: inline;
+        line-height: 2em;
+    }
+
+    .project-tags > a:not(:last-child) {
+        margin-right: 0.2em;
+    }
+
+    .project-tags > a {
+        padding: 2px;
+        border: 1px solid;
+        border-radius: 3px;
+        border-color: white;
+        text-decoration: none;
+    }
+
+    .project-links {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .project-links > a {
+        padding: 2px;
+        border: 1px solid;
+        border-radius: 3px;
+        border-color: white;
+        text-decoration: none;
+    }
+
+    .project-links > a:not(:last-child) {
+        margin-bottom: 0.5em;
+    }
+
+    [data-link="GitHub"] {
+        background-color: #333 !important;
+        color: #f5f5f5 !important;
+        border-color: #252525 !important;
+    }
+
+    .info-table > h3:first-child {
+        margin-top: 0px;
+    }
+
+    .info-table {
+        margin-top: 1em;
+        margin-bottom: 1em;
+        border: 1px solid;
+        border-radius: 15px;
+        padding: 1em;
+    }
+</style>
+
+<style>
+    @import url(https://fonts.bunny.net/css?family=actor:400);
 
     :root {
         --raisin-black: #1e1e24;

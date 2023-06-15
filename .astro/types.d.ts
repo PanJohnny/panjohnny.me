@@ -197,6 +197,29 @@ declare module 'astro:content' {
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 };
+"projects": {
+"baka4j.md": {
+	id: "baka4j.md";
+  slug: "baka4j";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
+"cat-emoji-esoteric-language.md": {
+	id: "cat-emoji-esoteric-language.md";
+  slug: "cat-emoji-esoteric-language";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
+"naiy.md": {
+	id: "naiy.md";
+  slug: "naiy";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
+};
 
 	};
 

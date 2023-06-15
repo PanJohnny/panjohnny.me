@@ -1,0 +1,20 @@
+---
+import { getEntry, getCollection } from "astro:content";
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+const { project } = Astro.params;
+if (project == "latest") {
+    const collection = await getCollection("projects");
+    return Astro.redirect("/projects/" + collection[collection.length-1].slug);
+}
+const proj = await getEntry("projects", project + "");
+
+if (!proj)
+    return Astro.redirect("/projects#404")
+
+const r = proj?await proj.render():null;
+
+if (!r)
+    return Astro.redirect("/projects#500")
+---
+
+<ProjectLayout title={proj.data.title} description={proj.data.description} slug={proj.slug} links={proj.data.links} tags={proj.data.tags}><r.Content /></ProjectLayout>

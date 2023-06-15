@@ -1,0 +1,28 @@
+---
+import { getEntry, getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import ProjectSum from "../../components/ProjectSum.astro";
+const posts = await getCollection("projects");
+
+---
+<Layout title="PanJohnny’s projects" description="Place where I showoff my cool projects">
+    <main>
+        {
+            posts.map((post) => (
+                <ProjectSum
+                    title={post.data.title}
+                    tags={post.data.tags}
+                    description={post.data.description}
+                    id={post.slug}
+                />
+            ))
+        }
+    </main>
+</Layout>
+
+<style>
+    footer {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>

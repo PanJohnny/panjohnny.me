@@ -2,7 +2,7 @@
 title: Coding URL shortener
 description: How I coded url shortener with astro and mongodb atlas
 pubDate: Mon, 16 Jan 2023 18:00:00
-tags: [astro]
+tags: [astro, url-shortener, mongodb]
 ---
 In this post we will go over how I coded simple URL shortener.
 
