@@ -1,9 +1,9 @@
 ---
 import Project from "../components/Project.astro";
 import Layout from "../layouts/Layout.astro";
-import { Image } from "@astrojs/image/components";
 import cat from "../assets/cat.jpg";
 import HeadingLinker from "../components/HeadingLinker.astro";
+import { Image } from 'astro:assets';
 ---
 
 <Layout
@@ -36,7 +36,7 @@ import HeadingLinker from "../components/HeadingLinker.astro";
                 <Image
                     src={cat}
                     alt="my cat in a flower field"
-                    style={"max-width: 80%; height: auto;"}
+                    style={"max-width: 80%; max-height: 70vh; width: auto; height: auto;"}
                 />
             </div>
 

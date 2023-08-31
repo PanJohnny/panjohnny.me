@@ -81,6 +81,11 @@ if (Astro.props) {
                 class="rectangleRender dark"
                 data-scheme="dark"
             />
+            <input
+                type="button"
+                class="rectangleRender lapis"
+                data-scheme="lapis"
+            />
         </dialog>
         <footer class="center-text">
             <span class="nowrap">Created with ♥ by PanJohnny</span> | <span
@@ -106,6 +111,7 @@ if (Astro.props) {
         --raisin-black: #1e1e24;
         --floral-white: #fff8f0;
         --sunset: #ffcf99;
+        --lapis-lazuli: #33658A;
     }
 
     html {
@@ -123,6 +129,12 @@ if (Astro.props) {
 
     .dark {
         background-color: var(--raisin-black);
+        color: var(--floral-white);
+        border-color: var(--floral-white);
+    }
+
+    .lapis {
+        background-color: var(--lapis-lazuli);
         color: var(--floral-white);
         border-color: var(--floral-white);
     }
@@ -179,11 +191,10 @@ if (Astro.props) {
 </style>
 
 <script>
-    const schemes = ["dark", "light"];
+    const schemes = ["dark", "light", "lapis"];
     const html = document.querySelector("html");
     const schemeToggle = document.querySelector("#scheme");
-    const colorPicker: HTMLDialogElement | null =
-        document.querySelector("#colorPicker");
+    const colorPicker: HTMLDialogElement | null = document.querySelector("#colorPicker");
     window.addEventListener("load", loadMode);
     schemeToggle?.addEventListener("click", schemePallet);
 

@@ -21,6 +21,9 @@ Check out hello.cats for hello world and hello.cats.meow for compiled version. C
 ## Challenge
 Open issues with your own code in this language. Best submissions will be added in README.
 
+## Demo
+<iframe src="/demo/resources/catinterpreter" title="Demo" style="width: 100%; height: 800px;" />
+
 ## Actions
 ```
 x++ increment cursor 😺

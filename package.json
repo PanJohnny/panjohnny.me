@@ -8,12 +8,11 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "astro": "^2.6.3"
+    "astro": "^3.0.2"
   },
   "dependencies": {
-    "@astrojs/image": "^0.17.0",
     "@astrojs/rss": "^2.4.3",
-    "@astrojs/vercel": "^3.4.1",
+    "@astrojs/vercel": "^4.0.0",
     "mongoose": "^7.2.2"
   }
 }

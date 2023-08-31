@@ -1,0 +1,395 @@
+---
+const manual = `USAGE MANUAL
+x++ increment cursor 😺
+x-- decrement cursor 😿
+i++ increment stack index 😽
+i-- decrement stack index 🙀
+x**2 power 😻
+sqrt(x) sqrt 😾
+x = 0 cursor set to 0 😼
+if(x > {i--} x {i++}) x = 1 : x = 0 🐈
+if(x==1) {} : {skipTo(😹)} 😸
+<end_of_logic> 😹
+<END> 💩
+`
+
+Astro.response.headers.set("Content-Type", "text/html; charset=utf-8")
+---
+Input:
+<textarea name="input" id="in" placeholder="Input"></textarea>
+<input type="button" value="Run" id="run" />
+<input type="button" value="Hello World Demo" id="demo" />
+<hr />
+ Output:
+<textarea name="input" id="out" placeholder="Output"></textarea>
+This is PanJohnny's emoji cat language online demo. The original <a href="https://panjohnny.vercel.app/projects/cat-emoji-esoteric-language">project</a> can be found on <a href="https://github.com/PanJohnny/CatEmojiEsoLang">GitHub</a>.
+This demo has an <a href="http://panjohnny.vercel.app/demo/cats">official site</a>.
+You can also <a href="http://panjohnny.vercel.app/demo/resources/catinterpreter">embed</a> it for your own use.
+<details>
+    <summary>Click here to open manual</summary>
+    <pre set:text={manual}></pre>
+</details>
+<style>
+    :root {
+        background-color: white;
+    }
+    textarea {
+        background-color: white;
+        color: black;
+        width: 100%;
+        height: 360px;
+        outline: none;
+        border: 1px solid black;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+</style>
+
+<script>
+    const r = document.querySelector("#run");
+    if (r instanceof HTMLInputElement) {
+        r.addEventListener("click", () => {
+            interpret(compile());
+        });
+    }
+
+    const d = document.querySelector("#demo");
+    if (d instanceof HTMLInputElement) {
+        d.addEventListener("click", () => {
+            const input = document.querySelector("#in");
+            if (!(input instanceof HTMLTextAreaElement)) return "";
+            input.value = `This should print out: HELLO WORLD, it uses addition and second power
+H - 72 = 8**2 + 8
+😺😺😺😺😺😺😺😺😻  +64
+😺😺😺😺😺😺😺😺  +8
+😽
+
+E - 69 = 8**2 + 5
+😺😺😺😺😺😺😺😺😻 +64
+😺😺😺😺😺  +5
+😽
+
+L - 76 = 9**2 - 5
+😺😺😺😺😺😺😺😺😺😻  +81
+😿😿😿😿😿 -5
+😽
+
+L - 76 = 9**2 - 5
+😺😺😺😺😺😺😺😺😺😻  +81
+😿😿😿😿😿 -5
+😽
+
+O - 79 = 9**2 - 2
+😺😺😺😺😺😺😺😺😺😻  +81
+😿😿 -2
+😽
+
+SPACE - 32 = 6**2 - 4
+😺😺😺😺😺😺😻 +36
+😿😿😿😿 -4
+😽
+
+W - 87 = 9**2 + 6
+😺😺😺😺😺😺😺😺😺😻 +81
+😺😺😺😺😺😺 +6
+😽
+
+O - 79 = 9**2 - 2
+😺😺😺😺😺😺😺😺😺😻  +81
+😿😿 -2
+😽
+
+R - 82 = 9**2 + 1
+😺😺😺😺😺😺😺😺😺😻 +81
+😺 +1
+😽
+
+L - 76 = 9**2 - 5
+😺😺😺😺😺😺😺😺😺😻  +81
+😿😿😿😿😿 -5
+😽
+
+D - 69 = 8**2 + 4
+😺😺😺😺😺😺😺😺😻 +64
+😺😺😺😺  +4
+            `;
+        });
+    }
+
+    /*
+"CALCULATOR"
+OPERATION: 
++ - **2 sqrt
+😽
+
+😺 1 +
+if (1 > op) 🐈😸😽
+X:😺😺 LAUGH
+Y:😺😺 LAUGH
+💩😹😼
+
+😺😺 2 -
+if (2 > op) 🐈😸😽
+X: 😺😺 LAUGH
+Y: 😿😿 CRY
+💩😹😼
+
+😺😺😺 3 **2
+if (3 > op) 🐈😸😽
+X: 😺😺 ANY
+😻
+💩😹😼
+
+😺😺😺😺 4 sqrt
+if (4 > op) 🐈😸😽
+X: 😺😺😺😺 ANY
+😾
+💩😹😼
+
+    */
+    // This is javascript implementation of java code, be nice :)
+
+    // https://github.com/PanJohnny/CatEmojiEsoLang/blob/master/src/main/java/com/panjohnny/lang/compiled/Token.java
+    type Token = { emoji: string; code: string };
+    const t = (e, c): Token => {
+        return { emoji: e, code: c };
+    };
+    // Tokens
+    const Tokens = {
+        INCREMENT: t("\uD83D\uDE3A", "+"),
+        DECREMENT: t("\uD83D\uDE3F", "-"),
+        RIGHT: t("\uD83D\uDE3D", ">"),
+        POW: t("\uD83D\uDE3B", "p"),
+        LEFT: t("\uD83D\uDE40", "<"),
+        NIL: t("\uD83D\uDE3C", "0"),
+        SQRT: t("\uD83D\uDE3E", "s"),
+        LOGIC2: t("\uD83D\uDE38", ")"),
+        LOGIC1: t("\uD83D\uDC08", "("),
+        END: t("\uD83D\uDCA9", "#"),
+        END_OF_LOGIC: t("😹", "}"),
+    };
+
+    function fromEmoji(emoji: string): Token | null {
+        const tokens = Object.values(Tokens);
+        for (let index = 0; index < tokens.length; index++) {
+            const token = tokens[index];
+            if (token.emoji == emoji) {
+                return token;
+            }
+        }
+
+        return null;
+    }
+
+    function fromCode(code: string): Token | null {
+        const tokens = Object.values(Tokens);
+        for (let index = 0; index < tokens.length; index++) {
+            const token = tokens[index];
+            if (token.code == code) {
+                return token;
+            }
+        }
+
+        return null;
+    }
+
+    // https://github.com/PanJohnny/CatEmojiEsoLang/blob/master/src/main/java/com/panjohnny/lang/compiled/Compiler.java
+    function compile() {
+        const input = document.querySelector("#in");
+        if (!(input instanceof HTMLTextAreaElement)) return "";
+
+        const emojis = input.value.match(
+            /(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/gm,
+        );
+        if (emojis == null) return "";
+
+        console.log("================");
+        console.log("Emojis matched:");
+        console.log(emojis);
+        console.log("================");
+
+        let str: string = "";
+
+        emojis.forEach((e) => {
+            const tk = fromEmoji(e);
+            if (tk) {
+                str += tk.code;
+            }
+        });
+
+        console.log("================");
+        console.log("Compiled cats:");
+        console.log(str);
+        console.log("================");
+
+        return str;
+    }
+
+    // https://github.com/PanJohnny/CatEmojiEsoLang/blob/master/src/main/java/com/panjohnny/lang/interpreted/StackProvider.java
+    class StackProvider {
+        stack: number[];
+        index: number;
+        skipHint_: number;
+        closed: boolean;
+        constructor() {
+            this.stack = [0];
+            this.index = 0;
+            this.skipHint_ = 0;
+        }
+
+        moveLeft() {
+            this.index--;
+            if (this.index < 0) {
+                this.stack[this.index] = 0;
+            }
+        }
+
+        moveRight() {
+            this.index++;
+            if (this.index >= this.stack.length) {
+                this.stack[this.index] = 0;
+            }
+        }
+
+        set(value: number) {
+            this.stack[this.index] = value;
+        }
+
+        get() {
+            return this.stack[this.index];
+        }
+
+        skipHint() {
+            console.log("Skip hint: " + (this.skipHint_ != 0));
+            return this.skipHint_ != 0;
+        }
+
+        toString() {
+            return this.stack.toString();
+        }
+
+        asString() {
+            let str: string = "";
+            this.stack.forEach((v) => {
+                str += String.fromCharCode(v);
+            });
+            return str;
+        }
+
+        close() {
+            this.closed = true;
+        }
+
+        skipPlus() {
+            this.skipHint_++;
+        }
+
+        skipMinus() {
+            this.skipHint_--;
+        }
+    }
+
+    type Operation = {
+        token: Token;
+        operation: (stack: StackProvider) => void;
+    };
+    const op = (
+        token: Token,
+        operation: (stack: StackProvider) => void,
+    ): Operation => {
+        return { token: token, operation: operation };
+    };
+    // https://github.com/PanJohnny/CatEmojiEsoLang/blob/master/src/main/java/com/panjohnny/lang/interpreted/Operations.java
+    const Operations = [
+        op(Tokens.INCREMENT, (stack) => {
+            if (stack.skipHint()) return;
+            stack.set(stack.get() + 1);
+        }),
+        op(Tokens.DECREMENT, (stack) => {
+            if (stack.skipHint()) return;
+            stack.set(stack.get() - 1);
+        }),
+        op(Tokens.RIGHT, (stack) => {
+            if (stack.skipHint()) return;
+            stack.moveRight();
+        }),
+        op(Tokens.LEFT, (stack) => {
+            if (stack.skipHint()) return;
+            stack.moveLeft();
+        }),
+        op(Tokens.POW, (stack) => {
+            if (stack.skipHint()) return;
+            stack.set(stack.get() ** 2);
+        }),
+        op(Tokens.SQRT, (stack) => {
+            if (stack.skipHint()) return;
+            stack.set(Math.round(Math.sqrt(stack.get())));
+        }),
+        op(Tokens.NIL, (stack) => {
+            if (stack.skipHint()) return;
+            stack.set(0);
+        }),
+        op(Tokens.LOGIC1, (stack) => {
+            if (stack.skipHint()) return;
+            // if(x > {i--} x {i++}) x = 1 : x = 0
+
+            const current = stack.get();
+            stack.moveLeft();
+            const before = stack.get();
+            stack.moveRight();
+            if (current > before) stack.set(1);
+            else stack.set(0);
+        }),
+        op(Tokens.LOGIC2, (stack) => {
+            if (stack.skipHint()) return;
+            // if(x == 1) {}
+            if (stack.get() != 1) stack.skipPlus();
+        }),
+        op(Tokens.END_OF_LOGIC, (stack) => {
+            if (!stack.skipHint()) return;
+            // if closing bracket }
+            stack.skipMinus();
+        }),
+        op(Tokens.END, (stack) => {
+            if (stack.skipHint()) return;
+            const output = `Program exited with: ${stack.toString()}\nAs string: ${stack.asString()}`;
+            console.log(output);
+            const out = document.querySelector("#out");
+            if (!(out instanceof HTMLTextAreaElement)) return -1;
+
+            out.value = output;
+            stack.close();
+        }),
+    ];
+
+    // https://github.com/PanJohnny/CatEmojiEsoLang/blob/master/src/main/java/com/panjohnny/lang/interpreted/Interpreter.java
+    function interpret(input: string) {
+        const stack = new StackProvider();
+
+        for (let index = 0; index < input.length; index++) {
+            const char = input.charAt(index);
+            const token = fromCode(char);
+            if (token) {
+                const op = Operations.findLast((op) => op.token == token);
+                if (!op)
+                    continue;
+                op.operation(
+                    stack,
+                );
+                console.log(op.token.code + ": " + stack.get() + "[" + stack.index + "] {skip:" + stack.skipHint_ + "}");
+                if (stack.closed) break;
+            }
+        }
+
+        if (!stack.closed) {
+            const output = `Program exited with: ${stack.toString()}\nAs string: ${stack.asString()}`;
+            console.log(output);
+            const out = document.querySelector("#out");
+            if (!(out instanceof HTMLTextAreaElement)) return -1;
+
+            out.value = output;
+            stack.closed = true;
+        }
+    }
+</script>
