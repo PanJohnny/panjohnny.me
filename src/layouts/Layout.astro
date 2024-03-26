@@ -49,7 +49,7 @@ if (Astro.props) {
                     </span>
                 </div>
                 <!-- LINKS -->
-                <div class="links">
+                <nav class="links">
                     <a
                         href="https://github.com/PanJohnny"
                         title="GitHub"
@@ -64,7 +64,7 @@ if (Astro.props) {
                         class="reset fa-solid fa-helmet-safety"></a>
                     <a href="/" title="Homepage" class="reset fa-solid fa-house"
                     ></a>
-                </div>
+                </nav>
             </div>
         </header>
         <slot />
@@ -182,6 +182,10 @@ if (Astro.props) {
 
     .links {
         font-size: 2em;
+    }
+
+    .links a {
+        padding-left: 6px;
     }
 
     :global(a) {

@@ -1,0 +1,254 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="MHD Hra" description="Hra, při které jezdíte po Praze na náhodně vylosované zastávky MHD. Hraje s v týmech a tým, který všechny vylosované objede rychleji (bez použití vyhledávačů spojů) vyhrává.">
+    <script src="https://api.mapy.cz/loader.js" crossorigin="anonymous" defer></script>
+    <script type="module">
+        window.load = function () {
+            // clear all cookies
+            document.cookie.split(";").forEach(function (c) {
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+            });
+            Loader.async = true;
+            Loader.load(null, { poi: true, suggest: true }, createMap);
+
+            console.log("Loaded");
+        }
+
+        window.createMap = function () {
+            const center = SMap.Coords.fromWGS84(14.41, 50.08);
+            const map = new SMap(JAK.gel("map"), center, 10);
+            map.addDefaultLayer(SMap.DEF_TURIST).enable();
+            map.addDefaultControls();
+
+            const sync = new SMap.Control.Sync({});
+            map.addControl(sync);
+
+            window.mapa = map;
+        }
+
+    </script>
+    <script defer>
+        function initMotherfuckinMap() {
+            load()
+        }
+
+    </script>
+    <script type="module">
+        window.onload = function () {
+            initMotherfuckinMap()
+        };
+    </script>
+    <main>
+        <button type="submit" id="gen" onclick="gen()">
+            Generate
+        </button>
+    
+        <div id="status">
+    
+        </div>
+    
+        <h3>Stops:</h3>
+        <ol id="places">
+        </ol>
+    
+        <div id="map"></div>
+    
+        <div id="disclaimer" class="dark">
+            Loading speed may depend on your internet connection and device. 
+            Map may be really slow. 
+        </div>
+    
+        <script lang="text/javascript">
+            var icon = "fa-solid fa-bus-simple"
+    
+            var points = [];
+            const openData = '/demo/resources/stops';
+    
+            const status = document.getElementById('status');
+            const places = document.getElementById('places');
+    
+            window.onerror = (msg, url, line, col, err) => {
+                status.innerHTML = msg;
+            }
+    
+            var data = null;
+            var loaded = false;
+            var op = 0;
+    
+            switch(window.location.hash) {
+                case "#P":
+                    op = 1;
+                    break;
+                case "#ALL":
+                    op = 2;
+                    break;
+                case "#1":
+                    op = 3;
+                    break;
+            }
+    
+            const gen = () => {
+                if (!loaded) {
+                    status.innerHTML = "Wait for data to be loaded, try again later.";
+                    return;
+                }
+                status.innerHTML = 'Getting random point... <i class="fas fa-spinner fa-spin"></i>';
+                var random = Math.floor(Math.random() * data.stopGroups.length);
+                var place = data.stopGroups[random];
+                status.innerHTML = "";
+                let lines = [];
+                for (let i = 0; i < place.stops.length; i++) {
+                    const stop = place.stops[i];
+                    for (let l = 0; l < stop.lines.length; l++) {
+                        if (!lines.includes(stop.lines[l].name))
+                            lines.push(stop.lines[l].name);
+                    }
+                }
+                places.innerHTML += `<li class="place"><i class="${icon}"></i> ${place.name} <input type="button" value="Zobrazit linky" onclick="this.replaceWith(' - ${lines.join(", ")}')"/></li>`;
+    
+                generateMap([place.avgLon, place.avgLat]);
+    
+                points.push([place.avgLon, place.avgLat]);
+            }
+    
+            const loadData = () => {
+                const xhr = new XMLHttpRequest();
+                status.innerHTML = 'Downloading data from the internet... <i class="fas fa-spinner fa-spin"></i>';
+                xhr.open('GET', openData, true);
+                xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        data = JSON.parse(xhr.responseText);
+                        loaded = true;
+                        status.innerHTML = "All data downloaded. Filtering... <i class='fas fa-spinner fa-spin'></i>";
+                        
+                        const initialSize = data.stopGroups.length;
+    
+                        // filter the data.features array
+                        data.stopGroups = data.stopGroups.filter(place => condition(place));
+    
+                        console.log(`Filtered out ${initialSize - data.stopGroups.length} places. From ${initialSize}, to ${data.stopGroups.length}.`);
+    
+                        status.innerHTML = "All done!";
+    
+                        setTimeout(() => {
+                            status.innerHTML = "";
+                        }, 1000);
+                    } else {
+                        status.innerHTML = "Error: " + xhr.statusText + " (" + xhr.status + ")";
+                    }
+                }
+    
+                xhr.onerror = (err) => {
+                    status.innerHTML = "Error with parsing data!"
+                };
+                xhr.send();
+            }
+    
+            function condition(place) {
+                switch (op) {
+                    case 0:
+                        return place.municipality === "Praha";
+                    case 1:
+                        return ["P","0","B"].some(v => place.zone.includes(v));
+                    case 2:
+                        return true;
+                    case 3:
+                        return place.zone == "1";
+                }
+            }
+    
+            loadData();
+    
+            function generateMap(coords) {
+                var map = window.mapa;
+                var center = SMap.Coords.fromWGS84(coords[0], coords[1])
+    
+                var options = {
+                    url: 'https://api.mapy.cz/img/api/marker/drop-blue.png'
+                };
+                var marker = new SMap.Marker(center, "myMarker", options);
+    
+                var layer = new SMap.Layer.Marker();
+                map.addLayer(layer);
+                layer.enable();
+    
+                layer.addMarker(marker);
+    
+                map.setCenter(center);
+                map._zoom = 15;
+            }
+    
+            setTimeout(() => {
+                document.getElementById('disclaimer').style.display = 'none';
+            }, 5000);
+        </script>
+    </main>
+</Layout>
+
+<style>
+
+#map>img {
+            max-width: none;
+        }
+
+        #map {
+            width: 100%;
+            margin-top: 1em;
+            margin-left: 0px;
+            height: 70%;
+            display: block;
+            position: absolute;
+        }
+
+        #gen {
+            width: 100%;
+            background-color: orangered;
+            color: white;
+            padding: 1em;
+            outline: none !important;
+            font-size: larger;
+            border-radius: 7px;
+            border-color: black;
+            font-size: 1.2em;
+        }
+
+        #status {
+            font-size: 2em;
+        }
+
+        #places {
+            margin-top: 1em;
+            border-top: 1px var(--onyx) solid;
+            border-bottom: 1px var(--onyx) solid;
+            padding-top: .3em;
+            padding-bottom: .3em;
+            width: 100%;
+            display: block;
+            font-size: 1.3em;
+        }
+
+        .place::after {
+            content: "; ";
+        }
+
+        #disclaimer {
+            position: absolute;
+            right: 1em;
+            bottom: 1em;
+            padding: 0.5em;
+            border-radius: 7px;
+            font-size: medium;
+            font-weight: bold;
+            width: 18em;
+            /* make it on top of everything */
+            z-index: 100;
+        }
+
+        :global(footer) {
+            position: absolute;
+            bottom: 0px;
+        }
+</style>

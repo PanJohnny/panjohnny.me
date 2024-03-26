@@ -1,0 +1,10 @@
+---
+const json = await (await fetch("https://data.pid.cz/stops/json/stops.json")).json();
+
+return new Response(JSON.stringify(json), {
+    headers: {
+        "Content-Type": "application/json"
+    },
+    status: 200
+});
+---

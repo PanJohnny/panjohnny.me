@@ -206,6 +206,13 @@ declare module 'astro:content' {
   collection: "projects";
   data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
+"mhd-hra-po-praze.md": {
+	id: "mhd-hra-po-praze.md";
+  slug: "mhd-hra-po-praze";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
 "naiy.md": {
 	id: "naiy.md";
   slug: "naiy";
