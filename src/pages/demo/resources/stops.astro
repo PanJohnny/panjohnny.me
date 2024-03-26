@@ -1,7 +1,21 @@
 ---
 const json = await (await fetch("https://data.pid.cz/stops/json/stops.json")).json();
 
-return new Response(JSON.stringify(json), {
+function removeKeys(obj, keys) {
+    if (Array.isArray(obj))
+        return obj.map(v => removeKeys(v, keys))
+    else if (typeof obj == "object" && obj != null) {
+        const _obj = {}
+        Object.keys(obj).forEach(k => {
+            if(keys.includes(k)) _obj[k] = removeKeys(obj[k], keys)
+        })
+        return _obj
+    }
+    else
+        return obj
+}
+
+return new Response(JSON.stringify(removeKeys(json, ["municipality", "zone", "stopGroups", "stops", "avgLon", "avgLan", "name", "lines"])), {
     headers: {
         "Content-Type": "application/json"
     },
