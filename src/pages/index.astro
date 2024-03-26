@@ -3,35 +3,28 @@ import Project from "../components/Project.astro";
 import Layout from "../layouts/Layout.astro";
 import cat from "../assets/cat.jpg";
 import HeadingLinker from "../components/HeadingLinker.astro";
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 ---
 
 <Layout
     title="PanJohnny’s website"
-    description="Website that belongs to guy who codes stuff"
+    description="Hey, my name is Jan Štefanča. I am a student who codes stuff. Check out my portfolio of opensource projects."
     theme={Astro.url.searchParams.has("dark")
         ? "dark"
         : Astro.url.searchParams.has("light")
-        ? "light"
-        : ""}
+          ? "light"
+          : ""}
 >
     <main>
         <div class="container">
-            <span class="nowrap">BEWARE! This page is under construction.</span>
             <div class="part">
                 <h2 id="aboutme">About me</h2>
                 <p>
-                    I am an ordinary student with interests in computer science.
-                    As many other people, I started with <a
-                        href="/projects/tag/minecraft">Minecraft</a
-                    >, I've made many plugins and mods. After teaching myself
-                    Java, witht he help of many online resources and a physicall
-                    book, I looked into <a href="/projects/tag/web"
-                        >web development</a
-                    >. This website is created with JS/TS framework <a
-                        href="https://astro.build">Astro</a
-                    >. Older versions were made using Express.js, but I like
-                    Astro more.
+                    Hey, my name is Jan Štefanča. I am a student who codes
+                    stuff. Check out this website and the portfolio that I have
+                    managed to create in the (not so) few years that I code. I
+                    have both cat and dog at home, but I am more of a cat
+                    person. Enjoy this picture of my cat :)
                 </p>
                 <Image
                     src={cat}
@@ -42,6 +35,11 @@ import { Image } from 'astro:assets';
 
             <div class="part">
                 <h2 id="projects">Projects</h2><div>
+                    <Project
+                        name="GymLingo"
+                        desc="A huge school project that serves as a tool for practicing polish"
+                        page="/projects/gymlingo-czech-polish-learning-tool"
+                    />
                     <Project
                         name="Baka4J"
                         desc="School system Bakaláři java API wrapper"
@@ -57,7 +55,6 @@ import { Image } from 'astro:assets';
                         desc="Programming language inspired by brainf*ck, with cat emojis"
                         page="/projects/cat-emoji-esoteric-language"
                     />
-                    <i>Other projects coming soon™, webpage in construction. One of the most complicated is gymlit-18g, you can check it out, it is in Czech tho.</i>
                     <div>
                         <a href="/projects">More…</a>
                     </div>
@@ -67,17 +64,8 @@ import { Image } from 'astro:assets';
             <div class="part">
                 <h2 id="contact">Contact</h2>
                 <p>
-                    <i class="fa-brands fa-twitter"></i>
-                    <a href="https://twitter.com/PanJohnny1">Twitter</a>
-                </p>
-                <p>
                     <i class="fa-solid fa-envelope"></i>
-                    <a href="mailto:devstefancz@gmail.com">Email</a>
-                </p>
-                <p>
-                    <i class="fa-brands fa-discord"></i> Discord <code
-                        >@panjohnny (Previously: @PanJohnny#5594)</code
-                    >
+                    <a href="mailto:janstefanca@gmail.com">Email</a>
                 </p>
             </div>
         </div>
@@ -92,12 +80,14 @@ import { Image } from 'astro:assets';
     }
 
     .container {
-        text-align: center;
-        margin-left: 10%;
-        margin-right: 10%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
     }
-    
+
     .part {
-        margin-bottom: 10em;
+        display: block;
+        margin: 10em;
+        margin-top: 0px;
     }
 </style>

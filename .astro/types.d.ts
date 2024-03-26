@@ -192,6 +192,20 @@ declare module 'astro:content' {
   collection: "projects";
   data: InferEntrySchema<"projects">
 } & { render(): Render[".md"] };
+"gymlingo-czech-polish-learning-tool.md": {
+	id: "gymlingo-czech-polish-learning-tool.md";
+  slug: "gymlingo-czech-polish-learning-tool";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
+"gymlit-18g-class-chronicle.md": {
+	id: "gymlit-18g-class-chronicle.md";
+  slug: "gymlit-18g-class-chronicle";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
 "naiy.md": {
 	id: "naiy.md";
   slug: "naiy";
