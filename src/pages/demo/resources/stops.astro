@@ -15,7 +15,7 @@ function removeKeys(obj, keys) {
         return obj
 }
 
-return new Response(JSON.stringify(removeKeys(json, ["municipality", "zone", "stopGroups", "stops", "avgLon", "avgLan", "name", "lines"])), {
+return new Response(JSON.stringify(removeKeys(json, ["municipality", "zone", "stopGroups", "stops", "avgLon", "avgLat", "name", "lines", "type"])), {
     headers: {
         "Content-Type": "application/json"
     },
