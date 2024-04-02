@@ -25,7 +25,7 @@ var props = Astro.props as Props;
         <meta property="og:type" content="website" />
         <meta
             property="og:url"
-            content={"https://panjohnny.vercel.app/blog/" + props.slug}
+            content={"https://panjohnny.me/blog/" + props.slug}
         />
         <meta property="og:title" content={props.title} />
         <meta property="og:description" content={props.description} />
@@ -35,7 +35,7 @@ var props = Astro.props as Props;
         <meta property="twitter:card" content="summary_large_image" />
         <meta
             property="twitter:url"
-            content={"https://panjohnny.vercel.app/blog/" + props.slug}
+            content={"https://panjohnny.me/blog/" + props.slug}
         />
         <meta property="twitter:title" content={props.title} />
         <meta property="twitter:description" content={props.description} />
@@ -71,21 +71,6 @@ var props = Astro.props as Props;
                 >
             </div>
         </footer>
-
-        <!-- COLOR PICKER MODAL -->
-        <dialog id="colorPicker">
-            <h2>Please choose theme</h2>
-            <input
-                type="button"
-                class="rectangleRender light"
-                data-scheme="light"
-            />
-            <input
-                type="button"
-                class="rectangleRender dark"
-                data-scheme="dark"
-            />
-        </dialog>
 
         <script is:inline>
             const post = document.getElementById("post");
