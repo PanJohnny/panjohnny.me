@@ -1,6 +1,20 @@
 ---
 import { getEntry, getCollection } from "astro:content";
 import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
+export async function getStaticPaths() {
+    const posts = await getCollection("blog");
+    let blogs: string[] = [];
+    posts.forEach((p) => {
+        blogs.push(p.slug);
+    });
+
+    // TODO latest does not work correctly :(
+    blogs.push("latest");
+
+    return blogs.map((post) => {
+        return { params: { post } };
+    });
+}
 const { post } = Astro.params;
 if (post == "latest") {
     const collection = await getCollection("blog");
