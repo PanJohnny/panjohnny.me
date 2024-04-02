@@ -55,9 +55,11 @@ import { Image } from "astro:assets";
                         desc="Programming language inspired by brainf*ck, with cat emojis"
                         page="/projects/cat-emoji-esoteric-language"
                     />
-                    <div>
-                        <a href="/projects">More…</a>
-                    </div>
+                    <Project
+                        name="More projects"
+                        desc="Check out my other projects"
+                        page="/projects/"
+                    />
                 </div>
             </div>
 
@@ -68,11 +70,26 @@ import { Image } from "astro:assets";
                     <a href="mailto:janstefanca@gmail.com">Email</a>
                 </p>
             </div>
+
+            <div class="part">
+                <h2 id="quick-showcase">Quick showcase</h2>
+                <p>Demos, that you can check out</p>
+                <Project
+                        name="MHD Hra"
+                        desc="Hra o ježdění po Praze a prozkoumávání náhodných zastávek MHD/A game about using Pragues public transport to visit random stops"
+                        page="/demo/prague"
+                    />
+                <Project
+                        name="Cat Emoji Esoteric Language Demo"
+                        desc="This demo is a JavaScript based rewrite of the original project"
+                        page="/demo/cats"
+                    />
+            </div>
         </div>
     </main>
 </Layout>
 
-<HeadingLinker levels={["h2"]} />
+<HeadingLinker levels={["h2"]} noIcons/>
 
 <style>
     img {

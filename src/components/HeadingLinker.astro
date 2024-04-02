@@ -1,20 +1,27 @@
 ---
 interface Props {
-    levels: string[]
+    levels: string[],
+    noIcons?: boolean,
 }
 
-const {levels} = Astro.props as Props;
+const {levels, noIcons} = Astro.props as Props;
 ---
 
-<script id="headingLinker" data-levels={levels.join(",")}>
+<script id="headingLinker" data-levels={levels.join(",")} data-no-icons={noIcons}>
     window.addEventListener("load", () => {
         const levels = document.querySelector("#headingLinker").getAttribute("data-levels").split(",");
+        const noIcons = document.querySelector("#headingLinker").hasAttribute("data-no-icons");
         levels.forEach(l => {
             document.querySelector("main").querySelectorAll(l).forEach(e => {
                 const id = e.getAttribute("id");
                 if (id) {
                     const before = e.innerHTML;
-                    e.innerHTML = '<a href="#'+id+'" class="reset"> <i class="fa-solid fa-link"></i>' + before + '</a>';
+                    let newHTML = '<a href="#'+id+'" class="reset"> ';
+                    if (!noIcons)
+                        newHTML += '<i class="fa-solid fa-link"></i>';
+                    newHTML += before + '</a>';
+
+                    e.innerHTML = newHTML;
                 }
             });
         });

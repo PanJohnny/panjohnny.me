@@ -1,5 +1,7 @@
 ---
 import HeadingLinker from '../components/HeadingLinker.astro';
+import CommonHeader from '../components/CommonHeader.astro';
+import SharedCSS from '../components/SharedCSS.astro';
 interface Props {
     title: string;
     description: string;
@@ -92,37 +94,12 @@ const newShade = (hexColor, magnitude) => {
         <script
             src="https://kit.fontawesome.com/748c4b57ac.js"
             crossorigin="anonymous"></script>
+        
+        <SharedCSS />
     </head>
 
     <body>
-        <header>
-            <h1>{props.title}</h1>
-            <div class="bar">
-                <!-- COSMETICS -->
-                <div aria-hidden="true">
-                    <span role="button" id="scheme"
-                        ><span class="rectangleRender"></span>
-                    </span>
-                </div>
-                <!-- LINKS -->
-                <div class="links">
-                    <a
-                        href="https://github.com/PanJohnny"
-                        title="GitHub"
-                        class="reset fa-brands fa-github"></a>
-                    <a
-                        href="/blog"
-                        title="Blog"
-                        class="reset fa-solid fa-quote-left"></a>
-                    <a
-                        href="/projects"
-                        title="Projects"
-                        class="reset fa-solid fa-helmet-safety"></a>
-                    <a href="/" title="Homepage" class="reset fa-solid fa-house"
-                    ></a>
-                </div>
-            </div>
-        </header>
+        <CommonHeader title={props.title}/>
         <main>
             <div class="container">
                 <slot />

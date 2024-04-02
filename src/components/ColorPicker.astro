@@ -1,0 +1,80 @@
+---
+
+---
+<div aria-hidden="true">
+    <span role="button" id="scheme"
+        ><span class="rectangleRender"></span>
+    </span>
+</div>
+
+<dialog id="colorPicker">
+    <h2>Please choose theme</h2>
+    <input
+        type="button"
+        class="rectangleRender light"
+        data-scheme="light"
+    />
+    <input
+        type="button"
+        class="rectangleRender dark"
+        data-scheme="dark"
+    />
+    <input
+        type="button"
+        class="rectangleRender lapis"
+        data-scheme="lapis"
+    />
+</dialog>
+
+<script>
+    const schemes = ["dark", "light", "lapis"];
+    const html = document.querySelector("html");
+    const schemeToggle = document.querySelector("#scheme");
+    const colorPicker: HTMLDialogElement | null = document.querySelector("#colorPicker");
+    window.addEventListener("load", loadMode);
+    schemeToggle?.addEventListener("click", schemePallet);
+
+    function loadMode() {
+        // Check localStorage and update data respectively
+        const scheme = localStorage.getItem("color-scheme");
+        if (scheme) {
+            html?.classList.add(scheme);
+
+            colorPicker?.querySelectorAll("input[type=button]").forEach((e) => {
+                e.addEventListener("click", () => {
+                    localStorage.setItem(
+                        "color-scheme",
+                        e.getAttribute("data-scheme") + ""
+                    );
+
+                    // If schemes already present delete them
+                    schemes.forEach((s) => {
+                        if (html?.classList.contains(s))
+                            html.classList.remove(s);
+                    });
+
+                    // Close modal
+                    colorPicker.close();
+
+                    // Load mode
+                    loadMode();
+                });
+            });
+        } else {
+            if (
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+            ) {
+                localStorage.setItem("color-scheme", "dark");
+            } else {
+                localStorage.setItem("color-scheme", "light");
+            }
+            loadMode();
+            return;
+        }
+    }
+
+    function schemePallet() {
+        if (colorPicker) colorPicker.showModal();
+    }
+</script>
