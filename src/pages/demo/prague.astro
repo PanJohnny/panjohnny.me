@@ -234,7 +234,6 @@ See https://leafletjs.com/reference.html#control
 	    })
 
 	    text += "\nVygenerováno automaticky";
-	    console.log(text);
 	
 	    if (!navigator.share) {
 		    const dialog = document.createElement("dialog");
@@ -242,7 +241,11 @@ See https://leafletjs.com/reference.html#control
 		    document.body.appendChild(dialog);
     		dialog.showModal();
     	} else {
-    		navigator.share({text});
+    		navigator.share({
+			title: "MHD Hra",
+			text: text,
+			url: "https://panjohnny.me/demo/prague"
+		});
     	}
     }
 </script>
