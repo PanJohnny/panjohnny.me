@@ -13,6 +13,7 @@ import Layout from "../../layouts/Layout.astro";
 
         <h3>Stops:</h3>
         <ol id="places"></ol>
+        <a role="button" href="javascript:shareIt()" class="share" style=""><i class="fa-solid fa-share" aria-hidden="true"></i> Sdílet</a>
 
         <div id="map"></div>
 
@@ -225,6 +226,25 @@ See https://leafletjs.com/reference.html#control
     setTimeout(() => {
         document.getElementById("disclaimer").style.display = "none";
     }, 5000);
+
+    function shareIt() {
+	    let text = "*MHD HRA*\nhttps://panjohnny.me/demo/prague/\n\nVylosovaná místa:\n";
+	    document.querySelector("#places").querySelectorAll("li").forEach(n => {
+	    	text += "- " + n.innerText.replaceAll("\n", "") + "\n";
+	    })
+
+	    text += "\nVygenerováno automaticky";
+	    console.log(text);
+	
+	    if (!navigator.share) {
+		    const dialog = document.createElement("dialog");
+		    dialog.innerText = text;
+		    document.body.appendChild(dialog);
+    		dialog.showModal();
+    	} else {
+    		navigator.share({text});
+    	}
+    }
 </script>
 <style>
     body {
@@ -282,5 +302,15 @@ See https://leafletjs.com/reference.html#control
     :global(footer) {
         position: absolute;
         bottom: 0px;
+    }
+
+    .share {
+    	padding: 3px; 
+    	border: 1px solid; 
+    	margin: 10px;
+    	display: block;
+    	text-align: center;
+    	border-radius: 12px;
+    	text-decoration: none;
     }
 </style>
