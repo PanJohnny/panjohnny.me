@@ -18,7 +18,8 @@ export async function getStaticPaths() {
 const { post } = Astro.params;
 if (post == "latest") {
     const collection = await getCollection("blog");
-    return Astro.redirect("/blog/" + collection[collection.length-1].slug);
+    const sorted = collection.sort(blog => Date.parse(blog.data.pubDate));
+    return Astro.redirect("/blog/" + sorted[sorted.length-1].slug);
 }
 const blog = await getEntry("blog", post + "");
 

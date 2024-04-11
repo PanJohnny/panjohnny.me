@@ -13,11 +13,10 @@ const posts = await getCollection("blog");
                 ><i class="fa-solid fa-rss" title="RSS feed"></i></a
             >
             </p>
-            <a href="/blog/latest">Latest blog</a>
         </div>
 
         {
-            posts.map((post) => (
+            posts.sort(blog => -Date.parse(blog.data.pubDate)).map((post) => (
                 <BlogPost
                     title={post.data.title}
                     date={post.data.pubDate}
