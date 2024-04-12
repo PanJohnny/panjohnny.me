@@ -8,10 +8,7 @@ interface Props {
     theme?: string;
 }
 
-var props = Astro.props as Props;
-if (Astro.props) {
-    props = Astro.props as Props;
-}
+const props = Astro.props as Props;
 ---
 
 <html>
