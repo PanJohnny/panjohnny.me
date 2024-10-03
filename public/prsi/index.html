@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prší</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div>
+        <pre>
+
+
+  /$$   /$$                       /$$            
+ | $$  /$$/                      | $$              
+ | $$ /$$/   /$$$$$$   /$$$$$$  /$$$$$$   /$$   /$$
+ | $$$$$/   |____  $$ /$$__  $$|_  $$_/  | $$  | $$
+ | $$  $$    /$$$$$$$| $$  \__/  | $$    | $$  | $$
+ | $$\  $$  /$$__  $$| $$        | $$ /$$| $$  | $$
+ | $$ \  $$|  $$$$$$$| $$        |  $$$$/|  $$$$$$$
+ |__/  \__/ \_______/|__/         \___/   \____  $$
+                                          /$$  | $$  
+                                         |  $$$$$$/ 
+                                          \______/ <small>alpha 1.0</small>
+            
+ 
+        </pre>
+    </div>
+    </header>
+    <aside class="info">
+        <b>Barvy:</b> <br>
+        a - srdce, s - listy, d - žaludy, f - kule
+        <br>
+        <b>Čísla:</b> <br>
+        7, 8, 9, x - 10, k - král, a - eso, s - spodek, f - svršek
+        <br>
+        <b>Speciální:</b> <br>
+        ?? - akce, !% - změna barvy, !q - nová hra
+    </aside>
+    <main>
+        <div id="output">
+        </div>
+        <hr>
+        <div class="inline-flex">
+            <input type="text" id="input" placeholder="Zadejte kartu">
+            <button data-delete style="font-size: 1.2em; margin-right: 10px;">⌫</button>
+        </div>
+        <div class="phone-compatability">
+            <div class="keyboard" id="type">
+                <button style="color: red" data-insert="a">♥</button>
+                <button style="color: lime" data-insert="s">♠</button>
+                <button style="color: brown" data-insert="d">🌰</button>
+                <button style="color: orange" data-insert="f">●</button>
+                <button data-insert="??" data-noswitch>??</button>
+                <button data-insert="!" data-noswitch>!%</button>
+                <button data-insert="!q">!q</button>
+                <button title="prohodit" data-insert="">⌨️</button>
+            </div>
+            <div class="keyboard" id="number" hidden>
+                <button data-insert="7">VII</button>
+                <button data-insert="8">VIII</button>
+                <button data-insert="9">IX</button>
+                <button data-insert="x">X</button>
+                <button data-insert="k">👑</button>
+                <button data-insert="a">A</button>
+                <button data-insert="s" title="spodek">▾</button>
+                <button data-insert="f" title="svršek">▴</button>
+            </div>
+        </div>
+    </main>
+    <script src="engine.js"></script>
+    <script src="phone.js"></script>
+</body>
+</html>
