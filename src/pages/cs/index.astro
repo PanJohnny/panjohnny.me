@@ -1,0 +1,93 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HeadingLinker from "../../components/HeadingLinker.astro";
+import Project from "../../components/Project.astro";
+---
+
+<Layout
+        title="Honzovo portfolio"
+        description="Vítejte na mé webové stránce"
+        metaDesc="Ahoj, jmenuji se Jan Štefanča a tohle je můj osobní web. Můžete se dozvěde informace o mně a mých projektech. Doufám, že si odnesete něco zajímavého."
+        metaTags={["PanJohnny", "portfolio", "Jan Štefanča", "Honza Štefanča"]}
+        i18n
+>
+    <div class="right">
+        <div class="category" style="background-color: #f6963e">
+            <h2>O mně</h2>
+            <div class="expanded">
+                <p>
+                    Jsem student osmiletého gymnázia s vášní pro programování a vývoj
+                    opensource projektů. Věnuji se hlavně tvorbě webových aplikací, které sdílím
+                    na svém GitHubu. Jsem zkušený v technologiích jako NodeJS, PHP a SQL, a
+                    aktivně pracuji na zdokonalování svých dovedností ve full stack vývoji. Díky
+                    své otevřenosti k zpětné vazbě se neustále zlepšuji, a spolupráce v týmu je
+                    pro mě přirozená. Cílem je stát se profesionálním vývojářem a získat co nejvíce
+                    reálných zkušeností, které mě připraví na kariéru v IT.
+                </p>
+                <p>
+                    Stáhněte si mé <a href="/CV%20Jan%20Štefanča.pdf" target="_blank">CV</a>
+                </p>
+            </div>
+        </div>
+        <div class="category" style="background-color: #ff6c55">
+            <h2>Projekty</h2>
+            <div>
+                <Project name="GymLingo"
+                         desc="Školní projekt, při kterém jsem vytvořil webovou aplikaci umožňující procvičování Polských slovíček."
+                         page="/projects/gymlingo-czech-polish-learning-tool"/>
+                <Project name="Obsidian Online"
+                         desc="Nástroj pro webové prohlížení poznámek ze školy uložených na internetu" page="/projects/obsidian-online"/>
+                <Project name="Baka4J"
+                         desc="Knihovna naprogramovaná v Javě, která umožňuje komunikaci s populárním školským systémem Bakaláři"
+                         page="/projects/baka4j"/>
+                <Project name="Další projekty..." desc="Podívejte se na další projekty, které jsem vytvořil"
+                         page="/projects"/>
+            </div>
+        </div>
+        <div class="category" style="background-color: #33658A; color: #fff8f0;">
+            <h2>Rychlé ukázky</h2>
+            <div>
+                <Project
+                        name="MHD Hra"
+                        desc="Hra o ježdění po Praze a prozkoumávání náhodných zastávek MHD"
+                        page="/demo/prague"
+                />
+                <Project
+                        name="CatEmojiEsoLang"
+                        desc="Esoterický programovací jazyk založený na kočičicí emoji. Přepsáno do JavaScriptu z Javy."
+                        page="/demo/cats"
+                />
+                <Project
+                        name="Prší"
+                        desc="Robot, který asistuje při hře Prší"
+                        page="/prsi/index.html"
+                />
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<HeadingLinker levels={["h2"]} noIcons/>
+
+<script>
+    document.querySelectorAll(".category").forEach((category) => {
+        category.addEventListener("click", () => {
+            let local = category.querySelector("div");
+            document.querySelectorAll(".expanded").forEach((expanded) => {
+                // Remove the expanded class
+                // Only if it is not the clicked category
+                if (expanded !== local) {
+                    expanded.classList.remove("expanded");
+                }
+            });
+            // Add expanded class to the clicked category
+            local.classList.add("expanded");
+            setTimeout(() => {
+                category.scrollIntoView({behavior: "smooth"});
+            }, 200);
+        });
+
+        // Set animation duration based on the height of the expanded div
+        category.querySelector("div").style.animationDuration = `${category.querySelector("div").scrollHeight / 100}px`;
+    });
+</script>

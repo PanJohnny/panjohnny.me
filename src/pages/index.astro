@@ -1,110 +1,90 @@
 ---
-import Project from "../components/Project.astro";
 import Layout from "../layouts/Layout.astro";
-import cat from "../assets/cat.jpg";
 import HeadingLinker from "../components/HeadingLinker.astro";
-import { Image } from "astro:assets";
+import Project from "../components/Project.astro";
 ---
 
 <Layout
-    title="PanJohnny’s website"
-    description="Hey, my name is Jan Štefanča. I am a student who codes stuff. Check out my portfolio of opensource projects."
-    theme={Astro.url.searchParams.has("dark")
-        ? "dark"
-        : Astro.url.searchParams.has("light")
-          ? "light"
-          : ""}
+        title="John's portfolio"
+        description="Welcome to my website"
+        metaDesc="Hi, my name is Jan Štefanča and this is my personal website. You can find information about me and my projects here. I hope you will find something interesting."
+        metaTags={["PanJohnny", "portfolio", "Jan Štefanča", "Honza Štefanča"]}
+        i18n
 >
-    <main>
-        <div class="container">
-            <div class="part">
-                <h2 id="aboutme">About me</h2>
+    <div class="right">
+        <div class="category" style="background-color: #f6963e">
+            <h2>About me</h2>
+            <div class="expanded">
                 <p>
-                    Hey, my name is Jan Štefanča. I am a student who codes
-                    stuff. Check out this website and the portfolio that I have
-                    managed to create in the (not so) few years that I code. I
-                    have both cat and dog at home, but I am more of a cat
-                    person. Enjoy this picture of my cat :)
+                    I am a student of an eight-year grammar school with a passion for programming and developing
+                    open-source projects. I mainly focus on creating web applications, which I share on my GitHub. I am
+                    experienced in technologies like NodeJS, PHP, and SQL, and I actively work on improving my skills in
+                    full-stack development. Thanks to my openness to feedback, I am constantly improving, and teamwork
+                    comes naturally to me. My goal is to become a professional developer and gain as much real-world
+                    experience as possible to prepare for a career in IT.
                 </p>
-                <Image
-                    src={cat}
-                    alt="my cat in a flower field"
-                    style={"max-width: 80%; max-height: 70vh; width: auto; height: auto;"}
-                />
-            </div>
-
-            <div class="part">
-                <h2 id="projects">Projects</h2><div>
-                    <Project
-                        name="GymLingo"
-                        desc="A huge school project that serves as a tool for practicing polish"
-                        page="/projects/gymlingo-czech-polish-learning-tool"
-                    />
-                    <Project
-                        name="Baka4J"
-                        desc="School system Bakaláři java API wrapper"
-                        page="/projects/baka4j"
-                    />
-                    <Project
-                        name="No Arrows In You!"
-                        desc="A Minecraft mod that allows player to modify visual aspects of the game"
-                        page="/projects/naiy"
-                    />
-                    <Project
-                        name="Cat Emoji Esoteric Language"
-                        desc="Programming language inspired by brainf*ck, with cat emojis"
-                        page="/projects/cat-emoji-esoteric-language"
-                    />
-                    <Project
-                        name="More projects"
-                        desc="Check out my other projects"
-                        page="/projects/"
-                    />
-                </div>
-            </div>
-
-            <div class="part">
-                <h2 id="contact">Contact</h2>
-                <p>
-                    <i class="fa-solid fa-envelope"></i>
-                    <a href="mailto:janstefanca@seznam.cz">Email</a>
-                </p>
-            </div>
-
-            <div class="part">
-                <h2 id="quick-showcase">Quick showcase</h2>
-                <p>Demos, that you can check out</p>
-                <Project
-                        name="MHD Hra"
-                        desc="Hra o ježdění po Praze a prozkoumávání náhodných zastávek MHD/A game about using Pragues public transport to visit random stops"
-                        page="/demo/prague"
-                    />
-                <Project
-                        name="Cat Emoji Esoteric Language Demo"
-                        desc="This demo is a JavaScript based rewrite of the original project"
-                        page="/demo/cats"
-                    />
             </div>
         </div>
-    </main>
+        <div class="category" style="background-color: #ff6c55">
+            <h2>Projects</h2>
+            <div>
+                <Project name="GymLingo"
+                         desc="School project where I created a web application for practicing Polish words"
+                         page="/projects/gymlingo-czech-polish-learning-tool"/>
+                <Project name="Obsidian Online"
+                         desc="Web app for viewing obsidian notes saved in GitHub repository directly in the browser"
+                         page="/s/obsidian-online"/>
+                <Project name="Baka4J"
+                         desc="A Java library for communicating with the popular Czech school system Bakaláři"
+                         page="/projects/baka4j"/>
+                <Project name="Other projects..." desc="Take a look at other projects I have created"
+                         page="/projects"/>
+            </div>
+        </div>
+        <div class="category" style="background-color: #33658A; color: #fff8f0;">
+            <h2>Quick bits</h2>
+            <div>
+                <Project
+                        name="MHD Game"
+                        desc="Game about using Pragues public transport to visit random stops"
+                        page="/demo/prague"
+                />
+                <Project
+                        name="CatEmojiEsoLang"
+                        desc="Esoteric programming language based on cat emoji. Rewritten to JavaScript from Java."
+                        page="/demo/cats"
+                />
+                <Project
+                        name="Prší"
+                        desc="Robot, which assists a player in the card game Prší"
+                        page="/prsi/index.html"
+                />
+            </div>
+        </div>
+    </div>
 </Layout>
 
 <HeadingLinker levels={["h2"]} noIcons/>
 
-<style>
-    img {
-        border-radius: 12px;
-    }
+<script>
+    document.querySelectorAll(".category").forEach((category) => {
+        category.addEventListener("click", () => {
+            let local = category.querySelector("div");
+            document.querySelectorAll(".expanded").forEach((expanded) => {
+                // Remove the expanded class
+                // Only if it is not the clicked category
+                if (expanded !== local) {
+                    expanded.classList.remove("expanded");
+                }
+            });
+            // Add expanded class to the clicked category
+            local.classList.add("expanded");
+            setTimeout(() => {
+                category.scrollIntoView({behavior: "smooth"});
+            }, 200);
+        });
 
-    .container {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-    }
-
-    .part {
-        display: block;
-        margin: 10%;
-        margin-top: 0px;
-    }
-</style>
+        // Set animation duration based on the height of the expanded div
+        category.querySelector("div").style.animationDuration = `${category.querySelector("div").scrollHeight / 100}px`;
+    });
+</script>

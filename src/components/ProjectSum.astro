@@ -98,8 +98,11 @@ const newShade = (hexColor, magnitude) => {
     }
 
     .project {
-        margin-top: 2em;
-        margin-bottom: 2em;
+        display: flex;
+        flex-direction: column;
+        border: #ff6c55 solid;
+        padding: 1em;
+        border-radius: 12px;
     }
 
     .project-upper {
@@ -119,14 +122,19 @@ const newShade = (hexColor, magnitude) => {
         font-size: 0.8em;
     }
 
+    .project-tags {
+        line-height: 30px;
+    }
+
     .project-tags > *:not(:last-child) {
         margin-right: 0.2em;
     }
 
     .project-tags > * {
-        padding: 2px;
-        border: 1px solid;
-        border-radius: 3px;
-        border-color: white;
+        padding: 4px;
+        border-radius: 12px;
+        border: 1px solid white;
+        display: inline-block;
+        float: right;
     }
 </style>

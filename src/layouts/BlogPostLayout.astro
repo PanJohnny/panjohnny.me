@@ -1,6 +1,5 @@
 ---
 import HeadingLinker from '../components/HeadingLinker.astro';
-import CommonHeader from '../components/CommonHeader.astro';
 import SharedCSS from '../components/SharedCSS.astro';
 interface Props {
     title: string;
@@ -41,15 +40,15 @@ var props = Astro.props as Props;
         <meta property="twitter:description" content={props.description} />
         <meta property="twitter:image" content="/favicon.ico" />
 
-        <script
-            src="https://kit.fontawesome.com/748c4b57ac.js"
-            crossorigin="anonymous"></script>
-
         <SharedCSS />
     </head>
 
     <body class="container">
-        <CommonHeader title={props.title}/>
+        <header>
+            <a href="/">Home</a>
+            <a href="/blog" role="button" class="secondary">Other blogs</a>
+            <a href="latest" role="button" class="secondary">Latest blog</a>
+        </header>
         <main>
             <slot />
             <hr>
@@ -60,10 +59,6 @@ var props = Astro.props as Props;
         </main>
 
         <footer>
-            <div class="top-footer">
-                <a href="/blog" role="button" class="secondary">Other blogs</a>
-                <a href="latest" role="button" class="secondary">Latest blog</a>
-            </div>
             <div class="center-text">
                 <span class="nowrap">Created with ♥ by PanJohnny</span> | <span
                     class="nowrap"
@@ -88,6 +83,9 @@ var props = Astro.props as Props;
                 navigator.clipboard.writeText(textToCopy);
             }
         </script>
+        <script
+                src="https://kit.fontawesome.com/748c4b57ac.js"
+                crossorigin="anonymous"></script>
     </body>
 </html>
 <HeadingLinker  levels={["h1", "h2", "h3"]}/>

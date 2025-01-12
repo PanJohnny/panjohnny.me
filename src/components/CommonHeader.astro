@@ -1,5 +1,4 @@
 ---
-import ColorPicker from './ColorPicker.astro';
 
 interface Props {
     title: string
@@ -9,26 +8,7 @@ const {title} = Astro.props;
 ---
 
 <header>
-    <h1>{title}</h1>
-    <div class="bar">
-        <ColorPicker />
-        <nav class="links">
-            <a
-                href="https://github.com/PanJohnny"
-                title="GitHub"
-                class="reset fa-brands fa-github"></a>
-            <a
-                href="/blog"
-                title="Blog"
-                class="reset fa-solid fa-quote-left"></a>
-            <a
-                href="/projects"
-                title="Projects"
-                class="reset fa-solid fa-helmet-safety"></a>
-            <a href="/" title="Homepage" class="reset fa-solid fa-house"
-            ></a>
-        </nav>
-    </div>
+    
 </header>
 
 <style>

@@ -1,53 +1,94 @@
 ---
-import SharedCSS from '../components/SharedCSS.astro';
-import CommonHeader from '../components/CommonHeader.astro';
+import SharedCSS from '../components/SharedCSS.astro'; //@ts-ignore
+import {getRelativeLocaleUrl} from "astro:i18n";
+import {Image} from "astro:assets";
+import cat from "../assets/cat.jpg";
 
 interface Props {
     title: string;
     description: string;
-    theme?: string;
+    metaDesc: string;
+    metaTags?: string[];
+    discreteHeader?: boolean;
+    i18n?: boolean;
 }
 
 const props = Astro.props as Props;
+
+let locale = Astro.url.pathname.split("/")[1];
 ---
 
 <html>
-    <head>
-        <title>{props.title}</title>
-        <meta charset="UTF-8" />
-        <meta name="description" content={props.description} />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <meta name="generator" content={Astro.generator} />
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://panjohnny.me/" />
-        <meta property="og:title" content={props.title} />
-        <meta property="og:description" content={props.description} />
-        <meta property="og:image" content="/favicon.ico" />
+<head>
+    <title>{props.title}</title>
+    <meta charset="UTF-8"/>
+    <meta name="description" content={props.metaDesc}/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+    <meta name="generator" content={Astro.generator}/>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://panjohnny.me/"/>
+    <meta property="og:title" content={props.title}/>
+    <meta property="og:description" content={props.metaDesc}/>
+    <meta property="og:image" content="/favicon.ico"/>
 
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://panjohnny.me/" />
-        <meta property="twitter:title" content={props.title} />
-        <meta property="twitter:description" content={props.description} />
-        <meta property="twitter:image" content="/favicon.ico" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:url" content="https://panjohnny.me/"/>
+    <meta property="twitter:title" content={props.title}/>
+    <meta property="twitter:description" content={props.metaDesc}/>
+    <meta property="twitter:image" content="/favicon.ico"/>
 
-        <script
-            src="https://kit.fontawesome.com/748c4b57ac.js"
-            crossorigin="anonymous"></script>
-        
-        <SharedCSS />
-    </head>
+    {props.metaTags ? props.metaTags.map((tag) => (
+            <meta content={tag} property="og:tag"/>
+    )) : undefined}
 
-    <body>
-        <CommonHeader title={props.title}/>
-        <slot />
-        <footer class="center-text">
-            <span class="nowrap">Created with ♥ by PanJohnny</span> | <span
-                class="nowrap"
-                >Icons from <i class="fa-solid fa-font-awesome"></i> Font Awesome</span
-            >
-        </footer>
-    </body>
+    <SharedCSS/>
+</head>
+
+<body>
+<main class="container">
+    <div class="card">
+        <header class:list={["left", props.discreteHeader ? "discrete" : undefined]}>
+            {!props.discreteHeader ?
+                    <Image
+                            src={cat}
+                            alt="cat"
+                            width={400}
+                            style={"max-width: 100%; height: auto;"}
+                    /> : undefined}
+            <h1>{props.title}</h1>
+            <p>{props.description}</p>
+            <div class="contacts">
+                <div class="contact">
+                    <a href="https://github.com/PanJohnny"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+                {props.discreteHeader ? undefined :
+                        <div class="contact email">
+                            <a href="mailto:janstefanca@seznam.cz"><i class="fa-solid fa-envelope"></i>
+                                janstefanca@seznam.cz</a>
+                        </div>}
+                <div class="contact">
+                    <a href={getRelativeLocaleUrl("en", "/")}><i class="fa-solid fa-house"></i> Home</a>
+                </div>
+                {props.i18n ?
+                        <div class="contact">
+                            {locale === "cs" ?
+                                    <a href={getRelativeLocaleUrl("en", "/")}><i class="fa-solid fa-globe"></i> English</a> :
+                                    <a href={getRelativeLocaleUrl("cs", "/")}><i class="fa-solid fa-globe"></i>
+                                        Česky</a>}
+                        </div> : undefined}
+            </div>
+        </header>
+        <slot/>
+    </div>
+</main>
+<footer>
+    <a href="https://github.com/PanJohnny/panjohnny.me">Source code</a>{" | "}<a href="mailto:janstefanca@seznam.cz"><i class="fa-solid fa-envelope"></i> janstefanca@seznam.cz</a>
+</footer>
+<script src="https://kit.fontawesome.com/748c4b57ac.js"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>

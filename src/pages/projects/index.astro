@@ -1,12 +1,12 @@
 ---
-import { getEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import ProjectSum from "../../components/ProjectSum.astro";
 const posts = await getCollection("projects");
 
 ---
-<Layout title="PanJohnny’s projects" description="Place where I showoff my cool projects">
-    <main>
+<Layout title="PanJohnny’s projects" description="Place where I showoff my cool projects" metaDesc="Place where I showoff my cool projects">
+    <div class="right">
         {
             posts.map((post) => (
                 <ProjectSum
@@ -17,7 +17,9 @@ const posts = await getCollection("projects");
                 />
             ))
         }
-    </main>
+
+        <a href="https://github.com/PanJohnny?tab=repositories">More on GitHub</a>
+    </div>
 </Layout>
 
 <style>

@@ -25,7 +25,7 @@ const posts = await getCollection("projects", (p) => p.data.tags.includes(tag));
 if (!posts)
     return Astro.redirect("/projects");
 ---
-<Layout title={"Tag: " + tag} description="Content sorted by a tag">
+<Layout title={"Tag: " + tag} description="Content sorted by a tag" metaDesc="Content sorted by a tag">
     <main>
         {
             posts.map((post) => (

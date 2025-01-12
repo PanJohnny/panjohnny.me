@@ -1,6 +1,5 @@
 ---
 import HeadingLinker from '../components/HeadingLinker.astro';
-import CommonHeader from '../components/CommonHeader.astro';
 import SharedCSS from '../components/SharedCSS.astro';
 interface Props {
     title: string;
@@ -64,53 +63,53 @@ const newShade = (hexColor, magnitude) => {
 ---
 
 <html>
-    <head>
-        <title>{props.title}</title>
-        <meta charset="UTF-8" />
-        <meta name="description" content={props.description} />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <meta name="generator" content={Astro.generator} />
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website" />
-        <meta
+<head>
+    <title>{props.title}</title>
+    <meta charset="UTF-8"/>
+    <meta name="description" content={props.description}/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+    <meta name="generator" content={Astro.generator}/>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website"/>
+    <meta
             property="og:url"
             content={"https://panjohnny.me/projects/" + props.slug}
-        />
-        <meta property="og:title" content={props.title} />
-        <meta property="og:description" content={props.description} />
-        <meta property="og:image" content="/favicon.ico" />
+    />
+    <meta property="og:title" content={props.title}/>
+    <meta property="og:description" content={props.description}/>
+    <meta property="og:image" content="/favicon.ico"/>
 
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image"/>
+    <meta
             property="twitter:url"
             content={"https://panjohnny.me/projects/" + props.slug}
-        />
-        <meta property="twitter:title" content={props.title} />
-        <meta property="twitter:description" content={props.description} />
-        <meta property="twitter:image" content="/favicon.ico" />
+    />
+    <meta property="twitter:title" content={props.title}/>
+    <meta property="twitter:description" content={props.description}/>
+    <meta property="twitter:image" content="/favicon.ico"/>
 
-        <script
-            src="https://kit.fontawesome.com/748c4b57ac.js"
-            crossorigin="anonymous"></script>
-        
-        <SharedCSS />
-    </head>
 
-    <body>
-        <CommonHeader title={props.title}/>
-        <main>
-            <div class="container">
-                <slot />
-            </div>
-            <div class="info-table">
-                <h2>Project info</h2>
-                <h3>Tags</h3>
-                <div class="project-tags">
-                    {
-                        props.tags.map((t) => (
-                            <a
+    <SharedCSS/>
+</head>
+
+<body>
+<header>
+    <a href="/">Home</a>
+    <a href="/projects" role="button" class="secondary">Other projects</a>
+</header>
+<main>
+    <div class="container">
+        <slot/>
+    </div>
+    <div class="info-table">
+        <h2>Project info</h2>
+        <h3>Tags</h3>
+        <div class="project-tags">
+            {
+                props.tags.map((t) => (
+                        <a
                                 data-tag={t}
                                 href={"/projects/tag/" + t}
                                 style={
@@ -122,17 +121,17 @@ const newShade = (hexColor, magnitude) => {
                                     newShade(toHex(t), 80) +
                                     ";"
                                 }
-                            >
-                                {t}
-                            </a>
-                        ))
-                    }
-                </div>
-                <h3>Links</h3>
-                <div class="project-links">
-                    {
-                        props.links.map((l) => (
-                            <a
+                        >
+                            {t}
+                        </a>
+                ))
+            }
+        </div>
+        <h3>Links</h3>
+        <div class="project-links">
+            {
+                props.links.map((l) => (
+                        <a
                                 href={l.url}
                                 data-link={l.title}
                                 style={
@@ -144,25 +143,29 @@ const newShade = (hexColor, magnitude) => {
                                     newShade(toHex(l.title), 80) +
                                     ";"
                                 }
-                            >
-                                <i class={l.icon} /> {l.title}
-                            </a>
-                        ))
-                    }
-                </div>
-            </div>
-        </main>
+                        >
+                            <i class={l.icon}/> {l.title}
+                        </a>
+                ))
+            }
+        </div>
+    </div>
+</main>
 
-        <footer class="center-text">
-            <span class="nowrap">Created with ♥ by PanJohnny</span> | <span
-                class="nowrap"
-                >Icons from <i class="fa-solid fa-font-awesome"></i> Font Awesome</span
-            >
-        </footer>
-    </body>
+<footer class="center-text">
+    <span class="nowrap">Created with ♥ by PanJohnny</span> | <span
+        class="nowrap"
+>Icons from <i class="fa-solid fa-font-awesome"></i> Font Awesome</span
+>
+</footer>
+<script
+        src="https://kit.fontawesome.com/748c4b57ac.js"
+        crossorigin="anonymous"></script>
+<HeadingLinker  levels={["h2"]}/>
+</body>
+
 </html>
 
-<HeadingLinker  levels={["h2"]}/>
 <style>
     :global(.nowrap) {
         white-space: nowrap;
@@ -222,6 +225,11 @@ const newShade = (hexColor, magnitude) => {
         border: 1px solid;
         border-radius: 15px;
         padding: 1em;
+        margin-bottom: 3em;
+    }
+
+    .container {
+        padding: 3em;
     }
 </style>
 
