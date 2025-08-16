@@ -1,7 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
-import ProjectSum from "../../../components/ProjectSum.astro";
+import Project from "../../../components/Project.astro";
+
 export async function getStaticPaths() {
     const projects = await getCollection("projects");
     let tags:string[] = [];
@@ -12,12 +13,11 @@ export async function getStaticPaths() {
             }
         })
     })
-    
-    
+
     return tags.map(tag => {
         return {params: {tag}}
     });
-};
+}
 
 const { tag } = Astro.params;
 const posts = await getCollection("projects", (p) => p.data.tags.includes(tag));
@@ -25,18 +25,19 @@ const posts = await getCollection("projects", (p) => p.data.tags.includes(tag));
 if (!posts)
     return Astro.redirect("/projects");
 ---
-<Layout title={"Tag: " + tag} description="Content sorted by a tag" metaDesc="Content sorted by a tag">
+<Layout title={"Tag: " + tag} category="Projects" categoryUrl="/projects" description="Content sorted by a tag" metaDesc="Content sorted by a tag">
     <main>
-        {
-            posts.map((post) => (
-                <ProjectSum
-                    title={post.data.title}
-                    tags={post.data.tags}
-                    description={post.data.description}
-                    id={post.slug}
-                />
-            ))
-        }
+        <ul>
+            {
+                posts.map((post) => (
+                        <Project
+                                name={post.data.title}
+                                desc={post.data.description}
+                                page={"/project/" + post.slug}
+                        />
+                ))
+            }
+        </ul>
     </main>
 </Layout>
 

@@ -8,10 +8,12 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "astro": "^5.1.5"
+    "astro": "^5.8.0"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.2.1"
+    "@astrojs/sitemap": "^3.4.0",
+    "@iconify-json/mdi": "^1.2.3",
+    "astro-icon": "^1.1.5"
   }
 }

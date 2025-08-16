@@ -1,31 +1,89 @@
 ---
+import {Icon} from "astro-icon/components";
 interface Props {
     name:string;
     desc:string;
     page:string;
+    featured?:boolean;
 }
 
 const props = Astro.props as Props;
 ---
 
-<a href={props.page} class="project reset">
-    <h3>→ {props.name}</h3>
-    <p>{props.desc}</p>
-</a>
+<li>
+    <a href={props.page} class="project">
+        <h3>{props.name}</h3>
+        {props.featured ? <span class="featured" title="featured project, view more on the projects page"><Icon name="mdi:stars"/> Featured</span> : undefined}
+        <p>{props.desc}</p>
+    </a>
+</li>
 
 
 
 <style>
     .project {
-        margin: 2em;
-        margin-top: 0em;
+        margin: 0;
+        text-decoration: none;
     }
 
-    .project > h3 {
-        margin-bottom: 0em;
+    li {
+        list-style: none;
+        padding: 10px;
+        margin: 2px;
+        border-left: 1px solid var(--rose-taupe);
     }
 
-    .fa-github {
-        color: initial;
+    li:hover {
+        border-width: 2px;
+        padding-left: 9px;
+    }
+
+    .project > p {
+        margin-top: 0.5em;
+        color: inherit;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: inherit;
+    }
+
+    a:visited:hover {
+        text-decoration: none;
+    }
+
+    h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: inherit;
+    }
+
+    :global(.dark) .featured {
+        border-color: var(--cadet-gray);
+        background-color: var(--gray-dark);
+    }
+
+    :global(.dark) li {
+        border-color: var(--cadet-gray);
+    }
+
+    .featured {
+        font-size: 0.8em;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2em;
+        border: 1px solid;
+        padding: 2px 4px;
+        border-radius: 6px;
+        border-color: var(--rose-taupe);
+        background-color: var(--pale-dogwood);
     }
 </style>

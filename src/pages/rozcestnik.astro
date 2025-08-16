@@ -1,0 +1,140 @@
+---
+import Layout from "../layouts/Layout.astro";
+import {Icon} from "astro-icon/components";
+---
+<Layout title="Rozcestník"
+        description="Rozcestních webových stránek pro různé projekty"
+        metaDesc="Rozcestních webových stránek pro různé projekty"
+        metaTags={["Jan Štefanča", "PanJohnny"]} i18n={false}>
+    <section id="rozcestnik">
+        <ul class="links">
+            <li>
+                <a href="//www.instagram.com/honastef/" target="_blank" rel="noopener norefferer" class="instagram"><Icon name="mdi:instagram" size={24}/>
+                Instagram</a>
+            </li>
+            <li>
+                <a href="//github.com/panjohnny" target="_blank" rel="noopener norefferer" class="github"><Icon name="mdi:github" size={24}/>
+                    GitHub</a>
+            </li>
+            <li>
+                <a href="https://bsky.app/profile/panjohnny.me" target="_blank" rel="noopener norefferer" class="bluesky">
+                    <Icon name="mdi:butterfly" size={24}/>
+                    Bluesky
+                </a>
+            </li>
+            <li>
+                <a href="//basneraj.online" target="_blank" rel="noopener norefferer" class="basneraj"><Icon name="basneraj" size={24}/>
+                Básněráj</a>
+            </li>
+            <li>
+                <a href="//panjohnny.me" target="_self" class="website">
+                    <Icon name="mdi:web" size={24}/>
+                    Web
+                </a>
+            </li>
+
+        </ul>
+    </section>
+</Layout>
+
+<style>
+    #rozcestnik {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .instagram {
+        border-color: #8434AF;
+        background: linear-gradient(135deg, #DD2A7B 0%, #8434AF 100%);
+        color: white !important;
+        box-shadow: 0 2px 8px rgba(132, 52, 175, 0.15);
+        transition: box-shadow 0.2s;
+    }
+
+    .github {
+        border-color: #333;
+        background: linear-gradient(135deg, #333 0%, #555 100%);
+        color: white !important;
+        box-shadow: 0 2px 8px rgba(51, 51, 51, 0.15);
+        transition: box-shadow 0.2s;
+    }
+
+    .basneraj {
+        border-color: #facf67;
+        background: linear-gradient(135deg, #facf67 0%, #f9d56e 100%);
+        color: black !important;
+        box-shadow: 0 2px 8px rgba(250, 207, 103, 0.15);
+        transition: box-shadow 0.2s;
+    }
+
+    .website {
+        border-color: #009688;
+        background: linear-gradient(135deg, #009688 0%, #26D4B7 100%);
+        color: white !important;
+        box-shadow: 0 2px 8px rgba(0, 119, 181, 0.15);
+        transition: box-shadow 0.2s;
+    }
+
+    .bluesky {
+        border-color: #1DA1F2;
+        background: linear-gradient(135deg, #1DA1F2 0%, #1B95E0 100%);
+        color: white !important;
+        box-shadow: 0 2px 8px rgba(29, 161, 242, 0.15);
+        transition: box-shadow 0.2s;
+    }
+
+    .bluesky:hover {
+        box-shadow: 0 4px 16px rgba(29, 161, 242, 0.25);
+    }
+
+    .website:hover {
+        box-shadow: 0 4px 16px rgba(0, 119, 181, 0.25);
+    }
+
+    .basneraj:hover {
+        box-shadow: 0 4px 16px rgba(250, 207, 103, 0.25);
+    }
+    
+    .github:hover {
+        box-shadow: 0 4px 16px rgba(51, 51, 51, 0.25);
+    }
+
+    .instagram:hover {
+        box-shadow: 0 4px 16px rgba(132, 52, 175, 0.25);
+    }
+
+    .links {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        list-style: none;
+        padding: 0;
+    }
+
+    .links li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .links a {
+        color: inherit;
+        text-decoration: none;
+        padding: 30px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1.2em;
+        background-color: #f9f9f9;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-weight: 600;
+    }
+
+    .links a:hover {
+        text-decoration: underline;
+    }
+</style>

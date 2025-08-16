@@ -1,94 +1,285 @@
 ---
-import SharedCSS from '../components/SharedCSS.astro'; //@ts-ignore
-import {getRelativeLocaleUrl} from "astro:i18n";
-import {Image} from "astro:assets";
-import cat from "../assets/cat.jpg";
+import {Icon} from 'astro-icon/components';
+import Navbar from "../components/Navbar.astro";
+import LanguagePicker from "../components/LanguagePicker.astro";
 
 interface Props {
     title: string;
     description: string;
     metaDesc: string;
     metaTags?: string[];
-    discreteHeader?: boolean;
     i18n?: boolean;
+    category?: string;
+    categoryUrl?: string;
 }
 
 const props = Astro.props as Props;
-
-let locale = Astro.url.pathname.split("/")[1];
 ---
 
-<html>
+<html lang={Astro.currentLocale}>
 <head>
-    <title>{props.title}</title>
+    <title>{props.title} - panjohnny.me</title>
     <meta charset="UTF-8"/>
     <meta name="description" content={props.metaDesc}/>
     <meta name="viewport" content="width=device-width"/>
     <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/>
     <meta name="generator" content={Astro.generator}/>
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="https://panjohnny.me/"/>
     <meta property="og:title" content={props.title}/>
     <meta property="og:description" content={props.metaDesc}/>
-    <meta property="og:image" content="/favicon.ico"/>
+    <meta property="og:image" content="/large.jpg"/>
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image"/>
     <meta property="twitter:url" content="https://panjohnny.me/"/>
     <meta property="twitter:title" content={props.title}/>
     <meta property="twitter:description" content={props.metaDesc}/>
-    <meta property="twitter:image" content="/favicon.ico"/>
+    <meta property="twitter:image" content="/large.jpg"/>
 
     {props.metaTags ? props.metaTags.map((tag) => (
             <meta content={tag} property="og:tag"/>
     )) : undefined}
 
-    <SharedCSS/>
+    <script is:inline>
+        function loadTheme() {
+            const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+            const currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
+            document.documentElement.classList.toggle('dark', currentTheme === 'dark');
+        }
+        loadTheme();
+    </script>
 </head>
 
 <body>
-<main class="container">
-    <div class="card">
-        <header class:list={["left", props.discreteHeader ? "discrete" : undefined]}>
-            {!props.discreteHeader ?
-                    <Image
-                            src={cat}
-                            alt="cat"
-                            width={400}
-                            style={"max-width: 100%; height: auto;"}
-                    /> : undefined}
-            <h1>{props.title}</h1>
-            <p>{props.description}</p>
-            <div class="contacts">
-                <div class="contact">
-                    <a href="https://github.com/PanJohnny"><i class="fa-brands fa-github"></i> GitHub</a>
-                </div>
-                {props.discreteHeader ? undefined :
-                        <div class="contact email">
-                            <a href="mailto:janstefanca@seznam.cz"><i class="fa-solid fa-envelope"></i>
-                                janstefanca@seznam.cz</a>
-                        </div>}
-                <div class="contact">
-                    <a href={getRelativeLocaleUrl("en", "/")}><i class="fa-solid fa-house"></i> Home</a>
-                </div>
-                {props.i18n ?
-                        <div class="contact">
-                            {locale === "cs" ?
-                                    <a href={getRelativeLocaleUrl("en", "/")}><i class="fa-solid fa-globe"></i> English</a> :
-                                    <a href={getRelativeLocaleUrl("cs", "/")}><i class="fa-solid fa-globe"></i>
-                                        Česky</a>}
-                        </div> : undefined}
-            </div>
-        </header>
-        <slot/>
+<header>
+    <div class="left-part">
+        <h1>{props.category ? (<a href={props.categoryUrl}>{props.category} / </a>) : undefined}{props.title}</h1>
     </div>
-</main>
-<footer>
-    <a href="https://github.com/PanJohnny/panjohnny.me">Source code</a>{" | "}<a href="mailto:janstefanca@seznam.cz"><i class="fa-solid fa-envelope"></i> janstefanca@seznam.cz</a>
-</footer>
-<script src="https://kit.fontawesome.com/748c4b57ac.js"
-        crossorigin="anonymous"></script>
-</body>
+    <div class="right-part">
+        <div class="pickers">
+            {props.i18n && (
+                <LanguagePicker />
+            )}
+            <div class="picker" title="Theme picker">
+                <label>
+                    <Icon name="mdi:theme-light-dark"/>
+                    <select class="theme-picker" id="selectTheme">
+                        <option value="system">Auto</option>
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                    </select>
+                    <Icon name="mdi:chevron-down"/>
+                </label>
+            </div>
+        </div>
+        <script is:inline>
+            function loadStuff() {
+                const themePicker = document.querySelector('.theme-picker');
+                const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+                const currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
+                if (themePicker) {
+                    if (localStorage.hasOwnProperty('theme'))
+                        themePicker.value = currentTheme;
+                    themePicker.addEventListener('change', (event) => {
+                        const target = event.target;
+                        let selectedTheme = target?.value ?? 'system';
+                        if (selectedTheme === "system") {
+                            selectedTheme = prefersDarkScheme.matches ? 'dark' : 'light';
+                            localStorage.removeItem('theme');
+                        } else {
+                            localStorage.setItem('theme', selectedTheme);
+                        }
+                        document.documentElement.classList.toggle('dark', selectedTheme === 'dark');
+                    });
+                }
+            }
 
+            document.addEventListener('astro:after-swap', () => loadStuff());
+            loadStuff();
+        </script>
+        <a href="javascript:void(0)" id="toggle-nav" title="navigation" class="nav-button">
+            <Icon name="mdi:menu"/>
+        </a>
+        <Navbar i18n={props.i18n} />
+    </div>
+</header>
+<slot/>
+</body>
 </html>
+
+<style is:global>
+    :root {
+        /* light theme colors */
+        --bone: #ECE2D0;
+        --silver: #BFB5AF;
+        --pale-dogwood: #D5B9B2;
+        --rose-taupe: #A26769;
+        --violet: #582C4D;
+
+        /* dark theme colors */
+        --eerie-black: #1C2321;
+        --cadet-gray: #7D98A1;
+        --gray-dark: #3c4049;
+        --powder-blue: #A9B4C2;
+        --anti-flash-white: #EEF1EF;
+    }
+
+    [data-icon] {
+        background-color: unset !important;
+    }
+
+    :root:not(.dark) {
+        background-color: var(--bone);
+        color: #333;
+        border-color: var(--rose-taupe);
+    }
+
+    a {
+        color: inherit;
+        text-decoration: underline var(--rose-taupe) 0.1em;
+    }
+
+    a:hover {
+        text-decoration: underline var(--rose-taupe) 0.2em;
+    }
+
+    a:visited {
+        color: inherit;
+        text-decoration: underline var(--rose-taupe) 0.1em;
+    }
+
+    .dark a {
+        text-decoration: underline var(--powder-blue) 0.1em;
+    }
+
+    .dark a:hover {
+        text-decoration: underline var(--powder-blue) 0.2em;
+    }
+
+    .dark a:visited {
+        text-decoration: underline var(--powder-blue) 0.1em;
+    }
+
+    .dark {
+        color: var(--anti-flash-white);
+        background-color: var(--eerie-black);
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+
+    main, header, footer {
+        padding: 10px 0;
+    }
+
+    .picker label {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        pointer-events: none;
+        position: relative;
+
+        [data-icon] {
+            pointer-events: none;
+            position: absolute;
+        }
+
+        [data-icon]:last-of-type {
+            margin-right: 0.5em;
+            right: 0;
+        }
+    }
+
+    .picker select {
+        all: unset;
+        cursor: pointer;
+        padding-left: 20px;
+        padding-right: 25px;
+        pointer-events: auto;
+        user-select: none;
+    }
+
+    @media screen and (max-width: 500px) {
+        .pickers .language-picker {
+            display: none;
+        }
+    }
+</style>
+
+<style>
+    header {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 32px;
+        border-bottom: 1px solid;
+        align-items: center;
+        background-color: var(--silver);
+    }
+
+    .dark header {
+        background-color: var(--gray-dark);
+        border-color: var(--cadet-gray);
+    }
+
+    .language a {
+        gap: 0.5em;
+    }
+
+    .right-part a {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        align-items: center;
+    }
+
+    .left-part a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .left-part h1 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    .right-part {
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+    }
+    
+    .pickers {
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+    }
+</style>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        // make it so that labels are clickabel and select the select element
+        const labels = document.querySelectorAll('label');
+        labels.forEach(label => {
+            label.addEventListener('click', (event) => {
+                const select = document.getElementById(label.getAttribute('for'));
+                if (select) {
+                    select.dispatchEvent(new Event('mousedown'));
+                }
+            });
+        });
+    })
+
+    document.querySelector("#toggle-nav")?.addEventListener("click", () => {
+        const nav = document.querySelector("#navigation");
+        if (nav) {
+            nav.classList.toggle("hidden");
+            nav.style.animationDuration = "0.5s";
+        }
+    });
+</script>

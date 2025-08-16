@@ -1,0 +1,19 @@
+---
+import {Icon} from "astro-icon/components";
+
+let current = Astro.currentLocale || "en";
+let other = current === "en" ? "cs" : "en";
+
+let url = Astro.url.pathname.replace(`/${current}`, `/${other}`);
+---
+<div class="picker language-picker" title="Select language">
+    <label>
+        <Icon name="mdi:language"/>
+        <select onchange={"location.href='" + url + "'"}>
+            <option value="en" selected={Astro.currentLocale === "en"}>English</option>
+            <option value="cs" selected={Astro.currentLocale === "cs"}>Čeština</option>
+        </select>
+        <Icon name="mdi:chevron-down"/>
+    </label>
+</div>
+

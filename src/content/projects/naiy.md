@@ -6,17 +6,17 @@ links: [
     {
         title: "GitHub",
         url: "https://github.com/PanJohnny/NoArrowsInYou",
-        icon: fa-brands fa-github
+        icon: "mdi:github"
     },
     {
             title: "Modrinth",
             url: "https://www.modrinth.com/mod/naiy",
-            icon: "fa fa-download"
+            icon: "mdi:download"
     },
     {
             title: "CurseForge",
             url: "https://www.curseforge.com/minecraft/mc-mods/no-arrows-in-you",
-            icon: "fa fa-download"
+            icon: "mdi:download"
     }
 ]
 ---

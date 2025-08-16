@@ -1,24 +1,39 @@
 ---
+import Image from "astro/components/Image.astro";
 import Layout from "../layouts/Layout.astro";
+import {Icon} from "astro-icon/components";
+
+import headshot from "../assets/baw.jpg";
+import Project from "../components/Project.astro";
 ---
-
-<Layout title="404" description="Not found">
-    <main class="container">
-        <hgroup>
-            <h2>Not found</h2>
-        </hgroup>
-        <img src="http://http.cat/404" alt="funny cat image with 404 code on it" width="50%" loading="lazy"> <br />
-        <p>Hey wanderer, this page is not here. Don't be sad tho, that could also mean that it is just not public yet!</p>
-        <p>If you think that this is an issue <a href="/#contact">contact me</a>.</p>
-
-        <p>Requested URL: <code>{Astro.url.searchParams.has("source")?Astro.url.searchParams.get("source"):Astro.url.pathname}</code></p>
-    </main>
+<Layout title="404"
+        description="The requested page was not found"
+        metaDesc="The requested page was not found"
+        metaTags={["Jan Štefanča", "PanJohnny"]} i18n={true}>
+    <section id="hero">
+        <div class="content">
+            <div class="title">
+                <Image src={headshot} alt="cat in a flower field" width={300} class="headshot" loading="lazy" aria-hidden/>
+                <h1>Page not found</h1>
+                <p>Go <a href="/">Home</a></p>
+                <code>HTTP status code: 404</code>
+            </div>
+        </div>
+    </section>
 </Layout>
 
 <style>
-    main {
+    .content {
+        padding-top: 30px;
+    }
+    .title {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .headshot {
+        border-radius: 12px;
     }
 </style>

@@ -6,7 +6,7 @@ links: [
     {
         title: "Demo",
         url: "/demo/prague",
-        icon: fa-solid fa-link
+        icon: "mdi:test-tube"
     }
 ]
 ---

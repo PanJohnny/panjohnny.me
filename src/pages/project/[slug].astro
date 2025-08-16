@@ -1,0 +1,129 @@
+---
+// get content from the astro collection "projects"
+import Layout from "../../layouts/Layout.astro";
+import {getEntry, getCollection} from "astro:content";
+import {Icon} from "astro-icon/components";
+
+const slug = Astro.params.slug;
+
+// @ts-ignore
+const project = await getEntry({ collection: "projects", slug: slug });
+
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+    return projects.map((project) => ({
+        params: {slug: project.slug},
+        props: {project}
+    }));
+}
+
+if (!project) {
+    Astro.response.status = 404;
+    Astro.response.statusText = "Not Found";
+    return Astro.rewrite("/404");
+}
+
+const {Content} = await project.render();
+---
+
+<Layout title={project.data.title}
+        category="Projects"
+        categoryUrl="/projects"
+        description={project.data.description}
+        metaDesc={project.data.description}
+        metaTags={["Jan Štefanča", "PanJohnny", ...project.data.tags]}>
+    <main>
+        <div class="info">
+            <div>
+                <h1>{project.data.title}</h1>
+                <p class="desc">{project.data.description}</p>
+            </div>
+            <div id="data">
+                <strong>Links</strong>
+                <ul class="links">
+                    {project.data.links.map(({title, url, icon}) =>
+                            <li><a href={url}><Icon name={icon}/> {title}</a></li>
+                    )}
+                </ul>
+                <strong>Tags</strong>
+                <ul class="tags">
+                    {project.data.tags.map(t => <li title="View tagged"><a href={"/projects/tag/" + t}>{t}</a></li>)}
+                </ul>
+            </div>
+        </div>
+        <section id="project">
+            <div class="content">
+                <Content/>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+
+<style>
+    .info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+    }
+
+    .tags, .links{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+        align-items: center;
+    }
+
+    h1 {
+        margin-bottom: 0;
+    }
+
+    .desc {
+        font-size: 90%;
+        font-weight: bold;
+        margin-top: 0;
+    }
+
+    .tags > li {
+        padding: 3px 4px 3px 4px;
+        border: 1px solid;
+        border-radius: 3px;
+        font-size: 10pt;
+    }
+
+    li a {
+        all: unset;
+        cursor: pointer;
+    }
+
+    :global(.astro-code) {
+        padding: 1em;
+        border-radius: 8px;
+    }
+
+    @media (max-width: 760px) {
+        .info {
+            flex-direction: column;
+            align-items: start;
+        }
+
+        #data {
+            width: calc(100% - 2rem);
+        }
+    }
+
+    #data {
+        border: 1px solid;
+        border-radius: 8px;
+        padding: 1em;
+        min-width: 150px;
+    }
+
+    #project {
+        padding: 2rem;
+    }
+</style>

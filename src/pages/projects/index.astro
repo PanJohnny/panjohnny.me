@@ -1,30 +1,28 @@
 ---
-import { getCollection } from "astro:content";
+// get content from the astro collection "projects"
 import Layout from "../../layouts/Layout.astro";
-import ProjectSum from "../../components/ProjectSum.astro";
-const posts = await getCollection("projects");
+import {getCollection} from "astro:content";
+import Project from "../../components/Project.astro";
+import {Icon} from "astro-icon/components";
 
+const projects = await getCollection("projects");
+const sortedProjects = projects.sort((a, b) => {
+    return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime();
+});
 ---
-<Layout title="PanJohnny’s projects" description="Place where I showoff my cool projects" metaDesc="Place where I showoff my cool projects">
-    <div class="right">
-        {
-            posts.map((post) => (
-                <ProjectSum
-                    title={post.data.title}
-                    tags={post.data.tags}
-                    description={post.data.description}
-                    id={post.slug}
-                />
-            ))
-        }
 
-        <a href="https://github.com/PanJohnny?tab=repositories">More on GitHub</a>
-    </div>
+<Layout title="Projects"
+        description="Eight-year grammar school student passionate about programming and open-source projects."
+        metaDesc="Eight-year grammar school student passionate about programming and open-source projects."
+        metaTags={["Jan Štefanča", "PanJohnny"]}>
+    <section id="projects">
+        <ul class="projects">
+            {sortedProjects.map((project) => (
+                    <Project name={project.data.title} desc={project.data.description} page={"/project/" + project.slug}/>
+            ))}
+            <li>
+                View more on my <a href="https://github.com/PanJohnny" target="_blank" rel="noreferrer noopener">GitHub <Icon name="mdi:github"/></a>
+            </li>
+        </ul>
+    </section>
 </Layout>
-
-<style>
-    footer {
-        display: flex;
-        justify-content: space-between;
-    }
-</style>

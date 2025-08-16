@@ -6,16 +6,18 @@ links: [
     {
         title: "GitHub",
         url: "https://github.com/PanJohnny/gymlingo",
-        icon: fa-brands fa-github
+        icon: "mdi:github"
     },
     {
-        title: "Website (online)",
+        title: "Website",
         url: "https://gymlingo.vercel.app",
-        icon: fa-solid fa-link
+        icon: "mdi:web"
     }
 ]
 ---
-This is the largest project that I have ever worked on. Users register and similarly to Duolingo can practice a few words. It uses the [Astro](https://astro.build) framework with SSR. The whole website is for Czech speakers and was created as a school project.
+Note: this project has been archived and the website no longer works.
+
+Users register and similarly to Duolingo can practice a few words. It uses the [Astro](https://astro.build) framework with SSR. The whole website is for Czech speakers and was created as a school project.
 
 ## Presentation
 <object data="/attachments/prezentace-gymlingo.pdf" type="application/pdf" width="100%" height="500px">

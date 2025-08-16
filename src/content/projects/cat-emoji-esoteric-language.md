@@ -6,7 +6,7 @@ links: [
     {
         title: "GitHub",
         url: "https://github.com/PanJohnny/CatEmojiEsolang",
-        icon: fa-brands fa-github
+        icon: "mdi:github"
     }
 ]
 ---

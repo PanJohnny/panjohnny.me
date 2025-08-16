@@ -1,0 +1,168 @@
+---
+import {Icon} from 'astro-icon/components';
+import LanguagePicker from "./LanguagePicker.astro";
+const i18n = true;
+
+const pages = [
+    {name: "Home", url: "/", i18n},
+    {name: "Projects", url: "/projects"},
+    {name: "MHD game", url: "/demo/prague"},
+    {name: "Rozcestník / Socials", url: "/rozcestnik"}
+];
+
+function pUrl(page) {
+    return page.i18n ? `/${Astro.currentLocale}${page.url}` : page.url;
+}
+
+interface Props {
+    i18n?: boolean;
+}
+
+const props = Astro.props as Props;
+---
+
+<div id="navigation" class="hidden">
+    <nav>
+        <ul>
+            {pages.map((page) => (
+                    <li>
+                        <a href={pUrl(page)}>
+                            {page.name}
+                            <span class="show-on-hover"><Icon name="mdi:arrow-right"/></span>
+                        </a>
+                    </li>
+            ))
+            }
+        </ul>
+    </nav>
+    <div class="bottom">
+        <div class="special-picker">
+            {props.i18n && <LanguagePicker />}
+        </div>
+    </div>
+</div>
+
+<style>
+    #navigation {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        height: calc(100% - 60px);
+        background-color: var(--silver);
+        z-index: 1000;
+        max-width: 40vw;
+        min-width: 200px;
+        animation: slideIn 0.5s ease-in-out forwards;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    #navigation nav {
+        padding: 10px;
+    }
+
+    #navigation ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    #navigation li {
+        margin: 0;
+        padding: 10px 0;
+        border-bottom: 1px solid;
+        display: flex;
+        align-items: center;
+        transition: padding-left 0.2s ease-in-out;
+    }
+
+    #navigation li:hover {
+        padding-left: 3px;
+    }
+
+    #navigation li:hover {
+        content: "→";
+        margin-left: 5px;
+        color: var(--rose-taupe);
+    }
+
+    .show-on-hover {
+        display: none;
+    }
+
+    #navigation li:hover .show-on-hover {
+        display: inline;
+        margin-left: 5px;
+    }
+
+    #navigation.hidden {
+        display: block;
+        transform: translateX(100%);
+        animation: slideOut 0s ease-in-out forwards;
+    }
+
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(100%);
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    @media screen and (max-width: 450px) {
+        #navigation {
+            max-width: 100vw;
+            min-width: 100vw;
+        }
+    }
+</style>
+
+<style is:global>
+    .dark #navigation {
+        background-color: var(--gray-dark) !important;
+    }
+
+    .dark  #navigation li:hover {
+        color: var(--pale-dogwood) !important;
+    }
+
+    .special-picker .language-picker {
+        display: none;
+        margin: 10px;
+    }
+
+    @media screen and (max-width: 500px) {
+        .special-picker .language-picker {
+            display: block;
+        }
+    }
+
+    .bottom {
+        width: fit-content;
+        margin: 0 auto;
+    }
+</style>

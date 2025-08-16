@@ -1,23 +1,20 @@
 ---
 title: Obsidian Online
-description: Tool for viewing obsidian online
+description: A tool for viewing obsidian vaults backed up on GitHub in the browser on the fly
 tags: [obsidian, typescript, react, github-api, astro]
 links: [
     {
         title: "GitHub",
         url: "https://github.com/PanJohnny/obsidian-online",
-        icon: fa-brands fa-github
+        icon: "mdi:github"
     },
     {
             title: "Website",
             url: "https://obsidian-online-gamma.vercel.app/",
-            icon: "fa fa-globe"
+            icon: "mdi:web"
     },
 ]
 ---
-# Obsidian Online
-A tool for viewing obsidian vaults backed up on GitHub in the browser on the fly.
-
 ## Key features
 - Open your notes anywhere (with internet)
 - Support for LaTex, Smiles and wikilinks

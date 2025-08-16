@@ -5,7 +5,6 @@ import Layout from "../../layouts/Layout.astro";
 <Layout
     title="MHD Hra"
     description="Hra, při které jezdíte po Praze na náhodně vylosované zastávky MHD. Hraje s v týmech a tým, který všechny vylosované objede rychleji (bez použití vyhledávačů spojů) vyhrává."
-    discreteHeader={true}
     metaDesc="Hra, při které jezdíte po Praze na náhodně vylosované zastávky MHD. Hraje s v týmech a tým, který všechny vylosované objede rychleji (bez použití vyhledávačů spojů) vyhrává."
     metaTags={["MHD Hra", "Praha", "MHD", "Hra", "PID", "PID Hra"]}
 >
@@ -16,7 +15,7 @@ import Layout from "../../layouts/Layout.astro";
 
         <h3>Stops:</h3>
         <ol id="places"></ol>
-        <a role="button" href="javascript:shareIt()" class="share" style=""><i class="fa-solid fa-share" aria-hidden="true"></i> Sdílet</a>
+        <a role="button" href="javascript:shareIt()" class="share" style="">Sdílet</a>
 
         <div id="map"></div>
 

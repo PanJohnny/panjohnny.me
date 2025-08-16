@@ -7,8 +7,8 @@ import headshot from "../../assets/cat.jpg";
 import Project from "../../components/Project.astro";
 ---
 <Layout title="Jan Štefanča"
-        description="Student osmiletého gymnázia s vášní pro programování a open-source projekty."
-        metaDesc="Student osmiletého gymnázia s vášní pro programování a open-source projekty."
+        description="Eight-year grammar school student passionate about programming and open-source projects."
+        metaDesc="Eight-year grammar school student passionate about programming and open-source projects."
         metaTags={["Jan Štefanča", "PanJohnny"]} i18n={true}>
     <section id="hero">
         <div>
@@ -20,7 +20,7 @@ import Project from "../../components/Project.astro";
                 <h1>Jan Štefanča</h1>
             </div>
 
-            <p>Student osmiletého gymnázia s vášní pro programování a open-source projekty.</p>
+            <p>Eight-year grammar school student passionate about programming and open-source projects.</p>
             <ul class="socials">
                 <li>
                     <a href="mailto:janstefanca@seznam.cz" rel="noopener noreferrer">
@@ -36,13 +36,13 @@ import Project from "../../components/Project.astro";
         </div>
     </section>
     <section id="projects">
-        <h2><a href="/projects">Projekty <Icon name="mdi:arrow-right"/></a></h2>
+        <h2><a href="/projects">Projects <Icon name="mdi:arrow-right"/></a></h2>
         <ul class="list">
-            <Project name="Baka4J" desc="Javová knihovna pro práci s API Bakaláři"
+            <Project name="Baka4J" desc="A Java library for interfacing with the Bakaláři system"
                      page="/project/baka4j" featured/>
-            <Project name="McDecentralize" desc="CLI nástroj pro hostování Minecraft serverů na několika strojích"
+            <Project name="McDecentralize" desc="A CLI tool for hosting a Minecraft server accross multiple machines"
                      page="/project/mcdecentralize" featured/>
-            <Project name="JIPProtocol" desc="Aplikační protokol pro server-klient komunikaci, má SOČ" page="/project/jip-protocol" featured/>
+            <Project name="JIPProtocol" desc="Custom aplication protocol for server-client communication" page="/project/jip-protocol" featured/>
         </ul>
     </section>
 </Layout>
