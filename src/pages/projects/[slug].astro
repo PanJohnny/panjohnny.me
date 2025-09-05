@@ -1,0 +1,15 @@
+---
+// indexed legacy route redirecting to new route
+import {getCollection} from "astro:content";
+const slug = Astro.params.slug;
+
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+    return projects.map((project) => ({
+        params: {slug: project.slug},
+        props: {project}
+    }));
+}
+
+return Astro.redirect("/project/" + slug, 301);
+---
