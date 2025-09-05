@@ -10,7 +10,7 @@ links: [
     },
     {
             title: "Modrinth",
-            url: "https://www.modrinth.com/mod/naiy",
+            url: "https://www.modrinth.com/mod/no-arrows-in-you",
             icon: "mdi:download"
     },
     {
@@ -22,9 +22,7 @@ links: [
 ---
 **Depends on Fabric API if you want to configure something**
 
-Are you bored of arrows in your head or bee stings?
-This mod uses mixins to remove them!
-There will be no longer renderer those things on yours player.
+Are you bored by arrows in your head or bee stings? This mod uses mixins to remove them! There will be no longer renderer those things on yours player.
 
 Configuration is fully costumizable and you should use modmenu for that.
 
