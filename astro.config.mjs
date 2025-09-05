@@ -7,7 +7,7 @@ import icon from 'astro-icon';
 export default defineConfig({
   site: 'https://panjohnny.me',
   integrations: [sitemap({
-    filter: (page) => /\/projects\/[^\/]+/.test(page) && !page.includes('/tag/')
+    filter: (page) => /\/projects\/(?!tag\/)[^\/]+/.test(page)
   }), icon()],
   i18n: {
     locales: ['en', 'cs'],
