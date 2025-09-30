@@ -43,6 +43,18 @@ const props = Astro.props as Props;
 </div>
 
 <style>
+    a {
+        text-decoration: none !important;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
     #navigation {
         position: fixed;
         top: 60px;
@@ -119,18 +131,6 @@ const props = Astro.props as Props;
         to {
             transform: translateX(100%);
         }
-    }
-
-    a {
-        text-decoration: none;
-        color: inherit;
-        display: flex;
-        align-items: center;
-        width: 100%;
-    }
-
-    a:hover {
-        text-decoration: none;
     }
 
     @media screen and (max-width: 450px) {
