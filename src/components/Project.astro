@@ -8,12 +8,20 @@ interface Props {
 }
 
 const props = Astro.props as Props;
+
+let featuredText = "Featured project, view more on the projects page";
+let featuredLabel = "Featured";
+
+if (Astro.currentLocale === "cs") {
+    featuredText = "Vybraný projekt, více na stránce s projekty";
+    featuredLabel = "Výběr";
+}
 ---
 
 <li>
     <a href={props.page} class="project">
         <h3>{props.name}</h3>
-        {props.featured ? <span class="featured" title="featured project, view more on the projects page"><Icon name="mdi:stars"/> Featured</span> : undefined}
+        {props.featured ? <span class="featured" title={featuredText}><Icon name="mdi:stars"/> {featuredLabel}</span> : undefined}
         <p>{props.desc}</p>
     </a>
 </li>
