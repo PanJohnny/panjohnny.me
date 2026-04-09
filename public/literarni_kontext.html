@@ -1,0 +1,1214 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Literární kontexty a časová osa děl</title>
+        <meta charset='utf-8'/>
+        <style>
+ .ͼ1.cm-focused {outline: 1px dotted #212121;}
+.ͼ1 {position: relative !important; box-sizing: border-box; display: flex !important; flex-direction: column;}
+.ͼ1 .cm-scroller {display: flex !important; align-items: flex-start !important; font-family: monospace; line-height: 1.4; height: 100%; overflow-x: auto; position: relative; z-index: 0; overflow-anchor: none;}
+.ͼ1 .cm-content[contenteditable=true] {-webkit-user-modify: read-write-plaintext-only;}
+.ͼ1 .cm-content {margin: 0; flex-grow: 2; flex-shrink: 0; display: block; white-space: pre; word-wrap: normal; box-sizing: border-box; min-height: 100%; padding: 4px 0; outline: none;}
+.ͼ1 .cm-lineWrapping {white-space: pre-wrap; white-space: break-spaces; word-break: break-word; overflow-wrap: anywhere; flex-shrink: 1;}
+.ͼ2 .cm-content {caret-color: black;}
+.ͼ3 .cm-content {caret-color: white;}
+.ͼ1 .cm-line {display: block; padding: 0 2px 0 6px;}
+.ͼ1 .cm-layer > * {position: absolute;}
+.ͼ1 .cm-layer {position: absolute; left: 0; top: 0; contain: size style;}
+.ͼ2 .cm-selectionBackground {background: #d9d9d9;}
+.ͼ3 .cm-selectionBackground {background: #222;}
+.ͼ2.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground {background: #d7d4f0;}
+.ͼ3.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground {background: #233;}
+.ͼ1 .cm-cursorLayer {pointer-events: none;}
+.ͼ1.cm-focused > .cm-scroller > .cm-cursorLayer {animation: steps(1) cm-blink 1.2s infinite;}
+@keyframes cm-blink {50% {opacity: 0;}}
+@keyframes cm-blink2 {50% {opacity: 0;}}
+.ͼ1 .cm-cursor, .ͼ1 .cm-dropCursor {border-left: 1.2px solid black; margin-left: -0.6px; pointer-events: none;}
+.ͼ1 .cm-cursor {display: none;}
+.ͼ3 .cm-cursor {border-left-color: #ddd;}
+.ͼ1 .cm-dropCursor {position: absolute;}
+.ͼ1.cm-focused > .cm-scroller > .cm-cursorLayer .cm-cursor {display: block;}
+.ͼ1 .cm-iso {unicode-bidi: isolate;}
+.ͼ1 .cm-announced {position: fixed; top: -10000px;}
+@media print {.ͼ1 .cm-announced {display: none;}}
+.ͼ2 .cm-activeLine {background-color: #cceeff44;}
+.ͼ3 .cm-activeLine {background-color: #99eeff33;}
+.ͼ2 .cm-specialChar {color: red;}
+.ͼ3 .cm-specialChar {color: #f78;}
+.ͼ1 .cm-gutters {flex-shrink: 0; display: flex; height: 100%; box-sizing: border-box; z-index: 200;}
+.ͼ1 .cm-gutters-before {inset-inline-start: 0;}
+.ͼ1 .cm-gutters-after {inset-inline-end: 0;}
+.ͼ2 .cm-gutters.cm-gutters-before {border-right-width: 1px;}
+.ͼ2 .cm-gutters.cm-gutters-after {border-left-width: 1px;}
+.ͼ2 .cm-gutters {background-color: #f5f5f5; color: #6c6c6c; border: 0px solid #ddd;}
+.ͼ3 .cm-gutters {background-color: #333338; color: #ccc;}
+.ͼ1 .cm-gutter {display: flex !important; flex-direction: column; flex-shrink: 0; box-sizing: border-box; min-height: 100%; overflow: hidden;}
+.ͼ1 .cm-gutterElement {box-sizing: border-box;}
+.ͼ1 .cm-lineNumbers .cm-gutterElement {padding: 0 3px 0 5px; min-width: 20px; text-align: right; white-space: nowrap;}
+.ͼ2 .cm-activeLineGutter {background-color: #e2f2ff;}
+.ͼ3 .cm-activeLineGutter {background-color: #222227;}
+.ͼ1 .cm-panels {box-sizing: border-box; position: sticky; left: 0; right: 0; z-index: 300;}
+.ͼ2 .cm-panels {background-color: #f5f5f5; color: black;}
+.ͼ2 .cm-panels-top {border-bottom: 1px solid #ddd;}
+.ͼ2 .cm-panels-bottom {border-top: 1px solid #ddd;}
+.ͼ3 .cm-panels {background-color: #333338; color: white;}
+.ͼ1 .cm-dialog label {font-size: 80%;}
+.ͼ1 .cm-dialog {padding: 2px 19px 4px 6px; position: relative;}
+.ͼ1 .cm-dialog-close {position: absolute; top: 3px; right: 4px; background-color: inherit; border: none; font: inherit; font-size: 14px; padding: 0;}
+.ͼ1 .cm-tab {display: inline-block; overflow: hidden; vertical-align: bottom;}
+.ͼ1 .cm-widgetBuffer {vertical-align: text-top; height: 1em; width: 0; display: inline;}
+.ͼ1 .cm-placeholder {color: #888; display: inline-block; vertical-align: top; user-select: none;}
+.ͼ1 .cm-highlightSpace {background-image: radial-gradient(circle at 50% 55%, #aaa 20%, transparent 5%); background-position: center;}
+.ͼ1 .cm-highlightTab {background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="20"><path stroke="%23888" stroke-width="1" fill="none" d="M1 10H196L190 5M190 15L196 10M197 4L197 16"/></svg>'); background-size: auto 100%; background-position: right 90%; background-repeat: no-repeat;}
+.ͼ1 .cm-trailingSpace {background-color: #ff332255;}
+.ͼ1 .cm-button {vertical-align: middle; color: inherit; font-size: 70%; padding: .2em 1em; border-radius: 1px;}
+.ͼ2 .cm-button:active {background-image: linear-gradient(#b4b4b4, #d0d3d6);}
+.ͼ2 .cm-button {background-image: linear-gradient(#eff1f5, #d9d9df); border: 1px solid #888;}
+.ͼ3 .cm-button:active {background-image: linear-gradient(#111, #333);}
+.ͼ3 .cm-button {background-image: linear-gradient(#393939, #111); border: 1px solid #888;}
+.ͼ1 .cm-textfield {vertical-align: middle; color: inherit; font-size: 70%; border: 1px solid silver; padding: .2em .5em;}
+.ͼ2 .cm-textfield {background-color: white;}
+.ͼ3 .cm-textfield {border: 1px solid #555; background-color: inherit;}
+.ͼ1 .cm-foldPlaceholder {background-color: #eee; border: 1px solid #ddd; color: #888; border-radius: .2em; margin: 0 1px; padding: 0 1px; cursor: pointer;}
+.ͼ1 .cm-foldGutter span {padding: 0 1px; cursor: pointer;}
+ .book-search-plugin__settings .search-input-container {
+  width: 100%;
+}
+
+.book-search-plugin__settings--new_file_name {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.book-search-plugin__settings--new_file_name_hint {
+  margin-bottom: 20px;
+}
+.book-search-plugin__settings--service_provider .dropdown {
+  text-transform: capitalize;
+}
+
+.book-search-plugin__hide {
+  display: none;
+}
+
+.book-search-plugin__show {
+  display: flex;
+}
+
+.book-search-plugin__search-modal--input {
+  padding-bottom: 18px;
+}
+.book-search-plugin__search-modal--input input {
+  width: 100%;
+}
+
+.book-suggestion-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.book-cover-image {
+  max-width: 100px;
+  max-height: 100px;
+  margin-right: 10px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+.book-text-info {
+  flex-grow: 1;
+}
+ .nv-homepage-interstitial {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	background: var(--background-primary);
+	z-index: 9999;
+	animation: 0.02s ease-in 0.5s forwards nv-interstitial-destroy;
+	pointer-events: none;
+}
+
+@keyframes nv-interstitial-destroy {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.setting-item[nv-greyed] {
+	opacity: .5; 
+	pointer-events: none !important;
+}
+
+#nv-main-setting {
+	flex-wrap: wrap;
+	margin-bottom: 30px;
+}
+
+#nv-main-setting .setting-item-control {
+	padding-top: var(--size-4-2);
+	flex-basis: 100%;
+	align-items: stretch;
+}
+
+#nv-main-setting .setting-item-control input, #nv-main-setting .setting-item-control select {
+	font-size: var(--font-ui-medium);
+	font-weight: 600;
+}
+
+#nv-main-setting .setting-item-control select {
+	padding: var(--size-4-3) var(--size-4-4);
+	padding-right: var(--size-4-8);
+	height: auto;
+}
+
+#nv-main-setting .setting-item-control input {
+	flex-grow: 1;
+	padding: var(--size-4-5) var(--size-4-4);
+}
+
+#nv-main-setting .setting-item-control input[disabled] {
+	opacity: 0.3;
+}
+
+#nv-main-setting #nv-desc, #nv-main-setting #nv-info {
+	flex-basis: 100%;
+}
+
+#nv-main-setting #nv-desc {
+	font-weight: 500;
+	color: var(--text-normal);
+	font-size: var(--font-ui-small);
+	padding: 10px 0 0;
+}
+
+#nv-main-setting #nv-desc.mod-warning {
+	color: var(--text-error);
+}
+
+#nv-main-setting #nv-desc code {
+	font-family: var(--font-monospace);
+	font-size: var(--font-smaller);
+	border-radius: var(--radius-s);
+}
+
+#nv-main-setting #nv-desc small {
+	display: block;
+	font-weight: 400;
+	color: var(--text-muted);
+	font-size: calc(var(--font-ui-smaller) * 0.9);
+	padding: 5px 0 0;
+}
+
+.nv-mobile-setting {
+	flex-wrap: wrap;
+	row-gap: var(--size-2-2);
+}
+
+.nv-mobile-setting .nv-mobile-info {
+	font-size: var(--font-ui-smaller);
+	width: 100%;
+	margin-right: var(--size-4-18);
+}
+
+.nv-command-desc {
+	padding: 1.2em 0 0;
+	border-top: 1px solid var(--background-modifier-border);
+}
+
+.nv-command-box {
+	margin: 1em 0 1.75em;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	align-items: center;
+}
+
+.nv-command-pill {
+	background-color: var(--background-secondary);
+	border: 1px solid var(--background-modifier-border-hover);
+	border-radius: var(--radius-s);
+	font-size: var(--font-ui-small);
+	padding: var(--size-2-1) var(--size-2-2) var(--size-2-1) var(--size-2-3) ;
+}
+
+.nv-command-pill.nv-command-invalid {
+	color: var(--text-faint);
+}
+
+.nv-command-pill button {
+	display: inline-block;
+	padding: 0;
+	margin: 0 0 0 3px;
+	vertical-align: bottom;
+}
+
+.nv-command-pill button:first-of-type {
+	margin-left: var(--size-4-2);
+}
+
+.nv-command-pill button.nv-command-selected {
+	margin-left: var(--size-2-2);
+	padding: 0 var(--size-2-1);
+}
+
+.nv-command-pill button.nv-command-selected span {
+	color: var(--text-accent);
+	display: inline-block;
+	font-size: 0.9em;
+	vertical-align: top;
+	position: relative;
+	top: -1px;
+}
+
+.nv-command-pill > .svg-icon, .nv-command-pill button .svg-icon {
+	height: 1em;
+	width: 1em;
+}
+
+.nv-command-pill > .svg-icon {
+	vertical-align: text-bottom;
+	position: relative;
+	margin: 0 var(--size-2-1) 0 0;
+}
+
+.nv-command-pill.nv-dragging {
+	background-color: transparent;
+}
+
+.nv-command-add-button {
+	font-size: var(--font-ui-small);
+	padding: var(--size-2-2) var(--size-4-2);
+	height: auto;
+}
+
+#nv-main-setting + .setting-item, .nv-command-desc + .setting-item {
+	padding-top: 20px; 
+	border-top: none !important;
+}
+
+.nv-debug-button {
+	margin: 3em 0 -0.2em;
+	font-size: var(--font-ui-smaller);
+	padding: 0;
+	height: auto;
+	float: right;
+	box-shadow: none !important;
+	background: none !important;
+	color: var(--text-accent);
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.nv-debug-button:hover, .nv-debug-button:active {
+	text-decoration: underline;
+}
+
+.is-phone #nv-main-setting .setting-item-control {
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+
+.is-phone #nv-main-setting .setting-item-control select {
+	width: auto;
+	max-width: auto;
+}
+
+.is-phone .nv-mobile-setting {
+	row-gap: var(--size-4-2);
+}
+
+.is-phone .nv-mobile-setting .setting-item-info {
+	max-width: calc(100% - 100px);
+}
+
+.is-phone .nv-mobile-setting {
+	row-gap: var(--size-4-2);
+}
+
+.is-phone .nv-mobile-setting .setting-item-info {
+	max-width: calc(100% - 100px);
+}
+
+.is-phone .nv-command-pill {
+	width: 100%;
+	border: none;
+	background: none;
+	padding: 0 0 var(--size-4-2);
+	display: flex;
+	gap: var(--size-4-4);
+	align-items: baseline;
+}
+
+.is-phone .nv-command-pill .nv-command-text {
+	flex-grow: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.is-phone .nv-command-pill, .is-phone .nv-command-add-button {
+	font-size: var(--font-ui-medium);
+	justify-content: space-between;
+}
+
+.is-phone .nv-command-pill button {
+	line-height: var(--font-ui-medium);
+	height: 100%;
+	margin: 0 !important;
+}
+ /* Styles */
+
+.view-content.reveal-preview-view {
+    padding: 0;
+    overflow: hidden;
+}
+
+.view-content.reveal-preview-view>iframe, div.reveal-preview-view>iframe {
+    border-style: none;
+    width: 100%;
+    height: 100%;
+}
+
+div.reveal-preview-view {
+    aspect-ratio: 16/9;
+    padding: 0;
+    overflow: hidden;
+}
+
+.releaseNotes .modal-content{
+    padding-right: 5px;
+    margin-right: -5px;
+    user-select: text;
+  }
+  
+  .releaseNotes .modal {
+    max-height: 90%;
+    width: auto;
+    max-width: 70ch;
+  }
+
+  .releaseNotes p>a>img {
+    width: 100%
+  } .templater_search {
+    width: calc(100% - 20px);
+}
+
+.templater_div {
+    border-top: 1px solid var(--background-modifier-border);
+}
+
+.templater_div > .setting-item {
+    border-top: none !important;
+    align-self: center;
+}
+
+.templater_div > .setting-item > .setting-item-control {
+    justify-content: space-around;
+    padding: 0;
+    width: 100%;
+}
+
+.templater_div
+    > .setting-item
+    > .setting-item-control
+    > .setting-editor-extra-setting-button {
+    align-self: center;
+}
+
+.templater_donating {
+    margin: 10px;
+}
+
+.templater_title {
+    margin: 0;
+    padding: 0;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.templater_template {
+    align-self: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 70%;
+}
+
+.templater_cmd {
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.templater_div2 > .setting-item {
+    align-content: center;
+    justify-content: center;
+}
+
+.templater-prompt-div {
+    display: flex;
+}
+
+.templater-prompt-form {
+    display: flex;
+    flex-grow: 1;
+}
+
+.templater-prompt-input {
+    flex-grow: 1;
+}
+
+.templater-button-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+textarea.templater-prompt-input {
+    height: 10rem;
+}
+
+textarea.templater-prompt-input:focus {
+    border-color: var(--interactive-accent);
+}
+
+.cm-s-obsidian .templater-command-bg {
+    left: 0px;
+    right: 0px;
+    background-color: var(--background-primary-alt);
+}
+
+.cm-s-obsidian .cm-templater-command {
+    font-size: 0.85em;
+    font-family: var(--font-monospace);
+    line-height: 1.3;
+}
+
+.cm-s-obsidian .templater-inline .cm-templater-command {
+    background-color: var(--background-primary-alt);
+}
+
+.cm-s-obsidian .cm-templater-command.cm-templater-opening-tag {
+    font-weight: bold;
+}
+
+.cm-s-obsidian .cm-templater-command.cm-templater-closing-tag {
+    font-weight: bold;
+}
+
+.cm-s-obsidian .cm-templater-command.cm-templater-interpolation-tag {
+    color: var(--code-property, #008bff);
+}
+
+.cm-s-obsidian .cm-templater-command.cm-templater-execution-tag {
+    color: var(--code-function, #c0d700);
+}
+
+.cm-s-obsidian .cm-templater-command.cm-keyword {
+    color: var(--code-keyword, #00a7aa);
+    font-weight: normal;
+}
+
+.cm-s-obsidian .cm-templater-command.cm-atom {
+    color: var(--code-normal, #f39b35);
+}
+
+.cm-s-obsidian .cm-templater-command.cm-value,
+.cm-s-obsidian .cm-templater-command.cm-number,
+.cm-s-obsidian .cm-templater-command.cm-type {
+    color: var(--code-value, #a06fca);
+}
+
+.cm-s-obsidian .cm-templater-command.cm-def,
+.cm-s-obsidian .cm-templater-command.cm-type.cm-def {
+    color: var(--code-normal, var(--text-normal));
+}
+
+.cm-s-obsidian .cm-templater-command.cm-property,
+.cm-s-obsidian .cm-templater-command.cm-property.cm-def,
+.cm-s-obsidian .cm-templater-command.cm-attribute {
+    color: var(--code-function, #98e342);
+}
+
+.cm-s-obsidian .cm-templater-command.cm-variable,
+.cm-s-obsidian .cm-templater-command.cm-variable-2,
+.cm-s-obsidian .cm-templater-command.cm-variable-3,
+.cm-s-obsidian .cm-templater-command.cm-meta {
+    color: var(--code-property, #d4d4d4);
+}
+
+.cm-s-obsidian .cm-templater-command.cm-callee,
+.cm-s-obsidian .cm-templater-command.cm-operator,
+.cm-s-obsidian .cm-templater-command.cm-qualifier,
+.cm-s-obsidian .cm-templater-command.cm-builtin {
+    color: var(--code-operator, #fc4384);
+}
+
+.cm-s-obsidian .cm-templater-command.cm-tag {
+    color: var(--code-tag, #fc4384);
+}
+
+.cm-s-obsidian .cm-templater-command.cm-comment,
+.cm-s-obsidian .cm-templater-command.cm-comment.cm-tag,
+.cm-s-obsidian .cm-templater-command.cm-comment.cm-attribute {
+    color: var(--code-comment, #696d70);
+}
+
+.cm-s-obsidian .cm-templater-command.cm-string,
+.cm-s-obsidian .cm-templater-command.cm-string-2 {
+    color: var(--code-string, #e6db74);
+}
+
+.cm-s-obsidian .cm-templater-command.cm-header,
+.cm-s-obsidian .cm-templater-command.cm-hr {
+    color: var(--code-keyword, #da7dae);
+}
+
+.cm-s-obsidian .cm-templater-command.cm-link {
+    color: var(--code-normal, #696d70);
+}
+
+.cm-s-obsidian .cm-templater-command.cm-error {
+    border-bottom: 1px solid #c42412;
+}
+
+.CodeMirror-hints {
+    position: absolute;
+    z-index: 10;
+    overflow: hidden;
+    list-style: none;
+
+    margin: 0;
+    padding: 2px;
+
+    -webkit-box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    border: 1px solid silver;
+
+    background: white;
+    font-size: 90%;
+    font-family: monospace;
+
+    max-height: 20em;
+    overflow-y: auto;
+}
+
+.CodeMirror-hint {
+    margin: 0;
+    padding: 0 4px;
+    border-radius: 2px;
+    white-space: pre;
+    color: black;
+    cursor: pointer;
+}
+
+li.CodeMirror-hint-active {
+    background: #08f;
+    color: white;
+}
+ .fn-whitespace-stop-collapsing .nav-folder-title-content {
+    flex-grow: 1 !important;
+    display: flex;
+    padding-bottom: 4px !important;
+    padding-top: 4px !important;
+}
+
+.fn-whitespace-stop-collapsing .collapse-icon {
+    padding-top: 4px !important;
+}
+
+.mod-rtl .fn-whitespace-stop-collapsing .nav-folder-title-content {
+    padding-left: 8px !important;
+}
+
+.fn-whitespace-stop-collapsing .nav-folder-title {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+
+body:not(.mod-rtl).fn-whitespace-stop-collapsing .nav-folder-title {
+    padding-right: 0 !important;
+}
+
+.mod-rtl.fn-whitespace-stop-collapsing .nav-folder-title {
+    padding-left: 0 !important;
+}
+
+.fn-whitespace-stop-collapsing .nav-folder-collapse-indicator {
+    margin-top: 4px !important;
+}
+
+body:not(.is-grabbing) .tree-item-self.fn-is-active:hover,
+body:not(.disable-folder-highlight) .tree-item-self.fn-is-active {
+    color: var(--nav-item-color-active);
+    background-color: var(--nav-item-background-active);
+    font-weight: var(--nav-item-weight-active);
+}
+
+.has-folder-note .nav-folder-title-content:hover,
+.has-folder-note.view-header-breadcrumb:hover {
+    cursor: pointer;
+}
+
+
+.hide-folder-note .is-folder-note {
+    display: none;
+}
+
+.hide-folder .folder-name {
+    display: none;
+}
+
+.nav-folder-collapse-indicator:hover {
+    cursor: pointer;
+}
+
+.fn-excluded-folder-heading {
+    margin-top: 0 !important;
+    border-top: 1px solid var(--background-modifier-border);
+}
+
+.add-exclude-folder-item {
+    padding-bottom: 0 !important;
+}
+
+.fn-exclude-folder-list {
+    padding-bottom: 0 !important;
+}
+
+.fn-exclude-folder-list.setting-item {
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+}
+
+.fn-exclude-folder-list .setting-item-control {
+    display: flex;
+    justify-content: flex-start !important;
+}
+
+.fn-exclude-folder-list .setting-item-info {
+    display: none !important;
+}
+
+.fn-exclude-folder-list .search-input-container {
+    width: 100%;
+}
+
+
+.fn-confirmation-modal {
+    padding-bottom: 0;
+}
+
+:not(.is-phone) .fn-confirmation-modal-button {
+    margin-right: 0.7rem;
+
+}
+
+:not(.is-phone) .fn-delete-confirmation-modal-buttons {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.fn-delete-confirmation-modal-buttons span:hover,
+.fn-delete-confirmation-modal-buttons input:hover {
+    cursor: pointer;
+}
+
+:not(.is-phone) .fn-delete-confirmation-modal-buttons .fn-confirmation-modal-button {
+    margin-left: auto;
+}
+
+:not(.is-phone) .fn-delete-confirmation-modal-buttons input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.is-phone .fn-delete-confirmation-modal-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.is-phone .fn-delete-confirmation-modal-buttons .fn-confirmation-modal-button {
+    margin-top: 10px;
+}
+
+/* Folder overview */
+
+.fn-folder-overview-collapse-icon {
+    display: block !important;
+}
+
+.fn-has-no-files .collapse-icon {
+    display: none !important;
+}
+
+.folder-overview-list {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 1.200 !important;
+    padding-top: 1.200 !important;
+}
+
+.folder-overview-list-item {
+    display: flex;
+}
+
+
+.folder-overview-list::marker {
+    color: var(--text-faint);
+}
+
+.folder-list::marker {
+    color: var(--text-normal) !important;
+}
+
+.folder-overview-grid {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.folder-overview-grid-item-article article {
+    padding: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.folder-overview-grid-item-article a {
+    text-decoration: none !important;
+}
+
+.folder-overview-grid-item-article h1 {
+    font-size: 1.2rem;
+}
+
+
+.folder-overview-grid-item {
+    flex: 1 1 auto;
+    margin-right: 1.200rem;
+    margin-bottom: 1.200rem;
+}
+
+.fn-confirmation-modal .setting-item {
+    border-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.pointer-cursor {
+    cursor: pointer !important;
+}
+
+
+/* Setting tab style */
+.fn-settings-tab-bar {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 1rem;
+}
+
+.fn-settings-tab {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--size-4-2);
+    padding: 10px;
+    border: 1px solid var(--background-modifier-border)
+}
+
+.fn-settings-tab-active {
+    background-color: var(--color-accent);
+    color: var(--text-on-accent);
+}
+
+.fn-settings-tab-name {
+    font-weight: bold;
+}
+
+.fn-settings-tab-icon {
+    display: flex;
+}
+
+/* File explorer & path styles */
+
+.folder-note-underline .has-folder-note .nav-folder-title-content {
+    text-decoration-line: underline;
+    text-decoration-color: var(--text-faint);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 1px;
+}
+
+.folder-note-underline-path .has-folder-note.view-header-breadcrumb {
+    text-decoration-line: underline;
+    text-decoration-color: var(--text-faint);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
+.folder-note-bold .has-folder-note .nav-folder-title-content,
+.folder-note-bold-path .has-folder-note.view-header-breadcrumb {
+    font-weight: bold;
+}
+
+.folder-note-cursive .has-folder-note .nav-folder-title-content,
+.folder-note-cursive-path .has-folder-note.view-header-breadcrumb {
+    font-style: italic;
+}
+
+.fn-hide-collapse-icon .has-folder-note.only-has-folder-note .tree-item-icon {
+    display: none;
+}
+
+.fn-hide-empty-collapse-icon .fn-empty-folder .tree-item-icon {
+    display: none;
+}
+
+
+.fn-suggestion-container {
+    position: absolute;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-primary);
+    max-width: 500px;
+    max-height: 300px;
+    border-radius: var(--radius-m);
+    border: 1px solid var(--background-modifier-border);
+    box-shadow: var(--shadow-s);
+    z-index: var(--layer-notice);
+}
+ @-webkit-keyframes sk-bouncedelay{0%,80%,to{-webkit-transform:scale(0)}40%{-webkit-transform:scale(1)}}@keyframes sk-bouncedelay{0%,80%,to{-webkit-transform:scale(0);transform:scale(0)}40%{-webkit-transform:scale(1);transform:scale(1)}}.spinner{display:flex;gap:8px;width:70px;text-align:center}.spinner>div{width:18px;height:18px;background-color:var(--text-muted);border-radius:100%;display:inline-block;-webkit-animation:sk-bouncedelay 1.4s infinite ease-in-out both;animation:sk-bouncedelay 1.4s infinite ease-in-out both}.spinner .bounce1{-webkit-animation-delay:-.32s;animation-delay:-.32s}.spinner .bounce2{-webkit-animation-delay:-.16s;animation-delay:-.16s}.obsidian-banner{position:absolute;top:0;left:0;right:0;height:var(--banner-height);width:100%;overflow:hidden;user-select:none}.obsidian-banner.gradient:not(.error){mask-image:linear-gradient(to bottom,black 50%,transparent);-webkit-mask-image:linear-gradient(to bottom,black 50%,transparent)}.obsidian-banner .banner-message{position:absolute;inset:16px;display:flex;justify-content:center;align-items:center;padding:16px;border:2px solid var(--background-modifier-border)}.obsidian-banner .banner-message p{margin:6px 8px;text-align:center;color:var(--text-muted)}.obsidian-banner .banner-image{position:relative;object-fit:cover;max-width:none;height:100%;width:100%}.obsidian-banner .banner-image.draggable{cursor:grab}.obsidian-banner .banner-image.draggable:active{cursor:grabbing}.obsidian-banner.loaded .banner-message,.obsidian-banner.error .banner-image{display:none}.obsidian-banner-wrapper{margin-top:calc(var(--banner-height) - 15px);padding-top:.5em}.obsidian-banner-spacer{height:calc(var(--banner-height) - 24px)}.obsidian-banner-icon{display:flex;position:relative;font-size:4em;pointer-events:none;user-select:none}.obsidian-banner-icon.h-left{justify-content:flex-start}.obsidian-banner-icon.h-center{justify-content:center}.obsidian-banner-icon.h-right{justify-content:flex-end}.obsidian-banner-icon .icon-box{display:inline-flex;align-items:center;height:calc(1em + 12px);padding:6px;border-radius:4px;pointer-events:initial;transition:ease .2s background}.obsidian-banner-icon .icon-box:hover{background:#aaa3;cursor:pointer}.obsidian-banner-icon img.emoji{height:1em;width:1em;vertical-align:-.1em}.internal-embed .markdown-embed-content .obsidian-banner-wrapper{margin-top:var(--banner-internal-embed-height)}.internal-embed .markdown-embed-content .obsidian-banner-wrapper>.obsidian-banner{height:var(--banner-internal-embed-height)}.internal-embed .markdown-embed-content .obsidian-banner-wrapper>.obsidian-banner img{cursor:initial}.popover .markdown-embed-content .obsidian-banner-wrapper{margin-top:var(--banner-preview-embed-height)}.popover .markdown-embed-content .obsidian-banner-wrapper>.obsidian-banner{height:var(--banner-preview-embed-height)}.popover .markdown-embed-content .obsidian-banner-wrapper>.obsidian-banner img{cursor:initial}.obsidian-banner-wrapper.has-banner-icon{padding-top:0}.obsidian-banner-wrapper.has-banner-icon .obsidian-banner-icon.v-above{margin-top:calc(-1em - 12px)}.obsidian-banner-wrapper.has-banner-icon .obsidian-banner-icon.v-center,.obsidian-banner-wrapper.has-banner-icon .obsidian-banner-icon.v-custom{margin-top:calc(-0.5em - 6px)}.obsidian-banner-wrapper.has-banner-icon .obsidian-banner-icon.v-below{padding-top:.5rem}.has-banner .cm6-banner-icon.v-above{margin-top:calc(-1em - 12px)}.has-banner .cm6-banner-icon.v-center,.has-banner .cm6-banner-icon.v-custom{margin-top:calc(-0.5em - 6px)}.has-banner .cm6-banner-icon.v-below{margin:.5rem 0}.markdown-source-view.mod-cm6 .cm-line.has-banner,.markdown-source-view.mod-cm6 .cm-line.has-banner-icon{position:inherit}.markdown-source-view.mod-cm6 .cm-line.has-banner .cm-fold-indicator,.markdown-source-view.mod-cm6 .cm-line.has-banner-icon .cm-fold-indicator{position:absolute}.markdown-source-view.mod-cm6 .cm-line.has-banner-icon .cm6-banner-icon,.markdown-source-view.mod-cm6 .cm-line.has-banner:not(.has-banner-icon) .obsidian-banner-spacer{margin-bottom:1.5rem}.markdown-source-view.mod-cm6 .cm-line.has-banner-icon:not(.has-banner) .cm-fold-indicator{top:calc(4em + 60px)}.markdown-source-view.mod-cm6 .cm-line.has-banner:not(.has-banner-icon) .cm-fold-indicator{top:calc(var(--banner-height) + 25px)}.markdown-source-view.mod-cm6 .cm-line.has-banner.has-banner-icon[data-icon-v=above] .cm-fold-indicator{top:calc(var(--banner-height) + 25px)}.markdown-source-view.mod-cm6 .cm-line.has-banner.has-banner-icon[data-icon-v=center] .cm-fold-indicator,.markdown-source-view.mod-cm6 .cm-line.has-banner.has-banner-icon[data-icon-v=custom] .cm-fold-indicator{top:calc(var(--banner-height) + 2em + 31px)}.markdown-source-view.mod-cm6 .cm-line.has-banner.has-banner-icon[data-icon-v=below] .cm-fold-indicator{top:calc(var(--banner-height) + 4em + 45px)}.banner-local-image-modal .banner-suggestion-item{padding:6px 10px}.banner-local-image-modal .suggestion-text{height:0;margin:0;padding-left:10px}.banner-local-image-modal .suggestion-image-wrapper{position:relative;height:200px;width:100%;margin:6px 0;overflow:hidden}.banner-local-image-modal .suggestion-image-wrapper img{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;object-fit:cover}.banner-icon-modal span.regular-emoji{font-size:1.2em;vertical-align:bottom}.banner-icon-modal img.emoji{margin-right:.5em;height:1.2em;width:1.2em;vertical-align:middle}.banner-settings .banner-setting-header{display:block;padding:6px 0}.banner-settings .banner-setting-header p{margin:0;font-size:1.2em}.banner-settings .banner-setting-header .banner-setting-header-title{font-size:1.3em}.banner-settings .banner-setting-header .banner-setting-header-description{margin-top:2px;font-size:.7em;color:var(--text-muted);line-height:18px}.banner-settings .setting-item-control{gap:8px}.is-mobile .has-banner-icon{margin-top:20px}.is-mobile .obsidian-banner-wrapper{margin-top:var(--banner-height)}.is-mobile .obsidian-banner-wrapper:not(.has-banner-icon){margin-top:calc(var(--banner-height) + 20px)}@media print{.obsidian-banner-wrapper{margin-top:0}.obsidian-banner-wrapper>.obsidian-banner{position:initial;margin-bottom:20px}.has-banner-icon,.has-banner-icon .obsidian-banner-icon,.obsidian-banner-wrapper.has-banner-icon{margin-top:0}.obsidian-banner-wrapper.has-banner-icon .obsidian-banner-icon{position:initial}}
+ :root {
+  --advanced-tables-helper-size: 28px;
+}
+
+.HyperMD-table-row span.cm-inline-code {
+  font-size: 100%;
+  padding: 0px;
+}
+
+.advanced-tables-buttons>div>.title {
+  font-weight: var(--font-medium);
+  font-size: var(--nav-item-size);
+  color: var(--nav-item-color);
+  text-decoration: underline;
+}
+
+[data-type="advanced-tables-toolbar"] .nav-buttons-container {
+  column-gap: 0.2rem;
+  margin: 0.2rem 0 0.2rem 0;
+  justify-content: start;
+}
+
+[data-type="advanced-tables-toolbar"] .nav-buttons-container::before {
+  min-width: 2.6rem;
+  line-height: var(--advanced-tables-helper-size);
+  font-size: var(--nav-item-size);
+  font-weight: var(--nav-item-weight);
+  color: var(--nav-item-color);
+}
+
+[data-type="advanced-tables-toolbar"] .nav-buttons-container>* {
+  height: var(--advanced-tables-helper-size);
+  line-height: var(--advanced-tables-helper-size);
+}
+
+[data-type="advanced-tables-toolbar"] .nav-buttons-container .nav-action-button {
+  width: var(--advanced-tables-helper-size);
+  height: var(--advanced-tables-helper-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--radius-s);
+}
+
+[data-type="advanced-tables-toolbar"] .nav-buttons-container .nav-action-button:hover {
+  background-color: var(--nav-item-background-hover);
+  color: var(--nav-item-color-hover);
+  font-weight: var(--nav-item-weight-hover);
+}
+
+.advanced-tables-row-label {
+  width: 50px;
+}
+
+.widget-icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--text-muted);
+}
+
+.widget-icon:hover {
+  fill: var(--text-normal);
+}
+
+.advanced-tables-csv-export textarea {
+  height: 200px;
+  width: 100%;
+}
+
+.advanced-tables-donation {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.advanced-tables-donate-button {
+  margin: 10px;
+} 
+.pandoc-plugin-error {
+    color: red;
+}
+ undefined
+</style>
+    </head>
+    <body>
+    <h1>Literární kontexty</h1>
+
+    <h2 data-heading="Časová osa (podle vzniku/vydání děl)" dir="auto">Časová osa (podle vzniku/vydání děl)</h2>
+<ol>
+<li dir="auto"><strong>cca 2000 př. n. l.</strong> – Epos o Gilgamešovi</li>
+<li dir="auto"><strong>1619</strong> – Lope de Vega: Fuente Ovejuna</li>
+<li dir="auto"><strong>1836</strong> – Karel Hynek Mácha: Máj</li>
+<li dir="auto"><strong>1845</strong> – Edgar Allan Poe: Havran</li>
+<li dir="auto"><strong>1851</strong> – Karel Havlíček Borovský: Křest svatého Vladimíra (začátek psaní)</li>
+<li dir="auto"><strong>1853</strong> – Karel Jaromír Erben: Kytice</li>
+<li dir="auto"><strong>1857</strong> – Jan Neruda: Hřbitovní kvítí</li>
+<li dir="auto"><strong>1870</strong> – Karel Havlíček Borovský: Král Lávra (posmrtně)</li>
+<li dir="auto"><strong>1883</strong> – Jan Neruda: Balady a romance</li>
+<li dir="auto"><strong>1901</strong> – František Gellner: Po nás ať přijde potopa</li>
+<li dir="auto"><strong>1902</strong> – Arthur Conan Doyle: Pes baskervillský</li>
+<li dir="auto"><strong>1937</strong> – John Steinbeck: O myších a lidech</li>
+<li dir="auto"><strong>1943</strong> – Antoine de Saint-Exupéry: Malý princ</li>
+<li dir="auto"><strong>1945</strong> – George Orwell: Farma zvířat</li>
+<li dir="auto"><strong>1949</strong> – George Orwell: 1984</li>
+<li dir="auto"><strong>1952</strong> – Ernest Hemingway: Stařec a moře</li>
+<li dir="auto"><strong>1953</strong> – Ray Bradbury: 451 stupňů Fahrenheita</li>
+<li dir="auto"><strong>1970</strong> – Václav Hrabě: Blues pro bláznivou holku (posmrtně)</li>
+<li dir="auto"><strong>1979</strong> – Douglas Adams: Stopařův průvodce Galaxií 1.</li>
+<li dir="auto"><strong>1980</strong> – Svěrák, Smoljak: Vražda v salonním coupé</li>
+<li dir="auto"><strong>1985</strong> – Svěrák, Smoljak: Dobytí severního pólu</li>
+<li dir="auto"><strong>1997</strong> – J. K. Rowlingová: Harry Potter a kámen mudrců</li>
+<li dir="auto"><strong>1998</strong> – Irena Dousková: Hrdý Budžes</li>
+<li dir="auto"><strong>2001</strong> – Petr Šabach: Opilé banány</li>
+<li dir="auto"><strong>2004</strong> – John Flanagan: Hraničářův učeň 1.</li>
+</ol>
+<h2 data-heading="Starověk (Mezopotámie)" dir="auto">Starověk (Mezopotámie)</h2>
+<h3 data-heading="Epos o Gilgamešovi" dir="auto">Epos o Gilgamešovi</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Nacházíme se v kolébce civilizace, v Mezopotámii. Literatura této doby je úzce spjata s náboženstvím, mýty a oslavou panovníků. Typickým znakem je klínové písmo a psaní na hliněné tabulky. Epos představuje přechod od mýtu k hrdinskému zpěvu – řeší univerzální lidská témata jako strach ze smrti, touha po nesmrtelnosti a hodnota přátelství.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Autorství je kolektivní a anonymní. Jde o výsledek staletí ústního předávání, kdy se jednotlivé příběhy postupně spojovaly. Nejucelenější verze pochází z knihovny krále Aššurbanipala v Ninive.<br>
+</li>
+<li dir="auto"><strong>Srovnání a souvislosti:</strong> Ačkoliv jde o nejstarší dílo, jeho vliv sahá až k biblickým příběhům (např. motiv potopy světa). Ve srovnání s pozdějšími řeckými eposy (Homérova Ilias a Odyssea) je Gilgameš více zaměřen na filozofickou otázku smrtelnosti než na válečnou slávu.<br>
+</li>
+</ul>
+<h2 data-heading="17. století (Španělský zlatý věk a Baroko)" dir="auto">17. století (Španělský zlatý věk a Baroko)</h2>
+<h3 data-heading="Lope de Vega: Fuente Ovejuna (Ovčí pramen)" dir="auto">Lope de Vega: Fuente Ovejuna (Ovčí pramen)</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Španělsko prožívalo svůj "Zlatý věk" (<em>Siglo de Oro</em>). V literatuře se mísí dozvuky renesanční harmonie s barokním napětím. Klíčovým prvkem je "Nová komedie", která porušila klasickou jednotu místa a času a smísila tragiku s komikou. Hlavním tématem byla osobní a stavovská čest.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Vrcholné drama z autorova pozdního období (1619). Lope de Vega byl neuvěřitelně plodný (napsal údajně až 1800 her).<br>
+</li>
+<li dir="auto"><strong>Srovnání se současníky:</strong> Lope de Vega tvořil ve stejné době jako <strong>William Shakespeare</strong> (Anglie) nebo <strong>Molière</strong> (později ve Francii). Zatímco Shakespeare se zaměřoval na hlubokou psychologii jedince a tragický osud králů, Lope de Vega často využíval kolektivního hrdinu (vesnice) a kladl větší důraz na národní španělské tradice a katolickou morálku.<br>
+</li>
+</ul>
+<h2 data-heading="19. století (Romantismus a Realismus)" dir="auto">19. století (Romantismus a Realismus)</h2>
+<h3 data-heading="Edgar Allan Poe: Havran a jiné básně" dir="auto">Edgar Allan Poe: Havran a jiné básně</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Světový romantismus, konkrétně jeho temná, "gothická" větev v USA. Romantismus kladl důraz na individualitu, subjektivitu a iracionalitu. Poe do literatury vnesl analytický přístup k hrůze a tajemnu. Jeho tvorba stojí na pomezí symbolismu a dekadence – zkoumá hlubiny lidské psychiky, stavy úzkosti a fascinaci smrtí.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Báseň <em>Havran</em> (1845) vznikla v závěrečné fázi Poeova života. Autor tehdy žil v chudobě a sledoval pomalé umírání své ženy Virginie na tuberkulózu, což se přímo promítlo do melancholického ladění díla. Poe je také považován za zakladatele moderní detektivky (povídky o Dupinovi) a žánru sci-fi.<br>
+</li>
+</ul>
+<h3 data-heading="Karel Hynek Mácha: Máj" dir="auto">Karel Hynek Mácha: Máj</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Český romantismus v době vrcholícího Národního obrození. Zatímco tehdejší literatura byla převážně vlastenecká a lidovýchovná (Tyl, Erben), Mácha přišel se subjektivním, "byronským" typem romantismu. Jeho hrdina je vyděděnec, vrah a vězeň, který trpí metafyzickou úzkostí z nicoty. Máj je průkopnické dílo, které kladlo důraz na zvukomalebnost a estetickou funkci jazyka namísto politické agitace.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Absolutní vrchol a jediné dílo vydané knižně za autorova života (1836). Mácha ho vydal vlastním nákladem krátce před svou náhlou smrtí v Litoměřicích. Ostatní díla (např. román <em>Cikáni</em>) vyšla až posmrtně nebo zůstala v rukopisech.<br>
+</li>
+</ul>
+<h3 data-heading="Karel Jaromír Erben: Kytice" dir="auto">Karel Jaromír Erben: Kytice</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Specifická forma romantismu, která se obrací k lidové slovesnosti, mýtům a tradici. Na rozdíl od Máchy se Erben nezaměřuje na individuální revoltu, ale na objektivní morální řád. V jeho baladách vládne osudovost – jakékoli narušení přirozeného řádu (vztah matka-dítě, slib) je nevyhnutelně potrestáno. Je to reakce na dobový zájem o lidovou kulturu jako základ národní identity.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Životní dílo, na kterém Erben pracoval přes 20 let (jednotlivé balady vycházely časopisecky od 30. let). Knižní vydání (1853) bylo přijato s nadšením, protože více odpovídalo tehdejším představám o národní literatuře než Máchův Máj. Erben byl primárně vědec, archivář a sběratel ústní lidové slovesnosti.<br>
+</li>
+</ul>
+<h3 data-heading="Karel Havlíček Borovský: Král Lávra, Křest sv. Vladimíra" dir="auto">Karel Havlíček Borovský: Král Lávra, Křest sv. Vladimíra</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Formování českého realismu a politické satiry. Havlíček opouští romantické iluze a soustředí se na racionální kritiku společnosti, církve a absolutismu. Jeho tvorba je reakcí na porážku revoluce 1848 a nástup Bachova absolutismu. Používá lidový jazyk, ironii a humor jako zbraň proti útlaku.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Obě díla jsou vrcholy jeho satirické tvorby a vznikala převážně v exilu v jihotyrolském Brixenu (1851–1855), kam byl násilně odvezen. <em>Král Lávra</em> je alegorickou pohádkou, zatímco <em>Křest sv. Vladimíra</em> je rozsáhlá, nedokončená skladba útočící na propojení státu a církve. Vyšla až dlouho po jeho smrti.<br>
+</li>
+</ul>
+<h3 data-heading="Jan Neruda: Hřbitovní kvítí, Balady a romance" dir="auto">Jan Neruda: Hřbitovní kvítí, Balady a romance</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Nastupující generace Májovců, která se v 50. letech 19. století přihlásila k Máchovu odkazu, ale literaturu posunula směrem k realismu a sociálním tématům. Neruda chtěl českou literaturu "odvlastenečtit" a přiblížit světovým trendům. V jeho tvorbě se mísí ironie, skepse a hluboký soucit s prostým člověkem.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> * <strong>Hřbitovní kvítí (1857):</strong> Prvotina ovlivněná pesimismem a bídou. Kritika ji odmítla pro nedostatek idealismu.
+<ul>
+<li dir="auto"><strong>Balady a romance (1883):</strong> Dílo zralého autora, kde Neruda mistrovsky transformuje klasické žánry – dává jim moderní, často sociální nebo vlastenecký podtext, a zbavuje je romantického patosu.</li>
+</ul>
+</li>
+</ul>
+<h3 data-heading="Tři podoby Romantismu: Mácha vs. Poe vs. Erben" dir="auto">Tři podoby Romantismu: Mácha vs. Poe vs. Erben</h3>
+<p dir="auto">V tomto století vedle sebe stojí tři zásadní autoři, kteří reprezentují různé přístupy k romantickému cítění:</p>
+<ul>
+<li dir="auto"><strong>Karel Hynek Mácha (Máj):</strong> Reprezentuje <strong>individuální revoltující romantismus</strong>. Jeho hrdina (Vilém) je společenský vyvrhel, který bojuje s osudem a nicotou.<br>
+</li>
+<li dir="auto"><strong>Edgar Allan Poe (Havran):</strong> Představuje <strong>černý romantismus</strong>. Zaměřuje se na psychologii hrůzy, analytický přístup k děsu a dekadenci. Zatímco Mácha hledá odpovědi v přírodě a nicotě, Poe je hledá v šílenství a smrti milované bytosti.<br>
+</li>
+<li dir="auto"><strong>Karel Jaromír Erben (Kytice):</strong> Stojí v opozici k Máchovi. Jeho romantismus je <strong>konzervativní a vlastenecký</strong>. Zatímco Máchův hrdina se bouří proti řádu, Erbenův hrdina je řádem (osudem) drcen, pokud jej poruší.<br>
+</li>
+</ul>
+<h3 data-heading="Realismus a Satira: Havlíček vs. Neruda" dir="auto">Realismus a Satira: Havlíček vs. Neruda</h3>
+<ul>
+<li dir="auto"><strong>Karel Havlíček Borovský:</strong> Představuje <strong>bojovný realismus</strong>. Používá literaturu jako politický nástroj (satiru). Jeho kritika je přímá, úsečná a lidová.<br>
+</li>
+<li dir="auto"><strong>Jan Neruda:</strong> Přináší <strong>městský, sociální realismus</strong>. Na rozdíl od Havlíčkovy politické satiry je Neruda v <em>Hřbitovním kvítí</em> spíše skeptický filozof a v <em>Baladách a romancích</em> jemný pozorovatel lidských osudů. Neruda patří ke generaci <strong>Májovců</strong>, která se k Máchovi (romantismu) hlásila, ale psala už realisticky.<br>
+</li>
+</ul>
+<h2 data-heading="20. století (Modernismus, Světové války, Dystopie)" dir="auto">20. století (Modernismus, Světové války, Dystopie)</h2>
+<h3 data-heading="Arthur Conan Doyle: Pes baskervillský" dir="auto">Arthur Conan Doyle: Pes baskervillský</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Pozdní viktoriánská literatura a vzestup populárních žánrů. Doyle definoval pravidla moderní detektivky postavené na logice, dedukci a vědeckých metodách. Postava Sherlocka Holmese se stala archetypem racionálního hrdiny, který vnáší řád do chaosu zločinu.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Nejslavnější román se Sherlockem Holmesem (1902). Doyle se k postavě vrátil po několikaleté pauze (kdy nechal Holmese "zemřít" v povídce Poslední případ), aby uspokojil veřejnost. Dílo skvěle využívá prvky hororu a tajemna (blata), které jsou nakonec racionálně vysvětleny.<br>
+</li>
+</ul>
+<h3 data-heading="František Gellner: Po nás ať přijde potopa" dir="auto">František Gellner: Po nás ať přijde potopa</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Generace "Anarchistických buřičů". Odmítali symbolismus a dekadenci, psali srozumitelně, provokativně a cynicky. Jejich tvorba je spojena s bohémstvím, antimilitarismem a odporem k měšťáckým hodnotám. Gellner vnesl do české poezie civilní tón, ironii a formu popěvku.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> První zásadní sbírka (1901). Reflektuje Gellnerův život v Paříži a Praze, jeho nechuť k přetvářce a vědomí marnosti. Gellner byl také významným karikaturistou a novinářem (Lidové noviny).<br>
+</li>
+</ul>
+<h3 data-heading="John Steinbeck: O myších a lidech" dir="auto">John Steinbeck: O myších a lidech</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Americký sociální realismus a naturalismus meziválečného období. Literatura reflektuje "Velkou hospodářskou krizi", osudy sezónních dělníků a rozpad "amerického snu". Steinbeck se zaměřuje na lidi z okraje společnosti, jejichž osud je často determinován prostředím a instinkty.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Novela z roku 1937, která patří k autorovým vrcholům. Napsal ji s úmyslem vytvořit "hru k četbě" (má výraznou dialogickou formu). O dva roky později napsal své nejslavnější dílo <em>Hrozny hněvu</em>.<br>
+</li>
+</ul>
+<h3 data-heading="Antoine de Saint-Exupéry: Malý princ" dir="auto">Antoine de Saint-Exupéry: Malý princ</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Humanismus a existencialismus. V kontextu 2. světové války kniha působí jako filozofický apel na zachování lidskosti, nevinnosti a schopnosti milovat. Jde o moderní pohádku pro dospělé, která pomocí symbolů kritizuje svět dospělých zaměřený na výkon a majetek.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Poslední dílo napsané krátce před autorovou tragickou smrtí (1944). Exupéry byl profesionální letec, což se promítalo do všech jeho knih. <em>Malý princ</em> je však v jeho tvorbě unikátní svým pohádkovým a alegorickým laděním.<br>
+</li>
+</ul>
+<h3 data-heading="George Orwell: Farma zvířat, 1984" dir="auto">George Orwell: Farma zvířat, 1984</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Reakce na vzestup totalitních ideologií (stalinismus a nacismus). Orwell je mistrem politického eseje a antiutopie (dystopie). Jeho díla zkoumají mechanismy moci, manipulaci s jazykem (<em>Newspeak</em>) a ztrátu individuální svobody.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> * <strong>Farma zvířat (1945):</strong> Satirická bajka, kterou Orwell dopsal na konci války, ale měl problém ji vydat kvůli tehdejšímu spojenectví Západu se SSSR.
+<ul>
+<li dir="auto"><strong>1984 (1949):</strong> Temná vize budoucnosti napsaná na sklonku života. Orwell byl v té době těžce nemocný a kniha je jeho definitivním varováním před totalitou.<br>
+</li>
+</ul>
+</li>
+</ul>
+<h3 data-heading="Ernest Hemingway: Stařec a moře" dir="auto">Ernest Hemingway: Stařec a moře</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Moderní americká próza a styl tzv. "metody ledovce" (psát úsporně, podstatné zůstává skryto pod hladinou). Hemingway patří k "Ztracené generaci", ale toto dílo představuje jeho návrat na vrchol po období tvůrčího útlumu. Jde o oslavu nezlomnosti lidské vůle.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Novela z roku 1952, za kterou autor obdržel Pulitzerovu a následně Nobelovu cenu. Je to jeho poslední významné dílo vydané za života, které symbolicky shrnuje jeho celoživotní témata: odvahu, čest a boj.<br>
+</li>
+</ul>
+<h3 data-heading="Ray Bradbury: 451 stupňů Fahrenheita" dir="auto">Ray Bradbury: 451 stupňů Fahrenheita</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Sci-fi literatura jako prostředek společenské kritiky. Bradbury reagoval na poválečný rozvoj televize, úpadek čtenářství a politickou atmosféru v USA (honba na komunisty). Jeho vize budoucnosti není o technologiích, ale o ztrátě historické paměti a kritického myšlení.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Zlomové dílo z roku 1953. Bradbury se jím definitivně proslavil. Na rozdíl od svých <em>Marťanských kronik</em> (které jsou souborem povídek) jde o sevřený románový příběh s jasným filozofickým poselstvím.<br>
+</li>
+</ul>
+<h3 data-heading="Václav Hrabě: Blues pro bláznivou holku" dir="auto">Václav Hrabě: Blues pro bláznivou holku</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Česká modifikace americké beatnické generace (Ginsberg, Kerouac). Poezie 60. let se osvobozuje od ideologie, je civilní, inspirovaná jazzem, blues a nočním životem velkoměsta. Hrabě vnesl do poezie rytmus moderní hudby a syrovou upřímnost.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Hrabě byl jediným českým autorem, který se k beatníkům přiblížil nejen stylem, ale i způsobem života. Za života vydal jen pár básní v časopisech. Sbírka vznikla až posmrtně (v 70. letech) rekonstrukcí z jeho pozůstalosti a stala se symbolem odporu proti šedi normalizace.<br>
+</li>
+</ul>
+<h3 data-heading="Douglas Adams: Stopařův průvodce Galaxií" dir="auto">Douglas Adams: Stopařův průvodce Galaxií</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Postmodernismus v literatuře. Adams kombinuje prvky sci-fi s absurdním humorem, parodií a společenskou satirou. Pro postmodernu je typické míšení žánrů, zpochybňování "velkých pravd" a hravost.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Původně rozhlasový seriál, který se stal celosvětovým fenoménem. První díl vyšel roku 1979 a zahájil "pětidílnou trilogii". Je to autorova prvotina a životní úspěch, který zastínil vše ostatní, co napsal.<br>
+</li>
+</ul>
+<h3 data-heading="Svěrák &amp; Smoljak: Cimrmanovské hry" dir="auto">Svěrák &amp; Smoljak: Cimrmanovské hry</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Fenomén českých "divadel malých forem" (Semafor, Ypsilonka). Specifikem Cimrmanů je mystifikace a inteligentní humor postavený na české národní povaze a parodii na vědecký život. Jde o formu intelektuální hravosti, která v době normalizace umožňovala únik z reality.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Hry vznikaly v průběhu několika desetiletí. <em>Vražda v salonním coupé</em> (1970) je parodií na detektivky, <em>Dobytí severního pólu</em> (1985) je považováno za jednu z jejich nejlepších her díky geniálnímu propojení přednášky a dramatu.</li>
+</ul>
+<h3 data-heading="Americká moderna: Hemingway vs. Steinbeck" dir="auto">Americká moderna: Hemingway vs. Steinbeck</h3>
+<ul>
+<li dir="auto"><strong>Ernest Hemingway (Stařec a moře):</strong> Člen "Ztracené generace". Jeho styl je úsporný (metoda ledovce). Soustředí se na <strong>individuální hrdinství</strong> a boj muže proti přírodě nebo osudu.<br>
+</li>
+<li dir="auto"><strong>John Steinbeck (O myších a lidech):</strong> Zaměřuje se na <strong>sociální rozměr</strong>. Na rozdíl od Hemingwaye, který oslavuje silného jedince, Steinbeck ukazuje slabé, chudé a mentálně hendikepované lidi, kteří jsou drceni ekonomickým systémem (hospodářskou krizí).<br>
+</li>
+</ul>
+<h3 data-heading="Vize nesvobody: Orwell vs. Bradbury" dir="auto">Vize nesvobody: Orwell vs. Bradbury</h3>
+<ul>
+<li dir="auto"><strong>George Orwell (1984 / Farma zvířat):</strong> Popisuje totalitu založenou na <strong>násilí, strachu a politické manipulaci</strong>. Jeho hrozba přichází od státu a diktátora.<br>
+</li>
+<li dir="auto"><strong>Ray Bradbury (451 stupňů Fahrenheita):</strong> Popisuje nesvobodu založenou na <strong>konzumu, povrchnosti a dobrovolné rezignaci na kulturu</strong>. Lidé u něj pálí knihy ne proto, že je stát nutí, ale proto, že je už nechtějí číst. Jde o kulturní úpadek.<br>
+</li>
+</ul>
+<h3 data-heading="Česká reakce na dobu: Hrabě vs. Cimrmani" dir="auto">Česká reakce na dobu: Hrabě vs. Cimrmani</h3>
+<ul>
+<li dir="auto"><strong>Václav Hrabě:</strong> Přináší do 60. let beatnickou vzpouru, jazz a svobodu. Je to poezie pocitu a okamžiku.<br>
+</li>
+<li dir="auto"><strong>Svěrák &amp; Smoljak:</strong> V období normalizace (70.–80. léta) reagují na nesvobodu <strong>inteligentním humorem, mystifikací a únikem do fiktivní historie</strong>. Zatímco Hrabě se bouří přímo a syrově, Cimrmani používají masku pseudovědy a ironie.<br>
+</li>
+</ul>
+<h2 data-heading="21. století (Současná literatura)" dir="auto">21. století (Současná literatura)</h2>
+<h3 data-heading="J. K. Rowlingová: Harry Potter a kámen mudrců" dir="auto">J. K. Rowlingová: Harry Potter a kámen mudrců</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Současná fantasy, která vychází z klasických pohádkových struktur (boj dobra se zlem) a "příběhu o dospívání" (<em>bildungsroman</em>). Rowlingová dokázala spojit moderní svět s magií a vrátit generaci dětí ke čtení.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Prvotina z roku 1997. Kniha vznikala v době, kdy byla autorka nezaměstnanou matkou samoživitelkou. Zahájila ságu, která se stala největším literárním komerčním úspěchem historie.<br>
+</li>
+</ul>
+<h3 data-heading="Irena Dousková: Hrdý Budžes" dir="auto">Irena Dousková: Hrdý Budžes</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Česká próza po roce 1989 reflektující minulost. Dousková používá metodu "dětského vypravěče", který nevinně, ale trefně popisuje absurditu a krutost komunistické normalizace 70. let.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Druhá kniha autorky (1998), která ji proslavila. Postava Helenky Součkové se objevuje i v dalších knihách (<em>Oněgin byl Rusák</em>, <em>Darda</em>), čímž vzniká rodinná kronika na pozadí dějin.<br>
+</li>
+</ul>
+<h3 data-heading="Petr Šabach: Opilé banány" dir="auto">Petr Šabach: Opilé banány</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Současná česká humoristická literatura. Šabach je mistrem "pábitelského" vyprávění (vliv Hrabala), kde se tragické mísí s komickým. Jeho styl je založen na anekdotách, dialozích a nostalgické atmosféře Prahy.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Kniha z roku 2001. Šabach v této době patřil k nejčtenějším českým autorům. Jeho tvorba je úzce spjata s filmy Jana Hřebejka, které pomohly definovat vnímání české historie 60. až 80. let.<br>
+</li>
+</ul>
+<h3 data-heading="John Flanagan: Hraničářův učeň" dir="auto">John Flanagan: Hraničářův učeň</h3>
+<ul>
+<li dir="auto"><strong>Literární pozadí:</strong> Současná "YA" (Young Adult) literatura. Jde o dobrodružnou fantasy, která klade důraz na přátelství, odvahu a dovednosti namísto mocné magie. Je to návrat k tradičnímu dobrodružnému vyprávění.<br>
+</li>
+<li dir="auto"><strong>Kontext autorovy tvorby:</strong> Původně soubor dvaceti příběhů, které Flanagan psal pro svého dvanáctiletého syna Michaela. První díl (2004) se stal okamžitě hitem a autorem vytvořený svět se rozrostl do desítek knih a několika sérií.</li>
+</ul>
+<h3 data-heading="Reflexe historie: Dousková vs. Šabach" dir="auto">Reflexe historie: Dousková vs. Šabach</h3>
+<ul>
+<li dir="auto"><strong>Irena Dousková (Hrdý Budžes):</strong> Podává obraz normalizace očima dítěte. Její humor je <strong>mrazivější a kritičtější</strong>. Ukazuje, jak režim deformuje charaktery dospělých.<br>
+</li>
+<li dir="auto"><strong>Petr Šabach (Opilé banány):</strong> Využívá podobné prostředí, ale jeho přístup je <strong>nostalgičtější a laskavější</strong>. Zaměřuje se na komické historky z dospívání (tzv. "pábitelství" po vzoru Hrabala).<br>
+</li>
+</ul>
+<h3 data-heading="Současná fantasy: Rowlingová vs. Flanagan" dir="auto">Současná fantasy: Rowlingová vs. Flanagan</h3>
+<ul>
+<li dir="auto"><strong>J. K. Rowlingová (Harry Potter):</strong> Vychází z britské tradice internátních škol a kombinuje moderní svět s magií. Klade důraz na <strong>osudovost a skryté světy</strong>.<br>
+</li>
+<li dir="auto"><strong>John Flanagan (Hraničářův učeň):</strong> Představuje "low fantasy". Namísto velké magie a vyvolených hrdinů sází na <strong>řemeslné dovednosti, tvrdý výcvik a strategii</strong>. Jeho svět je realističtější a blíže historickému románu.</li>
+</ul>
+    </body>
+</html>
