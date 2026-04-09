@@ -25,7 +25,7 @@
                 </div>
 
                 <p>
-                    Na jednu A4 se vejde 18 odpustků (3 sloupce x 6 řádků). Pokud zadáte více než 18, budou vytvořeny další stránky. Každý odpustek bude mít unikátní ID pro snadnou identifikaci.
+                    Na jednu A4 se vejde 18 odpustků (3 sloupce x 8 řádků). Pokud zadáte více než 24, budou vytvořeny další stránky. Každý odpustek bude mít unikátní ID pro snadnou identifikaci.
                 </p>
 
                 <div class="form-group">
@@ -252,34 +252,22 @@
             width: 210mm;
         }
 
-        .page {
-            width: 210mm;
-            height: 297mm;
+        .page, .validation-page {
             margin: 0 !important;
             padding: 0 !important;
             grid-template-rows: repeat(8, 35mm);
             align-content: start;
             gap: 0 !important;
+            page-break-after: always;
+            break-after: page;
+            border: none !important;
         }
-
-        /*.odpustek {
-            margin: 0 !important;
-            padding: 2.6mm !important;
-        } */
 
         #valid-odpustky-table {
             page-break-before: always;
             width: 210mm;
             margin: 0 !important;
             padding: 0 !important;
-        }
-
-        .validation-page {
-            width: 210mm;
-            min-height: 297mm;
-            padding: 8mm 6mm 6mm 6mm !important;
-            page-break-after: always;
-            break-after: page;
         }
 
         .validation-page:last-child {
