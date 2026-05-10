@@ -1,6 +1,6 @@
 ---
 // get content from the astro collection "projects"
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../../layouts/Layout.astro";
 import {getEntry, getCollection, render} from "astro:content";
 import {Icon} from "astro-icon/components";
 
@@ -26,13 +26,11 @@ const {Content} = await render(project);
 ---
 
 <Layout title={project.data.title}
-        category="Projects"
-        categoryUrl="/projects"
+        category="Projekty"
+        categoryUrl="/cs/projects"
         description={project.data.description}
         metaDesc={project.data.description}
-        metaTags={["Jan Štefanča", "PanJohnny", ...project.data.tags]}
-        i18n
->
+        metaTags={["Jan Štefanča", "PanJohnny", ...project.data.tags]} i18n>
     <main>
         <div class="info">
             <div>
@@ -48,7 +46,7 @@ const {Content} = await render(project);
                 </ul>
                 <strong>Tags</strong>
                 <ul class="tags">
-                    {project.data.tags.map(t => <li title="View tagged"><a href={"/projects/tag/" + t}>{t}</a></li>)}
+                    {project.data.tags.map(t => <li title="View tagged"><a href={"/cs/projects/tag/" + t}>{t}</a></li>)}
                 </ul>
             </div>
         </div>

@@ -1,0 +1,27 @@
+---
+// get content from the astro collection "projects"
+import Layout from "../../../layouts/Layout.astro";
+import {getCollection} from "astro:content";
+import Project from "../../../components/Project.astro";
+import {Icon} from "astro-icon/components";
+
+const projects = await getCollection("projects");
+---
+
+<Layout title="Projekty"
+        description="Výběr několika projektů, které jsem vytvořil a mohli by vás zajímat"
+        metaDesc="Výběr několika projektů, které jsem vytvořil a mohli by vás zajímat"
+        metaTags={["Jan Štefanča", "PanJohnny", "projekty"]}
+        i18n
+>
+    <section id="projects">
+        <ul class="projects">
+            {projects.map((project) => (
+                    <Project name={project.data.title} desc={project.data.description} page={"/project/" + project.id}/>
+            ))}
+            <li>
+                Víc naleznete na mém <a href="https://github.com/PanJohnny" target="_blank" rel="noreferrer noopener">GitHubu <Icon name="mdi:github"/></a>
+            </li>
+        </ul>
+    </section>
+</Layout>

@@ -1,12 +1,19 @@
 ---
 import {Icon} from "astro-icon/components";
+import {getRelativeLocaleUrl} from "astro:i18n";
 
 let current = Astro.currentLocale || "en";
 let other = current === "en" ? "cs" : "en";
 
-let url = Astro.url.pathname.replace(`/${current}`, `/${other}`);
+let trimmedPathName = Astro.url.pathname;
+
+if (trimmedPathName.startsWith("/" + current)) {
+    trimmedPathName = trimmedPathName.substring(current.length + 1);
+}
+
+let url = getRelativeLocaleUrl(other, trimmedPathName);
 ---
-<div class="picker language-picker" title="Select language">
+<div class="picker language-picker" title={current !== "en" ? "Vyberte jazyk" : "Select language"}>
     <label>
         <Icon name="mdi:language"/>
         <select onchange={"location.href='" + url + "'"}>

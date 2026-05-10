@@ -6,19 +6,18 @@ import Project from "../../components/Project.astro";
 import {Icon} from "astro-icon/components";
 
 const projects = await getCollection("projects");
-const sortedProjects = projects.sort((a, b) => {
-    return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime();
-});
 ---
 
 <Layout title="Projects"
-        description="Eight-year grammar school student passionate about programming and open-source projects."
-        metaDesc="Eight-year grammar school student passionate about programming and open-source projects."
-        metaTags={["Jan Štefanča", "PanJohnny"]}>
+        description="A selection of projects I've created that might interest you"
+        metaDesc="A selection of projects I've created that might interest you"
+        metaTags={["Jan Štefanča", "PanJohnny", "projects"]}
+        i18n
+>
     <section id="projects">
         <ul class="projects">
-            {sortedProjects.map((project) => (
-                    <Project name={project.data.title} desc={project.data.description} page={"/project/" + project.slug}/>
+            {projects.map((project) => (
+                    <Project name={project.data.title} desc={project.data.description} page={"/project/" + project.id}/>
             ))}
             <li>
                 View more on my <a href="https://github.com/PanJohnny" target="_blank" rel="noreferrer noopener">GitHub <Icon name="mdi:github"/></a>

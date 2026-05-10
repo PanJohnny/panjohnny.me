@@ -1,17 +1,34 @@
 ---
 import {Icon} from 'astro-icon/components';
 import LanguagePicker from "./LanguagePicker.astro";
+import {getRelativeLocaleUrl} from "astro:i18n";
 const i18n = true;
 
-const pages = [
-    {name: "Home", url: "/", i18n},
-    {name: "Projects", url: "/projects"},
-    {name: "MHD game", url: "/demo/prague"}
-];
+//
 
-function pUrl(page) {
-    return page.i18n ? `/${Astro.currentLocale}${page.url}` : page.url;
+const localisations = {
+    "cs": {
+        "Home": "Domů",
+        "Projects": "Projekty",
+        "MHD game": "MHD hra"
+    },
+    "en": {
+        "Home": "Home",
+        "Projects": "Projects",
+        "MHD game": "MHD game"
+    }
+};
+
+let currentLocale = "en";
+if (Astro.currentLocale) {
+    currentLocale = Astro.currentLocale;
 }
+
+const pages = [
+    {name: localisations[currentLocale]["Home"], url: getRelativeLocaleUrl(currentLocale, "/")},
+    {name: localisations[currentLocale]["Projects"], url: getRelativeLocaleUrl(currentLocale, "/projects")},
+    {name: localisations[currentLocale]["MHD game"], url: "/demo/prague"}
+];
 
 interface Props {
     i18n?: boolean;
@@ -25,7 +42,7 @@ const props = Astro.props as Props;
         <ul>
             {pages.map((page) => (
                     <li>
-                        <a href={pUrl(page)}>
+                        <a href={page.url}>
                             {page.name}
                             <span class="show-on-hover"><Icon name="mdi:arrow-right"/></span>
                         </a>
