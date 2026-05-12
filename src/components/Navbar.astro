@@ -10,7 +10,7 @@ const localisations = {
     "cs": {
         "Home": "Domů",
         "Projects": "Projekty",
-        "MHD game": "MHD hra"
+        "MHD game": "MHD hra",
     },
     "en": {
         "Home": "Home",
@@ -24,11 +24,13 @@ if (Astro.currentLocale) {
     currentLocale = Astro.currentLocale;
 }
 
-const pages = [
-    {name: localisations[currentLocale]["Home"], url: getRelativeLocaleUrl(currentLocale, "/")},
-    {name: localisations[currentLocale]["Projects"], url: getRelativeLocaleUrl(currentLocale, "/projects")},
-    {name: localisations[currentLocale]["MHD game"], url: "/demo/prague"}
+let pages = [
+    {name: localisations[currentLocale]["Home"], url: getRelativeLocaleUrl(currentLocale, "/"), icon: "mdi:home"},
+    {name: localisations[currentLocale]["Projects"], url: getRelativeLocaleUrl(currentLocale, "/projects"), icon: "mdi:construction"},
 ];
+
+pages = pages.filter(page => page.url !== Astro.url.pathname);
+console.log(Astro.url.pathname)
 
 interface Props {
     i18n?: boolean;
@@ -37,27 +39,48 @@ interface Props {
 const props = Astro.props as Props;
 ---
 
-<div id="navigation" class="hidden">
-    <nav>
-        <ul>
-            {pages.map((page) => (
-                    <li>
-                        <a href={page.url}>
-                            {page.name}
-                            <span class="show-on-hover"><Icon name="mdi:arrow-right"/></span>
-                        </a>
-                    </li>
-            ))
-            }
-        </ul>
-    </nav>
-    <div class="bottom">
-        <div class="special-picker">
-            {props.i18n && <LanguagePicker />}
+<>
+    <div id="big-screen-nav">
+        <nav>
+            <ul>
+                {pages.map((page) => (
+                        <li>
+                            <a href={page.url}>
+                                <Icon name={page.icon} style="margin-right: 5px;"/>
+                                {page.name}
+                                <span class="show-on-hover"><Icon name="mdi:arrow-right"/></span>
+                            </a>
+                        </li>
+                ))
+                }
+            </ul>
+        </nav>
+    </div>
+    <div id="navigation" class="hidden">
+        <nav>
+            <ul>
+                {pages.map((page) => (
+                        <li>
+                            <a href={page.url}>
+                                {page.name}
+                                <span class="show-on-hover"><Icon name="mdi:arrow-right"/></span>
+                            </a>
+                        </li>
+                ))
+                }
+            </ul>
+        </nav>
+        <div class="bottom">
+            <div class="special-picker">
+                {props.i18n &&
+                        <LanguagePicker/>}
+            </div>
+        </div>
+        <div class="real-bottom">
+
         </div>
     </div>
-</div>
-
+</>
 <style>
     a {
         text-decoration: none !important;
@@ -81,6 +104,26 @@ const props = Astro.props as Props;
         max-width: 40vw;
         min-width: 200px;
         animation: slideIn 0.5s ease-in-out forwards;
+    }
+
+    #big-screen-nav {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        ul {
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+            gap: 1em;
+            padding: 0;
+            margin: 0;
+        }
+        a {
+            width: auto;
+        }
+        nav {
+            padding: 0;
+        }
     }
 
     @keyframes slideIn {
@@ -120,7 +163,6 @@ const props = Astro.props as Props;
     }
 
     #navigation li:hover {
-        content: "→";
         margin-left: 5px;
         color: var(--rose-taupe);
     }
@@ -155,6 +197,20 @@ const props = Astro.props as Props;
             min-width: 100vw;
         }
     }
+
+    @media screen and (max-width: 780px) {
+        #big-screen-nav {
+            display: none;
+        }
+    }
+
+    @media screen and (min-width: 780px) {
+        #navigation:not(.hidden) {
+            display: block;
+            transform: translateX(100%);
+            animation: slideOut 0s ease-in-out forwards;
+        }
+    }
 </style>
 
 <style is:global>
@@ -162,7 +218,7 @@ const props = Astro.props as Props;
         background-color: var(--gray-dark) !important;
     }
 
-    .dark  #navigation li:hover {
+    .dark #navigation li:hover {
         color: var(--pale-dogwood) !important;
     }
 

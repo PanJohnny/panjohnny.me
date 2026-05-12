@@ -10,6 +10,8 @@ const projectsCollection = defineCollection({
         tags: z.array(z.string()),
         image: z.string().optional(),
         description: z.string(),
+        description_cs: z.string().optional(),
+        featured: z.boolean().optional(),
         links: z.array(z.object({
             title: z.string(),
             url: z.string(),

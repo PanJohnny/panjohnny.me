@@ -1,6 +1,7 @@
 ---
 title: GymLit-18g chronicle
 description: An online version of a chronicle, that my class maintains
+description_cs: Online verze kroniky, kterou vede moje třída
 tags: [astro, school, gymlit]
 links: [
     {

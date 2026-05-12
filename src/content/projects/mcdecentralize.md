@@ -1,6 +1,8 @@
 ---
 title: McDecentralize
 description: A CLI tool for hosting a Minecraft server accross multiple machines
+description_cs: CLI nástroj pro hostování Minecraft serverů na několika strojích
+featured: true
 tags: [java, cli, minecraft]
 links: [
     {

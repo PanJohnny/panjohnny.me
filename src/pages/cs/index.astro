@@ -5,22 +5,25 @@ import {Icon} from "astro-icon/components";
 
 import headshot from "../../assets/cat.jpg";
 import Project from "../../components/Project.astro";
+import {getCollection} from "astro:content";
+
+const featured = await getCollection("projects", (d) => d.data.featured === true);
 ---
 <Layout title="Jan Štefanča"
-        description="Student osmiletého gymnázia s vášní pro programování a open-source projekty."
-        metaDesc="Student osmiletého gymnázia s vášní pro programování a open-source projekty."
+        description="Student osmiletého gymnázia s vášní pro programování a open-source projekty"
+        metaDesc="Student osmiletého gymnázia s vášní pro programování a open-source projekty"
         metaTags={["Jan Štefanča", "PanJohnny"]} i18n={true}>
     <section id="hero">
         <div>
-            <Image src={headshot} alt="cat in a flower field" width={300} class="headshot" loading="lazy" aria-hidden/>
+            <Image src={headshot} alt="cat in a flower field" width={300} class="headshot" loading="lazy" aria-hidden="true"/>
         </div>
         <div class="content">
             <div class="title">
-                <Image src={headshot} alt="cat in a flower field" width={300} class="headshot small" loading="lazy" aria-hidden/>
+                <Image src={headshot} alt="cat in a flower field" width={300} class="headshot small" loading="lazy" aria-hidden="true"/>
                 <h1>Jan Štefanča</h1>
             </div>
 
-            <p>Student osmiletého gymnázia s vášní pro programování a open-source projekty.</p>
+            <p>Student osmiletého gymnázia s vášní pro programování a open-source projekty</p>
             <ul class="socials">
                 <li>
                     <a href="mailto:janstefanca@seznam.cz" rel="noopener noreferrer">
@@ -38,11 +41,9 @@ import Project from "../../components/Project.astro";
     <section id="projects">
         <h2><a href="/projects">Projekty <Icon name="mdi:arrow-right"/></a></h2>
         <ul class="list">
-            <Project name="Baka4J" desc="Javová knihovna pro práci s API Bakaláři"
-                     page="/project/baka4j" featured/>
-            <Project name="McDecentralize" desc="CLI nástroj pro hostování Minecraft serverů na několika strojích"
-                     page="/project/mcdecentralize" featured/>
-            <Project name="JIPProtocol" desc="Aplikační protokol pro server-klient komunikaci, má SOČ" page="/project/jednoduchy-internetovy-protokol" featured/>
+            {featured.map(project => (
+                    <Project name={project.data.title} desc={project.data.description_cs ? project.data.description_cs : project.data.description} page={"/project/" + project.id} featured/>
+            ))}
         </ul>
     </section>
     <section id="webapps">
@@ -59,7 +60,7 @@ import Project from "../../components/Project.astro";
 
 <style>
     section {
-        padding: 2rem;
+        padding: 1rem 2rem;
     }
 
     #hero {

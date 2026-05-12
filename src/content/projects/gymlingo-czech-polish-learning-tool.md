@@ -1,6 +1,7 @@
 ---
 title: GymLingo
 description: A huge school project that serves as a tool for practicing polish
+description_cs: Velký školní projekt, který slouží jako nástroj pro procvičování polštiny
 tags: [astro, school, gymlit]
 links: [
     {

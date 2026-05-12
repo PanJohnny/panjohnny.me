@@ -28,23 +28,24 @@ const {Content} = await render(project);
 <Layout title={project.data.title}
         category="Projekty"
         categoryUrl="/cs/projects"
-        description={project.data.description}
-        metaDesc={project.data.description}
+        description={project.data.description_cs ? project.data.description_cs : project.data.description}
+        metaDesc={project.data.description_cs ? project.data.description_cs : project.data.description}
+        image={project.data.image}
         metaTags={["Jan Štefanča", "PanJohnny", ...project.data.tags]} i18n>
     <main>
         <div class="info">
             <div>
                 <h1>{project.data.title}</h1>
-                <p class="desc">{project.data.description}</p>
+                <p class="desc">{project.data.description_cs ? project.data.description_cs : project.data.description}</p>
             </div>
             <div id="data">
-                <strong>Links</strong>
+                <strong>Odkazy</strong>
                 <ul class="links">
                     {project.data.links.map(({title, url, icon}) =>
                             <li><a href={url} target="_blank" rel="noopener noreferrer"><Icon name={icon}/> {title}</a></li>
                     )}
                 </ul>
-                <strong>Tags</strong>
+                <strong>Tagy</strong>
                 <ul class="tags">
                     {project.data.tags.map(t => <li title="View tagged"><a href={"/cs/projects/tag/" + t}>{t}</a></li>)}
                 </ul>
@@ -124,5 +125,10 @@ const {Content} = await render(project);
 
     #project {
         padding: 2rem;
+    }
+
+    :global(img) {
+        max-width: 100%;
+        max-height: 60vh;
     }
 </style>

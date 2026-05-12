@@ -1,6 +1,7 @@
 ---
 title: Cat emoji programming language
 description: Weird esoteric cat emoji programming language
+description_cs: Divný esoterický programovací jazyk s kočičími emoji
 tags: [java, language, esoteric, emojis]
 links: [
     {

@@ -11,9 +11,16 @@ interface Props {
     i18n?: boolean;
     category?: string;
     categoryUrl?: string;
+    image?: string;
 }
 
 const props = Astro.props as Props;
+
+let image = "/large.jpg";
+
+if (props.image) {
+    image = props.image;
+}
 ---
 
 <html lang={Astro.currentLocale}>
@@ -30,14 +37,14 @@ const props = Astro.props as Props;
     <meta property="og:url" content="https://panjohnny.me/"/>
     <meta property="og:title" content={props.title}/>
     <meta property="og:description" content={props.metaDesc}/>
-    <meta property="og:image" content="/large.jpg"/>
+    <meta property="og:image" content={image}/>
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image"/>
     <meta property="twitter:url" content="https://panjohnny.me/"/>
     <meta property="twitter:title" content={props.title}/>
     <meta property="twitter:description" content={props.metaDesc}/>
-    <meta property="twitter:image" content="/large.jpg"/>
+    <meta property="twitter:image" content={image}/>
 
     {props.metaTags ? props.metaTags.map((tag) => (
             <meta content={tag} property="og:tag"/>
@@ -63,13 +70,13 @@ const props = Astro.props as Props;
             {props.i18n && (
                 <LanguagePicker />
             )}
-            <div class="picker" title="Theme picker">
+            <div class="picker" title={Astro.currentLocale === "cs" ? "Vyberte vzhled" : "Select theme"}>
                 <label>
                     <Icon name="mdi:theme-light-dark"/>
                     <select class="theme-picker" id="selectTheme">
                         <option value="system">Auto</option>
-                        <option value="light">Light</option>
-                        <option value="dark">Dark</option>
+                        <option value="light">{Astro.currentLocale === "cs" ? "Svit" : "Light"}</option>
+                        <option value="dark">{Astro.currentLocale === "cs" ? "Tma" : "Dark"}</option>
                     </select>
                     <Icon name="mdi:chevron-down"/>
                 </label>
@@ -100,7 +107,7 @@ const props = Astro.props as Props;
             document.addEventListener('astro:after-swap', () => loadStuff());
             loadStuff();
         </script>
-        <a href="javascript:void(0)" id="toggle-nav" title="navigation" class="nav-button">
+        <a href="javascript:void(0)" id="toggle-nav" title={Astro.currentLocale === "cs" ? "Interagovat s navigační lištou" : "Toggle navigation bar"} class="nav-button">
             <Icon name="mdi:menu"/>
         </a>
         <Navbar i18n={props.i18n} />
@@ -259,6 +266,12 @@ const props = Astro.props as Props;
         flex-direction: row;
         gap: 1em;
     }
+
+    @media screen and (min-width: 780px) {
+        #toggle-nav {
+            display: none;
+        }
+    }
 </style>
 
 <script>
@@ -267,7 +280,7 @@ const props = Astro.props as Props;
         const labels = document.querySelectorAll('label');
         labels.forEach(label => {
             label.addEventListener('click', (event) => {
-                const select = document.getElementById(label.getAttribute('for'));
+                const select = document.getElementById(label.getAttribute('for') as string);
                 if (select) {
                     select.dispatchEvent(new Event('mousedown'));
                 }
@@ -279,7 +292,7 @@ const props = Astro.props as Props;
         const nav = document.querySelector("#navigation");
         if (nav) {
             nav.classList.toggle("hidden");
-            nav.style.animationDuration = "0.5s";
+            (nav as HTMLElement).style.animationDuration = "0.5s";
         }
     });
 </script>

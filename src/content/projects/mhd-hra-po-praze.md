@@ -1,6 +1,7 @@
 ---
 title: MHD Hra
-description: MHD hra pro lidi, co chtějí objet Prahu / Game about checking out the best of Prague Integrated Transport or PID
+description: Game about checking out the best of Prague Integrated Transport or PID
+description_cs: MHD hra pro lidi, co chtějí objet Prahu
 tags: [pid, mhd]
 links: [
     {

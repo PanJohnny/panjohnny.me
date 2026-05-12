@@ -1,6 +1,8 @@
 ---
 title: Baka4J
 description: School system Bakaláři api wrapper
+description_cs: Javová knihovna pro práci s API školního systému Bakaláři
+featured: true
 tags: [java, api, school]
 links: [
     {

@@ -1,6 +1,7 @@
 ---
 title: Obsidian Online
-description: A tool for viewing obsidian vaults backed up on GitHub in the browser on the fly
+description: A tool for viewing Obsidian vaults backed up on GitHub in the browser on the fly
+description_cs: Nástroj pro prohlížení Obsidian vaults zálohovaných na GitHubu v prohlížeči
 tags: [obsidian, typescript, react, github-api, astro]
 links: [
     {

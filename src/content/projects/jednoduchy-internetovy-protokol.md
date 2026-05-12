@@ -1,6 +1,8 @@
 ---
 title: Jednoduchý Internetový Protokol
 description: Custom aplication protocol for server-client communication
+description_cs: Aplikační protokol pro server-klient komunikaci – SOČ
+featured: true
 tags: [ java, api, school ]
 links: [
   {

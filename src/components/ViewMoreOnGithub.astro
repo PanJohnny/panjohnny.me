@@ -1,0 +1,38 @@
+---
+import {Icon} from "astro-icon/components";
+
+let text = "View more on my GitHub";
+
+if (Astro.currentLocale === "cs") {
+    text = "Více naleznete na mém GitHubu";
+}
+---
+<div id="view-more-container">
+    <a id="view-more" href="https://github.com/PanJohnny" target="_blank" rel="noreferrer noopener">
+        {text} <Icon name="mdi:github"/>
+    </a>
+</div>
+
+<style>
+    #view-more-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+    :global(.dark) #view-more {
+        background: var(--cadet-gray);
+        color: var(--anti-flash-white);
+    }
+
+    #view-more {
+        background: var(--rose-taupe);
+        color: var(--bone);
+        width: 95%;
+        padding: 16px 0 16px 0;
+        text-align: center;
+        text-decoration: none;
+    }
+</style>

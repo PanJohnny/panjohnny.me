@@ -1,6 +1,7 @@
 ---
 title: No Arrows In You!
 description: Minecraft modification that lets you modify various rendering aspects such as bee sting rendering
+description_cs: Minecraft modifikace, která vám umožní upravit různé aspekty renderování, jako je například zobrazení včelích žihadel
 tags: [java, minecraft, fabricmc, modification]
 links: [
     {
