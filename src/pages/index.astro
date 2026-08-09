@@ -8,10 +8,12 @@ import Project from "../components/Project.astro";
 import {getCollection} from "astro:content";
 
 const featured = await getCollection("projects", (d) => d.data.featured === true);
+
+const description = "Software engineering student at CTU in Prague, passionate about programming and open-source projects";
 ---
 <Layout title="Jan Štefanča"
-        description="Eight-year grammar school student passionate about programming and open-source projects"
-        metaDesc="Eight-year grammar school student passionate about programming and open-source projects"
+        description={description}
+        metaDesc={description}
         metaTags={["Jan Štefanča", "PanJohnny"]} i18n={true}>
     <section id="hero">
         <div>
@@ -23,7 +25,7 @@ const featured = await getCollection("projects", (d) => d.data.featured === true
                 <h1>Jan Štefanča</h1>
             </div>
 
-            <p>Eight-year grammar school student passionate about programming and open-source projects</p>
+            <p>{description}</p>
             <ul class="socials">
                 <li>
                     <a href="mailto:janstefanca@seznam.cz" rel="noopener noreferrer">
@@ -49,7 +51,7 @@ const featured = await getCollection("projects", (d) => d.data.featured === true
     <section id="webapps">
         <h2>Web apps</h2>
         <ul class="list">
-            <Project name="Class chronicle" desc="Online version of a chronicle, that my class maintains" page="//kronika.panjohnny.me" featured/>
+            <Project name="Class chronicle" desc="Online version of a highschool class chronicle maintained for 8 years" page="//kronika.panjohnny.me" featured/>
             <Project name="FastGymlit" desc="Fast RSS reader for news from school" page="//gymlit.panjohnny.me" featured/>
             <Project name="Květen45" desc="Interactive game analyzing newspapers published at the end of WW2 (in Czech)" page="//kveten45.panjohnny.me" featured/>
             <Project name="Bakaláři iCal" desc="App for connecting Bakaláři schedule with your calendar" page="//b.panjohnny.me" featured/>

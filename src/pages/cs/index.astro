@@ -8,10 +8,12 @@ import Project from "../../components/Project.astro";
 import {getCollection} from "astro:content";
 
 const featured = await getCollection("projects", (d) => d.data.featured === true);
+
+const description = "Student Softwarového inženýrstvý na ČVUT s vášní pro programování a open-source projekty";
 ---
 <Layout title="Jan Štefanča"
-        description="Student osmiletého gymnázia s vášní pro programování a open-source projekty"
-        metaDesc="Student osmiletého gymnázia s vášní pro programování a open-source projekty"
+        description={description}
+        metaDesc={description}
         metaTags={["Jan Štefanča", "PanJohnny"]} i18n={true}>
     <section id="hero">
         <div>
@@ -23,7 +25,7 @@ const featured = await getCollection("projects", (d) => d.data.featured === true
                 <h1>Jan Štefanča</h1>
             </div>
 
-            <p>Student osmiletého gymnázia s vášní pro programování a open-source projekty</p>
+            <p>{description}</p>
             <ul class="socials">
                 <li>
                     <a href="mailto:janstefanca@seznam.cz" rel="noopener noreferrer">
@@ -49,7 +51,7 @@ const featured = await getCollection("projects", (d) => d.data.featured === true
     <section id="webapps">
         <h2>Webové aplikace</h2>
         <ul class="list">
-            <Project name="Třídní kronika" desc="Online verze kroniky mé třídy" page="//kronika.panjohnny.me" featured/>
+            <Project name="Třídní kronika" desc="Online verze kroniky mé třídy z osmiletého gymnázia" page="//kronika.panjohnny.me" featured/>
             <Project name="FastGymlit" desc="Rychlá RSS čtečka zpráv ze školy" page="//gymlit.panjohnny.me" featured/>
             <Project name="Květen45" desc="Interaktivní hra analyzující dobový tisk ke konci 2. světové války" page="//kveten45.panjohnny.me" featured/>
             <Project name="Bakaláři iCal" desc="Aplikace pro propojení rozvrhu z Bakalářů a vašeho kalendáře" page="//b.panjohnny.me" featured/>
