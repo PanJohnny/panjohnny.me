@@ -1,0 +1,113 @@
+---
+import {Icon} from "astro-icon/components";
+import Layout from "../layouts/Layout.astro";
+---
+<Layout title="GameJam rozcestník"
+        description="Rozcestník pro GameJam 2026"
+        metaDesc="Rozcestník pro GameJam 2026">
+    <main>
+        <h2>Zbývající čas: <span id="timer"></span></h2>
+        <iframe src="https://trello.com/b/6h1ci3mS.html" width="80%" height="600" allowfullscreen></iframe>
+        <ul id="links">
+            <li>
+                <a href="https://gitlab.fel.cvut.cz/stefaj11/gamejam26" target="_blank" rel="noopener noreferrer" style="background-color: black; color: white;">
+                    <Icon name="mdi:gitlab"/>
+                    GitLab
+                </a>
+            </li>
+            <li>
+                <a href="https://trello.com/b/6h1ci3mS/gamejam-2026" target="_blank" rel="noopener noreferrer" style="background-color: deepskyblue; color: white;">
+                    <Icon name="mdi:trello"/>
+                    Trello
+                </a>
+            </li>
+            <li>
+                <a href="https://drive.google.com/drive/folders/1EZITU0m8gzeEkz1iCg0hSZirP8g344TO?usp=sharing"
+                   target="_blank" rel="noopener noreferrer" style="background-color: yellow; color: black;">
+                    <Icon name="mdi:google-drive"/>
+                    Google Drive
+                </a>
+            </li>
+        </ul>
+    </main>
+</Layout>
+
+<style>
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #timer {
+        font-weight: bold;
+    }
+
+    ul {
+        all: unset;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 1rem;
+        width: 100%;
+        margin-top: 3vh;
+    }
+
+    li {
+        all: unset;
+
+        a {
+            text-decoration: none;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: .5rem;
+            padding: 4em;
+            border: 1px solid white;
+        }
+
+        a:hover {
+            text-decoration: none;
+            opacity: 0.8;
+        }
+    }
+</style>
+
+<style is:global>
+    @keyframes blinking {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+</style>
+
+<script>
+    setInterval(() => {
+        const timer = document.querySelector("#timer") as HTMLElement;
+
+        const remaining = new Date("2026-10-14T15:00:00").getTime() - new Date().getTime();
+        const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+        // colors, remaining less then 3 hours - orange, less then 1 hour - red, less then 30 minutes - blinking red
+        if (remaining < 1800000) {
+            timer.style.color = "red";
+            timer.style.animation = "blinking 1s infinite";
+        } else if (remaining < 3600000) {
+            timer.style.color = "red";
+        } else if (remaining < 10800000) {
+            timer.style.color = "orange";
+        }
+
+        timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+</script>
