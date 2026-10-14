@@ -6,8 +6,9 @@ import Layout from "../layouts/Layout.astro";
         description="Rozcestník pro GameJam 2026"
         metaDesc="Rozcestník pro GameJam 2026">
     <main>
-        <h2>Zbývající čas: <span id="timer"></span></h2>
-        <iframe src="https://trello.com/b/6h1ci3mS.html" width="80%" height="600" allowfullscreen></iframe>
+        <small>Zbývající čas:</small>
+        <h2><span id="timer"></span></h2>
+        <script src="https://p.trellocdn.com/embed.min.js" is:inline></script>
         <ul id="links">
             <li>
                 <a href="https://gitlab.fel.cvut.cz/stefaj11/gamejam26" target="_blank" rel="noopener noreferrer" style="background-color: black; color: white;">
@@ -25,7 +26,7 @@ import Layout from "../layouts/Layout.astro";
                 <a href="https://drive.google.com/drive/folders/1EZITU0m8gzeEkz1iCg0hSZirP8g344TO?usp=sharing"
                    target="_blank" rel="noopener noreferrer" style="background-color: yellow; color: black;">
                     <Icon name="mdi:google-drive"/>
-                    Google Drive
+                    Drive
                 </a>
             </li>
         </ul>
@@ -33,6 +34,10 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <style>
+    h2 {
+        font-size: 3rem;
+    }
+
     main {
         display: flex;
         flex-direction: column;
@@ -65,6 +70,7 @@ import Layout from "../layouts/Layout.astro";
             gap: .5rem;
             padding: 4em;
             border: 1px solid white;
+            font-size: 2rem;
         }
 
         a:hover {
